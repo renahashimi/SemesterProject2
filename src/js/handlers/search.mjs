@@ -105,7 +105,10 @@ function clearSearch() {
     }
 }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 const searchResultContainer = document.getElementById('searchresult');
 if (searchResultContainer) {
     searchResultContainer.addEventListener('click', clearSearch);
@@ -127,4 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (clearSearchBtn) {
         clearSearchBtn.addEventListener('click', clearSearch);
     }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 });
