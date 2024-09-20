@@ -51,11 +51,21 @@ header, body, main, footer {
   justify-content: center !important;
   margin: auto !important;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px !important;
-  
+}
+
+main {
+    max-height: 100vh !important;
+}
+
+#footerContent {
+  bottom: 0;
+  left: 0;
+  position: sticky;
+  padding: 0;
 }
 
 footer {
-  margin-bottom: 80px !important;
+  margin-bottom: 20px !important;
 }
 
 
@@ -678,7 +688,7 @@ justify-content: flex-start; /* Align items to the start of the container */
 
 @media (min-width: 768px) {
   main {
-    margin: 60px auto -20px !important;
+    margin: 60px auto -60px !important;
   }
 
   footer {
@@ -761,9 +771,8 @@ justify-content: flex-start; /* Align items to the start of the container */
     font-size: 2rem;
     padding-bottom: 20px;
   }
+  
 }
-
-
 
 @media (min-width: 1000px) {
   
@@ -779,7 +788,10 @@ justify-content: flex-start; /* Align items to the start of the container */
     bottom: 0;
     font-size: x-large;
   }
+
+  
 }
+
 
 
 
