@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SemesterProject2 - An auction site">
+    <meta name="author" content="Rena Hashimi">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />   
+    <link rel="stylesheet" href="/dist/css/index.css" />   
+    <script type="module" src="/src/js/index.mjs"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <title id="userTitle">MIDAS TOUCH - MY PROFILE</title>
+</head>
+<body class="justify-content-center m-auto" style="max-width: 1100px;">
+    <header>
+        <!-- HEADER -->
+        <div id="header-placeholder"></div>
+    </header>
+    <main>
+        <!-- PROFILE -->
+        <div id="profileContainer"></div>
+
+        <!-- LISTINGS & WINS -->
+        <div id="myProfile" class="m-auto clearfix hidden" style="max-width: 1000px;">
+            <div class="border border-2 border-tealgreen shadowBorder20 my-4 py-4">
+                <h2 class="font-raleway-900 fs-6 text-primary text-uppercase p-3 shadowBorder10">listings</h2>
+                <div id="myListings" class="my-5"></div>
+            </div>
+            <div class="border border-2 border-tealgreen shadowBorder20 p-0">
+                <h2 class="font-raleway-900 fs-6 text-secondary text-uppercase p-3 shadowBorder10">Wins</h2>
+                <div id="myWins" class="bg-teallight text-light py-4"></div>
+            </div>
+        </div>
+        
+        <!-- GO BACK UP - BUTTON -->
+        <button id="goBackUpBtn" class="btn btn-white btn-lg bg-white m-auto justify-content-center text-center rounded-circle border border-5 border-primary">
+            <i class="bi bi-arrow-up-circle-fill"></i>
+        </button>
+        
+        <!-- LOGIN OVERLAY-->
+        <div id="overlay-container"></div>
+    </main>
+    <footer>
+        <!-- FOOTER -->
+        <div id="footerContainer"></div>
+    </footer>
+</body>
+</html>
