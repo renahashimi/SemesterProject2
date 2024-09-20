@@ -302,6 +302,8 @@ export async function profileTemplate(profileData) {
       "text-start", 
       "p-3",
     );
+
+  
     profileBioText.textContent = `Biography of ${profileData.data.name || "this user"}`;
   
     const profileBio = document.createElement("p");
