@@ -93,14 +93,11 @@ export async function renderSingleItem() {
       
       const userListingsData = await userListingsResponse.json();
       const userListings = userListingsData.data.listings || [];
-      
-      console.log('User Listings:', userListings);
-      
+            
       const listingContainer = document.createElement("div");
       listingContainer.classList.add("listing-scroll-container", "justify-content-start");
       
       if (Array.isArray(userListings) && userListings.length > 0) {
-        console.log('User has listings:', userListings);
         userListings.forEach(listing => {
           if (listing.id !== listingId) {
             const singleListingCard = simpleListingCard(listing);
@@ -109,7 +106,6 @@ export async function renderSingleItem() {
         });
       } 
       if (userListings.length <= 1)  {
-        console.log('No other listings from this user.'); 
         listingContainer.innerHTML = `
           <div class="noListingTxt d-block text-center text-white font-raleway-900 text-uppercase mt-5" style="height: 300px">
             <h2 class="fs-4">"No other listings from ${listing.seller.name}!"</h2>
@@ -119,8 +115,6 @@ export async function renderSingleItem() {
         listingContainer.classList.add('no-scroll');
       }
       
-      console.log('userSingleListingContainer content:', userSingleListingContainer.innerHTML);
-
       userSingleListingContainer.appendChild(singleHeader);
       userSingleListingContainer.appendChild(listingContainer);
       
