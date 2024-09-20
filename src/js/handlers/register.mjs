@@ -7,10 +7,8 @@ export function registerFormListener() {
         formElement.addEventListener('submit', async (event) => {
             event.preventDefault();
 
-            // Clear previous error messages
             clearErrors();
 
-            // Validate form
             const { isValid } = validateForm();
             if (!isValid) {
                 return;

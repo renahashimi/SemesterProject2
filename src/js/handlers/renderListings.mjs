@@ -21,7 +21,7 @@ export async function fetchListings(page = 1, limit = 9) {
 
     const cachedListings = localStorage.getItem('cachedListings');
     if (cachedListings) {
-      return JSON.parse(cachedListings).slice(0, pageSize); // Return only the first pageSize listings
+      return JSON.parse(cachedListings).slice(0, pageSize); 
     }
 
     return [];
