@@ -1,0 +1,48 @@
+//FONT
+@import url('https://fonts.googleapis.com/css2?family=Kolker+Brush&family=Prata&family=Raleway:ital,wght@0,100..900;1,100..900&family=Tenor+Sans&display=swap');
+
+// scss-docs-start import-stack
+// Configuration
+@import '../../node_modules/bootstrap/scss/functions';
+@import 'variables';
+@import 'variables-dark';
+@import '../../node_modules/bootstrap/scss/maps';
+@import '../../node_modules/bootstrap/scss/mixins';
+@import '../../node_modules/bootstrap/scss/utilities';
+@import '../../node_modules/bootstrap/scss/bootstrap';
+@import '../../node_modules/bootstrap/scss/_type.scss';
+@import '../../node_modules/bootstrap/scss/variables';
+@import '../../node_modules/bootstrap/scss/variables-dark';
+
+.font-raleway {
+  font-family: 'Raleway', sans-serif;
+}
+
+.font-raleway-900 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 900;
+}
+
+.font-italic {
+  font-style: italic;
+}
+
+.font-tenor {
+  font-family: 'Tenor Sans', sans-serif;
+}
+
+.font-georgia {
+  font-family: "Georgia, 'Times New Roman', Times, serif";
+}
+
+.font-prata {
+  font-family: "Prata", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-kolker {
+  font-family: "Kolker Brush", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
