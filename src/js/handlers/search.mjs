@@ -95,6 +95,10 @@ function clearSearch() {
     const searchResultContainer = document.getElementById('searchresult');
     const clearSearchResultBtn = document.getElementById('clearSearchResultBtn');
 
+<<<<<<< Updated upstream
+=======
+    
+>>>>>>> Stashed changes
     if (searchInput && searchResultContainer) {
         searchInput.value = '';
         searchResultContainer.innerHTML = '';
@@ -105,6 +109,14 @@ function clearSearch() {
     }
 }
 
+<<<<<<< Updated upstream
+=======
+const searchResultContainer = document.getElementById('searchresult');
+if (searchResultContainer) {
+    searchResultContainer.addEventListener('click', clearSearch);
+}
+
+>>>>>>> Stashed changes
 document.addEventListener('DOMContentLoaded', () => {
     const searchForm = document.querySelector('#searchForm');
     const clearSearchResultBtn = document.getElementById('clearSearchResultBtn');
@@ -121,4 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (clearSearchBtn) {
         clearSearchBtn.addEventListener('click', clearSearch);
     }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 });
