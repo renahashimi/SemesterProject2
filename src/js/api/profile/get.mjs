@@ -12,11 +12,7 @@ const name = load("profile")?.name;
  * @function getProfiles
  * @returns {Promise<Object>} A promise that resolves to an array of profiles.
  * @throws {Error} Throws an error if the request fails or if there is an issue with the response.
- * 
- * @example
- * getProfiles()
- *     .then(profiles => console.log('Profiles:', profiles))
- *     .catch(error => console.error('Error fetching profiles:', error));
+ *
  */
 
 export async function getProfiles() {
@@ -41,9 +37,7 @@ export async function getProfile(name) {
     if (!name) {
         throw new Error("Requires a name");
     }
-    
-    console.log("Fetching profile for:", name);  // Add this for debugging
-    
+        
     const getProfileUrl = `${API_AUCTION_URL}/profiles/${name}${action}`;
     
     try {

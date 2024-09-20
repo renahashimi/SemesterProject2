@@ -506,8 +506,6 @@ export function createListingCard(listing, buttonType) {
   
     bidBtn.addEventListener("click", () => {
       openLoginOverlay();
-      console.log('Bid button clicked');
-
     });
   }
 

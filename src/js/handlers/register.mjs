@@ -23,7 +23,6 @@ export function registerFormListener() {
 
             try {
                 const response = await registerUser(profile);
-                console.log('Registration successful', response);
                 formElement.reset();
                // window.location.href = '/index.html';
             } catch (error) {

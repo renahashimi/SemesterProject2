@@ -18,10 +18,6 @@ const user = load("profile")?.name;
  * @returns {Promise<Object>} A promise that resolves to the deleted listing's response data.
  * @throws {Error} Throws an error if the listing ID is not provided or the deletion fails.
  * 
- * @example
- * removeListing("12345")
- *     .then(() => console.log("Listing deleted successfully"))
- *     .catch(error => console.error("Failed to delete listing:", error));
  */
 export async function removeListing(listingId) {
     if (!listingId) {

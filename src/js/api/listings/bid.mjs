@@ -17,7 +17,6 @@ export async function submitBid(listingId, bidSum) {
     });
 
     if (!response.ok) {
-      console.log("Response status:", response.status); 
       if (response.status === 401) {
         alert('You are not authorized to place a bid. Please log in.');
         window.location.href = "/feed/listings/index.html"; 

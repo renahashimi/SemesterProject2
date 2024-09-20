@@ -79,8 +79,6 @@ export function setupCreateListingForm() {
                 const createdListing = await createListing(listingData);
                 save("Listing", JSON.stringify(listingData));
 
-                console.log("Listing created successfully:", createdListing);
-
                 mediaContainer.innerHTML = ""; 
                 listingData.media.forEach(mediaItem => {
                     if (mediaItem.url) {
