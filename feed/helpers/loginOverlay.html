@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SemesterProject2 - An auction site">
+    <meta name="author" content="Rena Hashimi">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />   
+    <link rel="stylesheet" href="/dist/css/index.css" />   
+    <script type="module" src="/src/js/index.mjs"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <title>LOGIN // OVERLAY</title>
+</head>
+<body>
+    <!-- LOGIN OVERLAY FOR ALL PAGES -->
+    <main>
+          <!-- LOGIN FORM - OVERLAY -->
+        <div id="login-overlay" class="overlay" style="display: none;">
+            <div class="container font-tenor text-primary justify-content-center text-center align-items-center login-form bg-white p-4" style="max-width: 400px;">
+                <h2 class="text-uppercase font-tenor my-2 pb-4">Login</h2>
+                <form id="loginForm" class="d-inline-grid fs-6 justify-content-center m-auto" method="POST">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" autocomplete="username" required>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" minlength="8" autocomplete="current-password" required>
+                    <div id="loginError" class="text-danger border border-2 border-danger d-none">ERROR</div>
+                    <button class="text-tealgreen text-uppercase font-raleway-900 bg-white border-2 border-tealgreen my-3 rounded-4" type="submit">Login</button>
+                </form>
+                <div class="col-12 d-block text-center mt-4 mb-5 text-white rounded-4 border border-primary pt-3 pb-1">
+                    <h3 class="text-uppercase text-primary fs-6">Not a member?</h3>
+                    <a href="/feed/profile/register/index.html">
+                        <button class="text-tealgreen text-uppercase fs-6 font-raleway-900 bg-white border-2 border-tealgreen fs-3 mb-3 rounded-4" style="width: 60%;">Register</button>
+                    </a>
+                </div>
+                <button id="close-overlay-btn" class="bg-white fs-5 border-0">Close</button>
+            </div>
+        </div> 
+    </main>
+</body>
+</html>
