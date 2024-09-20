@@ -1,0 +1,33 @@
+{
+  "name": "semesterproject2",
+  "version": "1.0.0",
+  "description": "![midas touch](https://github.com/user-attachments/assets/a81b26fd-66ba-43de-8281-eb4777888518)",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "sass src/scss:dist/css",
+    "watch": "sass --watch src/scss:dist/css && live-server",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "Auction",
+    "Semesterproject2",
+    "CSS",
+    "Frameworks",
+    "Bootstrap",
+    "SCSS",
+    "SASS",
+    "JavaScript"
+  ],
+  "author": "Rena Hashimi <renhas54143@stud.noroff.no>",
+  "license": "ISC",
+  "homepage": "https://github.com/renahashimi/SemesterProject2.git",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "sass": "^1.79.1"
+  }
+}
