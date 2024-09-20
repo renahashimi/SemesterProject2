@@ -232,86 +232,68 @@ export function createListingCard(listing, buttonType) {
   headContent.appendChild(buttonCnt);
   postContent.appendChild(headContent);
 
+
+  // Image
   const imgContent = document.createElement("div");
   imgContent.style.objectFit = "cover";
   imgContent.style.height = "320px";
   imgContent.classList.add("img-content");
   
-  // Image
-  if (listing.media && listing.media.length > 0) {
-    if (listing.media.length === 1) {
-      const img = document.createElement("img");
-      img.src = listing.media[0].url;
-      img.alt = listing.media[0].alt || "listing image";
-      img.style.width = "100%";
-      img.style.height = "300px";
-      img.style.objectFit = "cover";
-      img.style.borderRadius = "5px";
-      img.classList.add(
-        "postcard-image", 
-        "border", 
-        "border-2", 
-        "border-secondary"
-      );
-      img.addEventListener("click", () => {
-        openImageModal(img.src, img.alt);
-      });
-      imgContent.appendChild(img);
-    } else {
-      const scrollContainer = document.createElement("div");
-      scrollContainer.style.display = "flex";
-      scrollContainer.style.width = "90%";
-      scrollContainer.style.height = "300px";
-      scrollContainer.style.objectFit = "cover";
-      scrollContainer.style.borderRadius = "5px";
-      scrollContainer.classList.add(
-        "scrollbar-visible",
-        "border", 
-        "border-2", 
-        "border-secondary", 
-      );
+  // Image container
+  const imagesContainer = document.createElement('div');
+  imagesContainer.classList.add('images-container');
   
-      listing.media.forEach((mediaItem) => {
-        const img = document.createElement("img");
-        img.src = mediaItem.url;
-        img.alt = mediaItem.alt || "listing image";
-        img.style.height = "90%";
-        img.style.flexShrink = "0";
-        img.style.marginRight = "10px";
-        img.style.width = "auto"; 
-        img.style.objectFit = "cover";
-        img.style.borderRadius = "5px";
-        img.classList.add(
-          "postcard-image", 
-          "border", 
-          "border-2", 
-          "border-secondary"
-        );
-        img.addEventListener("click", () => {
-          openImageModal(img.src, img.alt);
-        });
-        scrollContainer.appendChild(img);
-      });
-      imgContent.appendChild(scrollContainer);
-    }
+  // Check the number of images
+  if (listing.media && listing.media.length > 0) {
+      if (listing.media.length > 1) {
+          // Create carousel for multiple images
+          const carousel = document.createElement('div');
+          carousel.classList.add('carousel');
+  
+          listing.media.forEach(image => {
+              const imgElement = document.createElement('img');
+              imgElement.src = image.url; // Adjust according to your image object structure
+              imgElement.style.width = "100%"; // Set width to 100%
+              imgElement.style.height = "300px"; 
+              imgElement.style.objectFit = "cover";
+              imgElement.style.borderRadius = "5px";
+              imgElement.classList.add("carousel-image");
+              
+              // Add click event to open modal
+              imgElement.addEventListener('click', () => {
+                  openImageModal(image.url, image.alt || 'Image'); // Use a default alt text if not provided
+              });
+  
+              carousel.appendChild(imgElement);
+          });
+  
+          // Initialize carousel
+          initializeCarousel(carousel);
+          imagesContainer.appendChild(carousel);
+      } else {
+          // Render a single image
+          const imgElement = document.createElement('img');
+          imgElement.src = listing.media[0].url; 
+          imgElement.style.width = "100%"; 
+          imgElement.style.height = "300px"; 
+          imgElement.style.objectFit = "cover";
+          imgElement.style.borderRadius = "5px";
+  
+          // Add click event to open modal
+          imgElement.addEventListener('click', () => {
+              openImageModal(listing.media[0].url, listing.media[0].alt || 'Image');
+          });
+  
+          imagesContainer.appendChild(imgElement);
+      }
   } else {
-    // Use default image if no images are available
-    const defaultImg = document.createElement("img");
-    defaultImg.src = "/src/images/noimage.jpg"; 
-    defaultImg.alt = "No image available";
-    defaultImg.style.width = "100%";
-    defaultImg.style.height = "300px";
-    defaultImg.style.objectFit = "cover";
-    defaultImg.style.borderRadius = "5px";
-    defaultImg.classList.add(
-      "postcard-image", 
-      "m-auto", 
-      "border", 
-      "border-2", 
-      "border-secondary"
-    );
-    imgContent.appendChild(defaultImg);
+      // Handle case where there are no images
+      const noImageMessage = document.createElement('p');
+      noImageMessage.textContent = "No images available.";
+      imagesContainer.appendChild(noImageMessage);
   }
+  
+  imgContent.appendChild(imagesContainer);
   
 
   // Title
@@ -688,4 +670,72 @@ export function createListingCard(listing, buttonType) {
   setTimeout(() => countdown(listing.endsAt, `countdown-${listing.id}`, listing._count.bids, `bidBtn-${listing.id}`), 0);
 
   return postContainer;
+}
+
+
+
+// CAROUSEL FUNCTION
+
+function initializeCarousel(carousel) {
+  const images = carousel.querySelectorAll('.carousel-image');
+  let currentIndex = 0;
+
+  // Create navigation buttons
+  const prevButton = document.createElement('button');
+  prevButton.innerHTML = '<i class="bi bi-arrow-left-circle"></i>';
+  const nextButton = document.createElement('button');
+  nextButton.innerHTML = '<i class="bi bi-arrow-right-circle"></i>';
+  prevButton.classList.add("border-0", "bg-transparent");
+  nextButton.classList.add("border-0", "bg-transparent");
+
+  // Set up initial visibility
+  images.forEach((img, index) => {
+      img.style.display = index === currentIndex ? 'block' : 'none';
+      img.style.transition = 'opacity 0.5s'; // Smooth transition
+      img.style.opacity = index === currentIndex ? '1' : '0'; // Initial opacity
+  });
+
+  // Function to show the current image
+  function showImage(index) {
+      if (images[currentIndex].src === images[index].src) {
+          return; // Prevent showing the same image
+      }
+      images[currentIndex].style.opacity = '0'; // Fade out current image
+      setTimeout(() => {
+          images[currentIndex].style.display = 'none'; // Hide after fade out
+          currentIndex = index;
+          images[currentIndex].style.display = 'block'; // Show new image
+          images[currentIndex].style.opacity = '1'; // Fade in new image
+      }, 500); // Match duration with CSS transition
+  }
+
+  // Add event listeners for buttons
+  prevButton.addEventListener('click', () => {
+      const newIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+      showImage(newIndex);
+  });
+
+  nextButton.addEventListener('click', () => {
+      const newIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+      showImage(newIndex);
+  });
+
+  // Style buttons
+  prevButton.style.position = 'absolute';
+  prevButton.style.left = '10px';
+  prevButton.style.top = '50%';
+  prevButton.style.transform = 'translateY(-50%)';
+  
+  nextButton.style.position = 'absolute';
+  nextButton.style.right = '10px';
+  nextButton.style.top = '50%';
+  nextButton.style.transform = 'translateY(-50%)';
+
+  // Style carousel container
+  carousel.style.position = 'relative';
+  carousel.style.overflow = 'hidden'; // Optional: hide overflowing images
+
+  // Append buttons to the carousel
+  carousel.appendChild(prevButton);
+  carousel.appendChild(nextButton);
 }
