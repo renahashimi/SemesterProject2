@@ -1,0 +1,800 @@
+// Color Variables
+$primary: #2C2C2C;
+$secondary: #424041;
+$tealgreen: #708090;
+$teallight: #75909A;
+$backcolor: #00000021;
+
+// Font Variables
+$font-tenor: 'Tenor Sans', sans-serif;
+$font-raleway: 'Raleway', sans-serif;
+$font-raleway-900: 'Raleway', sans-serif;
+$font-prata: 'Prata', serif;
+$font-kolker: 'Kolker Brush', cursive;
+
+
+@mixin font-italic {
+  font-style: italic;
+}
+
+@mixin prata {
+  font-family: 'Prata', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin kolker-brush-regular {
+  font-family: 'Kolker Brush', cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ALL PAGES */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-image: url(/src/images/geometric.jpg);
+  background-size: 300px;
+  background-position: center; 
+  background-repeat: repeat
+}
+
+
+header, body, main, footer {
+  overflow-x: hidden; 
+  background-color: white !important;
+  max-width: 1200px !important;
+  justify-content: center !important;
+  margin: auto !important;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px !important;
+}
+
+main {
+    max-height: 100vh !important;
+}
+
+#footerContent {
+  bottom: 0;
+  left: 0;
+  position: sticky;
+  padding: 0;
+}
+
+footer {
+  margin-bottom: 20px !important;
+}
+
+
+/* Mobile Header */
+/* Full-screen mobile menu styles */
+.fullscreen-menu {
+  position: fixed;
+  top: -10px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $primary;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-100%);
+  transition: transform 0.6s ease-in-out;
+  overflow: hidden; 
+}
+
+.fullscreen-menu.active {
+  display: flex !important; 
+  transform: translateY(0) !important;
+}
+
+#headerNav {
+  position:fixed;
+  top: 5rem; 
+  right: 2rem; 
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem; 
+  right: 1rem; 
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+  z-index: 1000;
+}
+
+#mobile-open-overlay-btn, #mobile-logout-btn{
+  border-top:  2px solid white !important;
+}
+#mobile-open-overlay-btn, #mobile-logout-btn,
+#mobile-open-overlay-btn:hover p, #mobile-logout-btn:hover p{
+  cursor: pointer;
+  border-bottom:  2px solid $tealgreen;
+  transform: scale(1.1);
+  transition: transform 0.5s ease-out, border-radius 0.3s ease-out;
+  color: white !important;
+  right: 2rem; 
+}
+
+
+
+/* Go back up btn */
+#goBackUpBtn {
+  position: fixed;
+  color: $tealgreen;
+  bottom: 13%; 
+  right: 6px; 
+  display: none;
+  width: 60px; 
+  height: 60px; 
+  padding: 0; 
+  z-index: 1000;
+}
+
+#goBackUpBtn i {
+  font-size: 2.5rem; 
+  line-height: 60px; 
+  display: block; 
+  margin: 0 auto;
+}
+
+.fs- {
+  &7 {
+    font-size: 0.8em !important;
+  }
+  &8 {
+    font-size: 0.7em !important;
+  }
+  &9 {
+    font-size: 0.6em !important;
+  }
+  &10 {
+    font-size: 1.5em !important;
+  }
+  &11 {
+    font-size: 2em !important;
+  }
+}
+
+.shadow {
+  &Border10 {
+    box-shadow: 0px 0px 10px 0 $primary;
+  }
+  &Border20 {
+    box-shadow: 0px 0px 20px 0 $primary;
+  }
+  &Top {
+    box-shadow: 0px -2px 15px 0 $primary;
+  }
+} 
+
+.text-underline {
+  text-decoration: underline !important;
+}
+
+button:hover, a:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-out, border-radius 0.3s ease-out;
+  border-radius: 10%;
+  color: $tealgreen !important;
+}
+
+a,
+ol,
+ul,
+dl,
+li,
+button {
+  color: $primary;
+  text-decoration: none !important;
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0;
+  padding-left: 0 !important;
+  cursor: pointer;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.hidden {
+  display: none;
+}
+
+// BUTTONS
+.activ, .activ1 {
+  pointer-events: none !important;
+  transform: none;
+}
+
+.activ a {
+  border-bottom: 2px solid $teallight !important;
+  border-top: 2px solid $teallight !important;
+  color: $tealgreen !important;
+  padding: 5px 0;
+}
+
+.activ1 {
+  border-bottom: 2px solid $tealgreen !important;
+  border-top: 2px solid $tealgreen !important;
+  margin: 20px 0;
+}
+
+
+#clearSearchResultBtn {
+  display: none; 
+  font-family: $font-tenor;
+  position: absolute; 
+  justify-content: center;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; 
+  background-color: white;
+  border: 1px solid $primary;
+  border-radius: 4px;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+#clearSearchResultBtn p {
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 10px;
+}
+
+#clearSearchResultBtn:hover p {
+  color: white;
+  font-family: $font-raleway-900;
+}
+
+.search-container {
+  position: relative;
+}
+
+.loadMoreBtn {
+  display: flexbox;
+  text-align: center;
+}
+
+.timeOverBtn {
+  color: $secondary !important;
+}
+
+.ggsTxt {
+  background: linear-gradient(90deg, $teallight, $primary, $tealgreen);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  @include kolker-brush-regular();
+  font-size: 4em;
+  flex-grow: 4 !important;
+}
+
+/* SPINNER */
+.spinner {
+  border: 5px solid $tealgreen;
+  border-radius: 50%;
+  border-top: 8px solid $primary;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 30%;
+  left: 45%;
+  transform: translate(-50%, 50%);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+// OTHER CSS/SASS
+.text-shadow {
+  text-shadow:
+    2px 8px 6px rgba(0, 0, 0, 0.2),
+    0px -5px 35px rgba(255, 255, 255, 0.3);
+}
+
+#homeImg {
+  object-fit: cover;
+}
+
+
+/* OVERLAY LOGIN */
+.overlay {
+  display: none;
+  position: fixed;
+  overflow: hidden;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.login-form {
+  max-width: 300px;
+  margin-top: 20px;
+}
+
+#login-overlay {
+  z-index: 9999;
+}
+
+
+#login-overlay.show {
+  display: flex;
+}
+
+
+
+/* PROFILE */
+.editBtn, .createBtn {
+   scale: 1.6;
+}
+
+.editBtnText, .createBtnTxt {
+  font-family: $font-tenor !important;
+  font-size: 0.5em !important;
+}
+
+.profile-alert {
+  justify-content: center;
+  align-items: center;
+  margin: 100px auto;
+  padding: 0 20px;
+}
+
+.profileBanner {
+  border-radius: 100% 0% 25% 75% / 0% 61% 39% 100% ;
+}
+
+
+/* POSTCARD */
+#allListingsContainer, #searchresult, #myListings, #userListings, #myWins, #userWins {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important; 
+}
+
+.postCard {
+  flex: 1 1 300px;
+  max-width: 300px;
+  padding: 1rem;
+}
+
+.listingTitle {
+  border-top: 2px solid $teallight;
+  border-bottom: 2px solid $teallight;
+  border-radius: 2% !important;
+}
+
+#searchresult {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap; 
+  gap: 5px;
+  padding: 0; 
+  transition: padding 0.3s; 
+}
+
+#searchresult.has-results {
+  padding: 60px 10px; 
+}
+
+#searchresult.no-results p {
+  display: block;
+  margin: 50px auto 10px;
+  text-align: center;
+  color: $primary;
+  font-size: 1em;
+  @include font-italic;
+  font-family: $font-raleway-900;
+}
+
+.postAllContent {
+  background:
+    linear-gradient(#ffffff 0 0) padding-box,
+    linear-gradient(to top, $primary, $tealgreen) border-box;
+  color: $tealgreen;
+  border: 5px solid transparent;
+}
+
+#latestListings {
+  justify-content: center;
+}
+
+.switch-listings {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+}
+
+.switch-listings.show {
+  opacity: 1;
+}
+
+.containerHomePage {
+  max-width: 200px;
+  width: 30%;
+}
+
+#singleListings .seeBtn {
+  display: none;
+}
+
+#media-preview-container {
+ justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.media-item:hover img {
+  scale: 3;
+}
+
+#singleListings .postAllContent {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+
+#singleListings .postcard-image {
+  height: 400px !important;
+  width: 300px !important;
+  margin: -30px auto 0 !important;
+  padding: 0 !important;
+}
+
+#userSingleListings {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 100%;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+#userSingleListings .listing-scroll-container {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+  height: 100%;
+  justify-content: start;
+}
+
+.listing-scroll-container {
+  display: flex;
+  overflow-x: auto; 
+}
+
+.justify-content-start {
+justify-content: flex-start; /* Align items to the start of the container */
+}
+
+#userSingleListings .postCard {
+  flex: 0 0 auto;
+  width: auto;
+  margin: 0;
+}
+
+
+/* COUNTDOWN */
+.countdown-container {
+  font-size: 1.2em;
+  margin: auto;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  gap: 1px;
+}
+
+.countdown-unit {
+  display: block;
+  padding: 0;
+  text-align: center;
+  min-width: 40px;
+  text-align: center;
+  color: $primary;
+}
+
+
+/* CONTACT */
+#allContactContent {
+  position: relative;
+}
+
+#aboutUsContent {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 99;
+}
+
+.img-fluid {
+  width: 100%;
+  object-fit: fill; 
+}
+
+.text-overlay {
+  position: absolute;
+  display: flex;
+  top: 40px;
+  left: 0;
+  width: 100%; 
+  height: max-content; 
+  background: rgba(0, 0, 0, 0.5); 
+  color: white;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start; 
+  z-index: 10;
+  text-align: center;
+}
+
+.text-overlay p,
+.text-overlay h1,
+.text-overlay div {
+  margin: 0;
+  padding: 10px;
+}
+
+
+// CAROUSEL
+.carousel-control-prev, 
+.carousel-control-next {
+  width: 5%;
+  border-radius: 50%;
+}
+
+.bi-arrow-left-circle, 
+.bi-arrow-right-circle {
+  font-size: 3rem !important;
+  color: white;
+}
+
+
+/* EMBRACE CONTAINER */
+#embraContainer {
+  position: relative;
+}
+
+/* For mobile screens: < 570px */
+@media (max-width: 767px) {
+  .text-overlay2 h3 {
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    z-index: 1; 
+    text-align: center;
+    padding-right: 10px;
+    font-size: 7vw;
+    backdrop-filter: blur(5px);
+  }
+
+  .embraceTxt {
+    background-color: $primary;
+    color: white;
+  }
+
+  .text-overlay2 p {
+
+    padding: 20px;
+  }
+}
+
+/* MEDIA */
+@media (max-width: 290px) {
+  #contactUsContent {
+    margin-top: 100px;
+  }
+}
+
+
+@media (min-width: 400px) {
+  .text-overlay {
+    top: 10%;
+  }
+
+  .postCard-simple {
+    width: 250px !important;
+  }
+}
+
+
+@media (min-width: 570px) {
+  #allContactContent {
+    margin: auto;
+    max-width: 1000px;
+  }
+
+  .postcard-description {
+    height: 60px !important;
+  }
+
+  .profileAvatar {
+    width: 180px !important;
+    height: 180px !important;
+    z-index: 100 !important;
+  }
+    
+  #contactH1 {
+    font-size: 3em !important;
+    padding: 10px !important;
+  }
+
+  #aboutUsContent {
+    display: flex;
+    flex-direction: row;
+    max-height: 800px;
+    margin-top: 20px;
+  }
+
+  #aboutUsContent p{
+    padding: 0;
+    margin: 2px;
+  }
+  
+  .wahTxt {
+    color: $primary;
+  }
+
+  #aboutTxt {
+    text-align: center;
+    font-size: 1.1em !important;
+  }
+
+  .img-fluid {
+    width: 60%;
+    max-height: 1000px;
+    object-fit: cover;
+    height: max-content; 
+  }
+
+  .text-overlay, #aboutTxt h2 {
+    align-items: flex-start;
+    text-align: left;
+    background: transparent; 
+    top: 0;
+  }
+
+
+  #contactUsContent {
+    margin: 350px 5px; 
+    border: none !important;
+    background: transparent;
+    z-index: 1;
+  }
+  
+}
+
+
+
+@media (min-width: 768px) {
+  main {
+    margin: 60px auto -60px !important;
+  }
+
+  footer {
+    margin-bottom: 15px !important;
+  }
+
+  .headIndex h1 {
+    display: block;
+    font-size: 4em !important;
+  }
+
+  .headP {
+    font-size: 1.1em !important;
+  }
+
+  #allListingsContainer, #searchresult, #myListings, #userListings, #myWins, #userWins {
+    display: grid !important;
+    grid-template-columns: auto auto;
+    gap: 1rem !important; 
+  }
+
+  .postcard-image, .scrollbar-visible {
+    height: 300px !important;
+    object-fit: cover;
+    margin: auto !important;
+  }
+
+  .postcard-content {
+    padding: 5px;
+  }
+
+  .profileAvatar {
+    width: 200px !important;
+    height: 200px !important;
+    left: 20% !important;
+  }
+  
+  #singleListings .postAllContent {
+    display: flex;
+    width: 750px !important;
+  }
+
+  #singleListings .postCard {
+    display: flex !important;
+    width: 700px !important;
+    padding: 20px !important;
+  }
+
+  #singleListings .img-content, #singleListing .postcard-content {
+    padding-right: 20px !important;
+  }
+
+  .text-overlay {
+    flex-direction: column;
+    width: 100%;
+    padding: 20px 50px;
+  }
+
+  .postCard-simple {
+    width: 320px !important;
+  }
+
+  .text-overlay2 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    backdrop-filter: blur(5px); 
+    padding: 20px;
+    color: white;
+  }
+
+  .text-overlay2 h3 {
+    font-size: 2rem;
+    padding-bottom: 20px;
+  }
+  
+}
+
+
+
+@media (min-width: 1000px) {
+  
+  #allListingsContainer, #searchresult, #myListings, #userListings, #myWins, #userWins {
+    display: grid !important;
+    grid-template-columns: repeat(3, auto);
+    gap: 1rem !important; 
+  }
+  .text-overlay2 {
+    top: 20%;
+    left: 50%;
+    width: 50%;
+    bottom: 0;
+    font-size: x-large;
+  }
+
+  
+}
+
