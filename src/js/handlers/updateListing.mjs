@@ -28,7 +28,6 @@ export async function setUpdateListingListener() {
                     mediaAddBtn(); 
                     const response = await getListing(id);
                     const listing = response.data; 
-                    console.log("Fetched listing data:", listing);
 
                     form.querySelector("#title").value = listing.title || "";
                     form.querySelector("#description").value = listing.description || "";
