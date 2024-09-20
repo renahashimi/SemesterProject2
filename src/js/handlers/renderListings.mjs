@@ -20,6 +20,7 @@ export async function fetchListings(page = 1, limit = 9) {
     console.error('Failed to fetch listings:', error);
 
     const cachedListings = localStorage.getItem('cachedListings');
+    
     if (cachedListings) {
       return JSON.parse(cachedListings).slice(0, pageSize); 
     }
