@@ -20,7 +20,6 @@ export async function getListings(page = 1, limit = 9, authenticated = false) {
     }
 
     const listings = await response.json();
-    console.log("Fetched listings:", listings);
     return listings.data || [];
   } catch (error) {
     console.error("Error fetching listings:", error);

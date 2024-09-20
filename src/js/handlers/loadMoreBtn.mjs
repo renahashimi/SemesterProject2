@@ -40,9 +40,7 @@ export function createLoadMoreButton() {
         try {
             currentPage++;
             const listings = await fetchListings(currentPage, limit);
-            
-            console.log("Loading more listings:", listings);
-            
+                        
             if (Array.isArray(listings) && listings.length > 0) {
                 renderAllListings(listings, true); 
                 loadMoreBtn.disabled = false; 

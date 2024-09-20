@@ -21,7 +21,6 @@ export async function createListing(listingData) {
     
         if (response.ok) {
             const createdListing = await response.json();
-            console.log('Listing created successfully:', createdListing);
             return createdListing;
         } else {
             const errorText = await response.text();

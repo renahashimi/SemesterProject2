@@ -24,7 +24,6 @@ export function setupMobileMenu() {
             fullscreenMenu.classList.contains('d-none');
             fullscreenMenu.classList.add('d-flex');
             closeMenuButton.classList.add('d-block')
-            console.log("button clicked")
         });
 
         closeMenuButton.addEventListener('click', (e) => {

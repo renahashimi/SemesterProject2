@@ -12,7 +12,6 @@ export function loadLoginOverlay() {
             .then(response => response.text())
             .then(data => {
                 overlayContainer.innerHTML = data;
-                console.log('Overlay loaded into container'); 
                 setupOverlayListeners();
                 loginFormListener();
             })
@@ -67,7 +66,6 @@ export function handleLoginSuccess(userData) {
     }
 
     closeLoginOverlay();
-    console.log('User logged in:', userData);
 }
 
 /**

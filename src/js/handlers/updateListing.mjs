@@ -103,8 +103,6 @@ export async function setUpdateListingListener() {
                     media,
                 };
 
-                console.log("Listing Data to be sent:", listingData);
-
                 if (!listingData.title || listingData.title.length < 3) {
                     alert("Title is required and must be at least 3 characters long.");
                     return;
