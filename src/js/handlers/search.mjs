@@ -105,7 +105,6 @@ function clearSearch() {
     }
 }
 
-
 const searchResultContainer = document.getElementById('searchresult');
 if (searchResultContainer) {
     searchResultContainer.addEventListener('click', clearSearch);

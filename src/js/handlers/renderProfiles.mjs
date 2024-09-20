@@ -76,7 +76,6 @@ export async function renderProfiles() {
             console.error('Listings container not found.');
         }
 
-        // Fetch and render won listings
         if (winsContainer) {
             try {
                 const wonListingsData = await getWins(name);

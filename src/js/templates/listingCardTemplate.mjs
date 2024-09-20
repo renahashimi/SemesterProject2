@@ -239,39 +239,33 @@ export function createListingCard(listing, buttonType) {
   imgContent.style.height = "320px";
   imgContent.classList.add("img-content");
   
-  // Image container
   const imagesContainer = document.createElement('div');
   imagesContainer.classList.add('images-container');
   
-  // Check the number of images
   if (listing.media && listing.media.length > 0) {
       if (listing.media.length > 1) {
-          // Create carousel for multiple images
           const carousel = document.createElement('div');
           carousel.classList.add('carousel');
   
           listing.media.forEach(image => {
               const imgElement = document.createElement('img');
-              imgElement.src = image.url; // Adjust according to your image object structure
-              imgElement.style.width = "100%"; // Set width to 100%
+              imgElement.src = image.url; 
+              imgElement.style.width = "100%"; 
               imgElement.style.height = "300px"; 
               imgElement.style.objectFit = "cover";
               imgElement.style.borderRadius = "5px";
               imgElement.classList.add("carousel-image");
               
-              // Add click event to open modal
               imgElement.addEventListener('click', () => {
-                  openImageModal(image.url, image.alt || 'Image'); // Use a default alt text if not provided
+                  openImageModal(image.url, image.alt || 'Image');
               });
   
               carousel.appendChild(imgElement);
           });
   
-          // Initialize carousel
           initializeCarousel(carousel);
           imagesContainer.appendChild(carousel);
       } else {
-          // Render a single image
           const imgElement = document.createElement('img');
           imgElement.src = listing.media[0].url; 
           imgElement.style.width = "100%"; 
@@ -279,7 +273,6 @@ export function createListingCard(listing, buttonType) {
           imgElement.style.objectFit = "cover";
           imgElement.style.borderRadius = "5px";
   
-          // Add click event to open modal
           imgElement.addEventListener('click', () => {
               openImageModal(listing.media[0].url, listing.media[0].alt || 'Image');
           });
@@ -287,7 +280,6 @@ export function createListingCard(listing, buttonType) {
           imagesContainer.appendChild(imgElement);
       }
   } else {
-      // Handle case where there are no images
       const noImageMessage = document.createElement('p');
       noImageMessage.textContent = "No images available.";
       imagesContainer.appendChild(noImageMessage);
@@ -539,7 +531,6 @@ export function createListingCard(listing, buttonType) {
   )
  
   if (listing.bids && listing.bids.length > 0) {
-    // Find the most recent bid
     const mostRecentBid = listing.bids.reduce((latest, bid) => {
       return new Date(bid.created) > new Date(latest.created) ? bid : latest;
     }, listing.bids[0]);
@@ -556,7 +547,6 @@ export function createListingCard(listing, buttonType) {
     bidAmount.textContent = ` -  $${mostRecentBid.amount}`;
     bidAmount.classList.add('bid-amount', 'fs-6');
     
-    // Append to the container
     bidderDiv.appendChild(bidderName);
     bidderDiv.appendChild(bidAmount);
     
@@ -680,7 +670,6 @@ function initializeCarousel(carousel) {
   const images = carousel.querySelectorAll('.carousel-image');
   let currentIndex = 0;
 
-  // Create navigation buttons
   const prevButton = document.createElement('button');
   prevButton.innerHTML = '<i class="bi bi-arrow-left-circle"></i>';
   const nextButton = document.createElement('button');
@@ -688,28 +677,25 @@ function initializeCarousel(carousel) {
   prevButton.classList.add("border-0", "bg-transparent");
   nextButton.classList.add("border-0", "bg-transparent");
 
-  // Set up initial visibility
   images.forEach((img, index) => {
       img.style.display = index === currentIndex ? 'block' : 'none';
-      img.style.transition = 'opacity 0.5s'; // Smooth transition
-      img.style.opacity = index === currentIndex ? '1' : '0'; // Initial opacity
+      img.style.transition = 'opacity 0.5s'; 
+      img.style.opacity = index === currentIndex ? '1' : '0'; 
   });
 
-  // Function to show the current image
   function showImage(index) {
       if (images[currentIndex].src === images[index].src) {
-          return; // Prevent showing the same image
+          return; 
       }
-      images[currentIndex].style.opacity = '0'; // Fade out current image
+      images[currentIndex].style.opacity = '0'; 
       setTimeout(() => {
-          images[currentIndex].style.display = 'none'; // Hide after fade out
+          images[currentIndex].style.display = 'none'; 
           currentIndex = index;
-          images[currentIndex].style.display = 'block'; // Show new image
-          images[currentIndex].style.opacity = '1'; // Fade in new image
-      }, 500); // Match duration with CSS transition
+          images[currentIndex].style.display = 'block'; 
+          images[currentIndex].style.opacity = '1';
+      }, 500); 
   }
 
-  // Add event listeners for buttons
   prevButton.addEventListener('click', () => {
       const newIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
       showImage(newIndex);
@@ -720,7 +706,6 @@ function initializeCarousel(carousel) {
       showImage(newIndex);
   });
 
-  // Style buttons
   prevButton.style.position = 'absolute';
   prevButton.style.left = '10px';
   prevButton.style.top = '50%';
@@ -731,11 +716,9 @@ function initializeCarousel(carousel) {
   nextButton.style.top = '50%';
   nextButton.style.transform = 'translateY(-50%)';
 
-  // Style carousel container
   carousel.style.position = 'relative';
-  carousel.style.overflow = 'hidden'; // Optional: hide overflowing images
+  carousel.style.overflow = 'hidden'; 
 
-  // Append buttons to the carousel
   carousel.appendChild(prevButton);
   carousel.appendChild(nextButton);
 }
