@@ -669,9 +669,9 @@ function initializeCarousel(carousel) {
   let currentIndex = 0;
 
   const prevButton = document.createElement('button');
-  prevButton.innerHTML = '<i class="bi bi-arrow-left-circle"></i>';
+  prevButton.innerHTML = '<i class="bi bi-arrow-left-circle text-white bg-secondary fs-1 rounded-5"></i>';
   const nextButton = document.createElement('button');
-  nextButton.innerHTML = '<i class="bi bi-arrow-right-circle"></i>';
+  nextButton.innerHTML = '<i class="bi bi-arrow-right-circle text-white bg-secondary fs-1 rounded-5"></i>';
   prevButton.classList.add("border-0", "bg-transparent");
   nextButton.classList.add("border-0", "bg-transparent");
 
@@ -705,12 +705,12 @@ function initializeCarousel(carousel) {
   });
 
   prevButton.style.position = 'absolute';
-  prevButton.style.left = '10px';
+  prevButton.style.left = '2px';
   prevButton.style.top = '50%';
   prevButton.style.transform = 'translateY(-50%)';
   
   nextButton.style.position = 'absolute';
-  nextButton.style.right = '10px';
+  nextButton.style.right = '-4px';
   nextButton.style.top = '50%';
   nextButton.style.transform = 'translateY(-50%)';
 
