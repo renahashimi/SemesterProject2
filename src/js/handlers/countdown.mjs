@@ -15,20 +15,19 @@ export function countdown(endTime, elementId, bidCount, bidButtonId, listingId) 
         const remainingTime = end - now;
         
         if (remainingTime <= 0) {
-            // Disable the bid button and hide or disable the bid input
             if (bidButton) {
-                bidButton.disabled = true; // Disable each bid button
+                bidButton.disabled = true; 
                 bidButton.textContent = "CLOSED";
                 bidButton.style.opacity = '0.5';
-                bidButton.style.backgroundColor = '#ccc'; // Change button appearance to reflect disabled state
+                bidButton.style.backgroundColor = '#ccc'; 
                 bidButton.classList.add("timeOverBtn");
-                bidButton.style.pointerEvents = 'none'; // Disable pointer events
+                bidButton.style.pointerEvents = 'none'; 
             }
   
             if (bidAmountInput) {
-                bidAmountInput.disabled = true; // Disable input
-                bidAmountInput.style.opacity = '0.5'; // Optional: reduce opacity to visually indicate it's disabled
-                bidAmountInput.style.pointerEvents = 'none'; // Disable pointer events for the input
+                bidAmountInput.disabled = true; 
+                bidAmountInput.style.opacity = '0.5';
+                bidAmountInput.style.pointerEvents = 'none';
             }
   
             if (bidCount > 0) {
