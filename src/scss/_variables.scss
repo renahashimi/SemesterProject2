@@ -29,8 +29,8 @@ $font-kolker: 'Kolker Brush', cursive;
   font-style: normal;
 }
 
-/* ALL PAGES */
 
+/* ALL PAGES */
 *,
 *::before,
 *::after {
@@ -43,7 +43,6 @@ html {
   background-position: center; 
   background-repeat: repeat
 }
-
 
 header, body, main, footer {
   overflow-x: hidden; 
@@ -223,7 +222,6 @@ button {
   margin: 20px 0;
 }
 
-
 #clearSearchResultBtn {
   display: none; 
   font-family: $font-tenor;
@@ -273,6 +271,7 @@ button {
   flex-grow: 4 !important;
 }
 
+
 /* SPINNER */
 .spinner {
   border: 5px solid $tealgreen;
@@ -304,6 +303,7 @@ button {
   object-fit: cover;
 }
 
+
 /* OVERLAY LOGIN */
 .overlay {
   display: none;
@@ -328,11 +328,9 @@ button {
   z-index: 9999;
 }
 
-
 #login-overlay.show {
   display: flex;
 }
-
 
 
 /* PROFILE */
@@ -666,7 +664,6 @@ justify-content: flex-start; /* Align items to the start of the container */
     background: transparent; 
     top: 0;
   }
-
 
   #contactUsContent {
     margin: 350px 5px; 
