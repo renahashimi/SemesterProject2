@@ -251,6 +251,7 @@ export function createListingCard(listing, buttonType) {
               const imgElement = document.createElement('img');
               imgElement.src = image.url; 
               imgElement.style.width = "100%"; 
+              imgElement.style.maxWidth = "300px"; 
               imgElement.style.height = "300px"; 
               imgElement.style.objectFit = "cover";
               imgElement.style.borderRadius = "5px";

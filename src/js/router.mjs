@@ -4,19 +4,21 @@ import * as listener from "./listeners/index.mjs";
 export default function router() {
   const path = window.location.pathname;
 
-  handlers.setupScrollPosition();
   listener.allPageListener();
 
   switch (path) {
     case "/":
     case "/index.html":
       handlers.renderHomeListings();
+      handlers.setupScrollPosition();
       break;
     case "/feed/profile/":
       handlers.renderMyProfile();
+      handlers.setupScrollPosition();
       break;
     case "/feed/profile/profiles/":
       handlers.renderProfiles();
+      handlers.setupScrollPosition();
       break;
     case "/feed/profile/register/":
     case "/feed/profile/register/index.html":
@@ -29,6 +31,7 @@ export default function router() {
       handlers.renderAllListings();
       handlers.searchListings();
       handlers.placeBidListener();
+      handlers.setupScrollPosition();
       break;
     case "/feed/listings/create/":
       handlers.setupCreateListingForm();
