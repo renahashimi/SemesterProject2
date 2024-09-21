@@ -18,11 +18,11 @@ export function goBackUpBtn(buttonId, scrollThreshold) {
     button.addEventListener("click", () => {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth'
+            behavior: "smooth"
         });
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    goBackUpBtn('goBackUpBtn', 300);
+document.addEventListener("DOMContentLoaded", () => {
+    goBackUpBtn("goBackUpBtn", 300);
 });

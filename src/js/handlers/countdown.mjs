@@ -18,16 +18,16 @@ export function countdown(endTime, elementId, bidCount, bidButtonId, listingId) 
             if (bidButton) {
                 bidButton.disabled = true; 
                 bidButton.textContent = "CLOSED";
-                bidButton.style.opacity = '0.5';
-                bidButton.style.backgroundColor = '#ccc'; 
+                bidButton.style.opacity = "0.5";
+                bidButton.style.backgroundColor = "#ccc"; 
                 bidButton.classList.add("timeOverBtn");
-                bidButton.style.pointerEvents = 'none'; 
+                bidButton.style.pointerEvents = "none"; 
             }
   
             if (bidAmountInput) {
                 bidAmountInput.disabled = true; 
-                bidAmountInput.style.opacity = '0.5';
-                bidAmountInput.style.pointerEvents = 'none';
+                bidAmountInput.style.opacity = "0.5";
+                bidAmountInput.style.pointerEvents = "none";
             }
   
             if (bidCount > 0) {

@@ -1,5 +1,5 @@
 export function isAuthenticated() {
-    const token = localStorage.getItem('token');
-    const profile = localStorage.getItem('profile');
+    const token = localStorage.getItem("token");
+    const profile = localStorage.getItem("profile");
     return !!token && !!profile;
   }

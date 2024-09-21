@@ -26,12 +26,12 @@ export async function setUpdateProfileListener() {
             try {
                 const profile = await getProfile(name);
                 if (profile && profile.data) {
-                    form.banner.value = profile.data.banner?.url || '';
-                    form.avatar.value = profile.data.avatar?.url || '';
-                    form.bio.value = profile.data.bio || '';  
+                    form.banner.value = profile.data.banner?.url || "";
+                    form.avatar.value = profile.data.avatar?.url || "";
+                    form.bio.value = profile.data.bio || "";  
                 }
             } catch (error) {
-                console.error('Error fetching profile:', error);
+                console.error("Error fetching profile:", error);
             } finally {
                 button.disabled = false;
             }
@@ -82,16 +82,16 @@ function validateProfile(profile) {
     const errors = [];
 
     if (profile.banner && !isValidURL(profile.banner)) {
-        errors.push('Banner URL is not valid.');
+        errors.push("Banner URL is not valid.");
     }
 
     if (profile.avatar && !isValidURL(profile.avatar)) {
-        errors.push('Avatar URL is not valid.');
+        errors.push("Avatar URL is not valid.");
     }
 
     // Validate Bio (Optional, no specific requirements)
     if (profile.bio && typeof profile.bio !== 'string') {
-        errors.push('Bio must be a string.');
+        errors.push("Bio must be a string.");
     }
 
     return errors;

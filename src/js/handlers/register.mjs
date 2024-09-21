@@ -15,12 +15,8 @@ export function registerFormListener() {
             }
 
             const formData = new FormData(formElement);
-            const profile = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                password: formData.get('password'),
-            };
-
+            const profile = Object.fromEntries(formData.entries());
+         
             try {
                 const response = await registerUser(profile);
                 formElement.reset();

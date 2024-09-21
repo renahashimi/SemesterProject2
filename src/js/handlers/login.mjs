@@ -1,23 +1,23 @@
-import { closeLoginOverlay, openLoginOverlay, setupOverlayListeners } from './overlayUtils.mjs';
-import { updateBtnForLogIn, updateBtnForLogOut, updateButtons } from './updateBtn.mjs';
-import { loginUser } from '../api/auth/login.mjs';
+import { closeLoginOverlay, openLoginOverlay, setupOverlayListeners } from "./overlayUtils.mjs";
+import { updateBtnForLogIn, updateBtnForLogOut, updateButtons } from "./updateBtn.mjs";
+import { loginUser } from "../api/auth/login.mjs";
 
 /**
  * Loads the login overlay into the page and sets up listeners.
  */
 export function loadLoginOverlay() {
-    const overlayContainer = document.getElementById('overlay-container');
+    const overlayContainer = document.getElementById("overlay-container");
     if (overlayContainer) {
-        fetch('/feed/helpers/loginOverlay.html')
+        fetch("/feed/helpers/loginOverlay.html")
             .then(response => response.text())
             .then(data => {
                 overlayContainer.innerHTML = data;
                 setupOverlayListeners();
                 loginFormListener();
             })
-            .catch(error => console.error('Error loading overlay:', error));
+            .catch(error => console.error("Error loading overlay:", error));
     } else {
-        console.error('Overlay container not found.');
+        console.error("Overlay container not found.");
     }
 }
 
@@ -43,7 +43,7 @@ export function loginFormListener() {
             }
         });
     } else {
-        console.error('Form with ID "loginForm" not found.');
+        console.error("Form with ID 'loginForm' not found.");
     }
 }
 
@@ -58,11 +58,11 @@ export function handleLoginSuccess(userData) {
     updateBtnForLogIn(); 
 
     if (userData) {
-        localStorage.setItem('userData', JSON.stringify(userData));
-        localStorage.setItem('token', userData.token);
-        localStorage.setItem('profile', JSON.stringify(userData.profile || {}));
+        localStorage.setItem("userData", JSON.stringify(userData));
+        localStorage.setItem("token", userData.token);
+        localStorage.setItem("profile", JSON.stringify(userData.profile || {}));
     } else {
-        console.error('Invalid userData:', userData);
+        console.error("Invalid userData:", userData);
     }
 
     closeLoginOverlay();
@@ -79,6 +79,6 @@ export function displayLoginError(message) {
         errorContainer.textContent = message || "Login failed. Please check your credentials and try again.";
         errorContainer.classList.remove("d-none");
     } else {
-        console.error('Error container with ID "loginError" not found.');
+        console.error("Error container with ID 'loginError' not found.");
     }
 }
