@@ -52,27 +52,46 @@ export async function setUpdateListingListener() {
                     if (listing.media && listing.media.length > 0) {
                         listing.media.forEach(mediaItem => {
                             const mediaDiv = document.createElement("div");
-                            mediaDiv.className = "media-item";
-                            mediaDiv.classList.add("d-flex", "justify-content-between");
-                            mediaDiv.style.height = "80px";
-
+                            mediaDiv.className = "media-item d-flex justify-content-between my-2";
+                    
+                            // Add preview image
+                            if (mediaItem.url) {
+                                const preview = document.createElement("img");
+                                preview.src = mediaItem.url;
+                                preview.alt = "Media preview";
+                                preview.style.maxWidth = "50px"; 
+                                preview.className = "ms-2";
+                                mediaDiv.appendChild(preview);
+                            }
                             const input = document.createElement("input");
-                            input.classList.add("w-100");
-                            input.type = "text";
+                            input.classList.add("form-control", "w-100");
+                            input.type = "url";
                             input.name = "media[]";
                             input.value = mediaItem.url || "";
 
                             mediaDiv.appendChild(input);
 
-                            if (mediaItem.url) {
-                                const preview = document.createElement("img");
-                                preview.src = mediaItem.url;
-                                preview.alt = "Media preview";
-                                preview.style.maxWidth = "100px"; 
-                                mediaDiv.appendChild(preview);
-                            }
+                            // Clear URL Button
+                            const clearBtn = document.createElement("button");
+                            clearBtn.type = "button";
+                            clearBtn.classList.add("btn", "btn-white", "border-danger", "rounded-circle", "p-0", "m-2", "mt-3");
+                            clearBtn.style.width = "40px"; 
+                            clearBtn.style.height = "40px"; 
+                            clearBtn.style.display = "flex";  
+                            clearBtn.style.justifyContent = "center"; 
+                            clearBtn.style.alignItems = "center"; 
+                            clearBtn.onclick = () => {
+                                input.value = "";  
+                            };
 
+                            const clearBtnIcon = document.createElement("i");
+                            clearBtnIcon.classList.add("bi", "bi-trash-fill", "text-primary");
+                            
+
+                            clearBtn.appendChild(clearBtnIcon);
+                            mediaDiv.appendChild(clearBtn);
                             mediaContainer.appendChild(mediaDiv);
+
                         });
                     }
                 } catch (error) {
