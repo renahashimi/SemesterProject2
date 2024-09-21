@@ -236,76 +236,21 @@ export function createListingCard(listing, buttonType) {
   headContent.appendChild(buttonCnt);
   postContent.appendChild(headContent);
 
+
+  // Image
   const imgContent = document.createElement("div");
   imgContent.style.objectFit = "cover";
   imgContent.style.height = "320px";
   imgContent.classList.add("img-content");
   
-<<<<<<< Updated upstream
-  // Image
-=======
   const imagesContainer = document.createElement('div');
   imagesContainer.classList.add("images-container");
   
->>>>>>> Stashed changes
   if (listing.media && listing.media.length > 0) {
-    if (listing.media.length === 1) {
-      const img = document.createElement("img");
-      img.src = listing.media[0].url;
-      img.alt = listing.media[0].alt || "listing image";
-      img.style.width = "100%";
-      img.style.height = "300px";
-      img.style.objectFit = "cover";
-      img.style.borderRadius = "5px";
-      img.classList.add(
-        "postcard-image", 
-        "border", 
-        "border-2", 
-        "border-secondary"
-      );
-      img.addEventListener("click", () => {
-        openImageModal(img.src, img.alt);
-      });
-      imgContent.appendChild(img);
-    } else {
-      const scrollContainer = document.createElement("div");
-      scrollContainer.style.display = "flex";
-      scrollContainer.style.width = "90%";
-      scrollContainer.style.height = "300px";
-      scrollContainer.style.objectFit = "cover";
-      scrollContainer.style.borderRadius = "5px";
-      scrollContainer.classList.add(
-        "scrollbar-visible",
-        "border", 
-        "border-2", 
-        "border-secondary", 
-      );
+      if (listing.media.length > 1) {
+          const carousel = document.createElement('div');
+          carousel.classList.add('carousel');
   
-<<<<<<< Updated upstream
-      listing.media.forEach((mediaItem) => {
-        const img = document.createElement("img");
-        img.src = mediaItem.url;
-        img.alt = mediaItem.alt || "listing image";
-        img.style.height = "90%";
-        img.style.flexShrink = "0";
-        img.style.marginRight = "10px";
-        img.style.width = "auto"; 
-        img.style.objectFit = "cover";
-        img.style.borderRadius = "5px";
-        img.classList.add(
-          "postcard-image", 
-          "border", 
-          "border-2", 
-          "border-secondary"
-        );
-        img.addEventListener("click", () => {
-          openImageModal(img.src, img.alt);
-        });
-        scrollContainer.appendChild(img);
-      });
-      imgContent.appendChild(scrollContainer);
-    }
-=======
           listing.media.forEach(image => {
               const imgElement = document.createElement('img');
               imgElement.src = image.url; 
@@ -348,25 +293,13 @@ export function createListingCard(listing, buttonType) {
   
           imagesContainer.appendChild(imgElement);
       }
->>>>>>> Stashed changes
   } else {
-    // Use default image if no images are available
-    const defaultImg = document.createElement("img");
-    defaultImg.src = "/src/images/noimage.jpg"; 
-    defaultImg.alt = "No image available";
-    defaultImg.style.width = "100%";
-    defaultImg.style.height = "300px";
-    defaultImg.style.objectFit = "cover";
-    defaultImg.style.borderRadius = "5px";
-    defaultImg.classList.add(
-      "postcard-image", 
-      "m-auto", 
-      "border", 
-      "border-2", 
-      "border-secondary"
-    );
-    imgContent.appendChild(defaultImg);
+      const noImageMessage = document.createElement('p');
+      noImageMessage.textContent = "No images available.";
+      imagesContainer.appendChild(noImageMessage);
   }
+  
+  imgContent.appendChild(imagesContainer);
   
 
   // Title
@@ -587,8 +520,6 @@ export function createListingCard(listing, buttonType) {
   
     bidBtn.addEventListener("click", () => {
       openLoginOverlay();
-      console.log('Bid button clicked');
-
     });
   }
 
@@ -612,7 +543,6 @@ export function createListingCard(listing, buttonType) {
   )
  
   if (listing.bids && listing.bids.length > 0) {
-    // Find the most recent bid
     const mostRecentBid = listing.bids.reduce((latest, bid) => {
       return new Date(bid.created) > new Date(latest.created) ? bid : latest;
     }, listing.bids[0]);
@@ -629,7 +559,6 @@ export function createListingCard(listing, buttonType) {
     bidAmount.textContent = ` -  $${mostRecentBid.amount}`;
     bidAmount.classList.add('bid-amount', 'fs-6');
     
-    // Append to the container
     bidderDiv.appendChild(bidderName);
     bidderDiv.appendChild(bidAmount);
     
@@ -742,8 +671,6 @@ export function createListingCard(listing, buttonType) {
 
   return postContainer;
 }
-<<<<<<< Updated upstream
-=======
 
 
 
@@ -812,4 +739,3 @@ function initializeCarousel(carousel) {
   carousel.appendChild(prevButton);
   carousel.appendChild(nextButton);
 }
->>>>>>> Stashed changes
