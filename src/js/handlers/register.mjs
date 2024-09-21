@@ -7,25 +7,18 @@ export function registerFormListener() {
         formElement.addEventListener('submit', async (event) => {
             event.preventDefault();
 
-            // Clear previous error messages
             clearErrors();
 
-            // Validate form
             const { isValid } = validateForm();
             if (!isValid) {
                 return;
             }
 
             const formData = new FormData(formElement);
-            const profile = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                password: formData.get('password'),
-            };
-
+            const profile = Object.fromEntries(formData.entries());
+         
             try {
                 const response = await registerUser(profile);
-                console.log('Registration successful', response);
                 formElement.reset();
                 window.location.href = '/feed/profile/';
             } catch (error) {
