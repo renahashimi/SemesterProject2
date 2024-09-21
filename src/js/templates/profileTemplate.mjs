@@ -26,7 +26,7 @@ export async function profileTemplate(profileData) {
   
     const profileBanner = document.createElement("img");
     profileBanner.src = profileData.data.banner?.url || "/src/images/blackgavel.jpg";
-    profileBanner.alt = profileData.data.banner?.alt || `${profileData.data.name} Banner Image`;
+    profileBanner.alt = profileData.data.banner?.alt || `${profileData.data.name}'s Banner Image`;
     profileBanner.style.height = "220px";
     profileBanner.style.width = "100%";
     profileBanner.style.objectFit = "cover";
@@ -43,9 +43,10 @@ export async function profileTemplate(profileData) {
   
     const profileAvatar = document.createElement("img");
     profileAvatar.src = profileData.data.avatar?.url || "../../images/blackgavel.jpg";
-    profileAvatar.alt = profileData.data.avatar?.alt || `${profileData.data.name} Avatar Image`;
+    profileAvatar.alt = profileData.data.avatar?.alt || `${profileData.data.name}'s Avatar Image`;
     profileAvatar.style.height = "140px";
     profileAvatar.style.width = "140px";
+    profileAvatar.style.objectFit = "cover";
     profileAvatar.classList.add(
       "profileAvatar", 
       "rounded-circle", 

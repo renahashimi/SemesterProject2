@@ -113,17 +113,19 @@ export function createListingCard(listing, buttonType) {
 
   // Button creation based on buttonType
   const buttonCnt = document.createElement("div");
-  buttonCnt.classList.add("d-block", "p-2");
+  buttonCnt.classList.add("buttoncnt", "d-block", "p-2", "position-relative");
 
   let viewButton;
 
   if (buttonType === "my-listing") {
     // Toggle button with Update and Delete options
     viewButton = document.createElement("button");
+    viewButton.style.zIndex = '999';
     viewButton.classList.add(
         "toggleBtn",
         "d-block",
         "btn-white",
+        "position-relative",
         "font-tenor",
         "fs-8",
         "p-0",
@@ -139,11 +141,12 @@ export function createListingCard(listing, buttonType) {
 
     const toggleMenu = document.createElement("div");
     toggleMenu.style.width = "min-content";
-
+    toggleMenu.style.zIndex = '1000';
     toggleMenu.classList.add(
       "toggleMenu", 
       "d-none", 
       "d-block",
+      "position-absolute",
       "align-content-center",
       "position-absolute",
       "bg-white", 
@@ -203,6 +206,7 @@ export function createListingCard(listing, buttonType) {
 } else {
     // Default to "See More" button
     viewButton = document.createElement("button");
+    viewButton.id = "seeBtn"
     viewButton.classList.add(
         "seeBtn",
         "btn-white",
@@ -237,7 +241,13 @@ export function createListingCard(listing, buttonType) {
   imgContent.style.height = "320px";
   imgContent.classList.add("img-content");
   
+<<<<<<< Updated upstream
   // Image
+=======
+  const imagesContainer = document.createElement('div');
+  imagesContainer.classList.add("images-container");
+  
+>>>>>>> Stashed changes
   if (listing.media && listing.media.length > 0) {
     if (listing.media.length === 1) {
       const img = document.createElement("img");
@@ -271,6 +281,7 @@ export function createListingCard(listing, buttonType) {
         "border-secondary", 
       );
   
+<<<<<<< Updated upstream
       listing.media.forEach((mediaItem) => {
         const img = document.createElement("img");
         img.src = mediaItem.url;
@@ -294,6 +305,50 @@ export function createListingCard(listing, buttonType) {
       });
       imgContent.appendChild(scrollContainer);
     }
+=======
+          listing.media.forEach(image => {
+              const imgElement = document.createElement('img');
+              imgElement.src = image.url; 
+              imgElement.style.width = "100%"; 
+              imgElement.style.height = "500px"; 
+              imgElement.style.objectFit = "cover";
+              imgElement.style.borderRadius = "5px";
+              imgElement.classList.add(
+                "carousel-image",
+                "border",
+                "border-3",
+                "border-secondary"
+              );
+              
+              imgElement.addEventListener('click', () => {
+                  openImageModal(image.url, image.alt || 'Image');
+              });
+  
+              carousel.appendChild(imgElement);
+          });
+  
+          initializeCarousel(carousel);
+          imagesContainer.appendChild(carousel);
+      } else {
+          const imgElement = document.createElement('img');
+          imgElement.src = listing.media[0].url; 
+          imgElement.style.width = "100%"; 
+          imgElement.style.height = "300px"; 
+          imgElement.style.objectFit = "cover";
+          imgElement.style.borderRadius = "5px";
+          imgElement.classList.add(  
+            "border",
+            "border-3",
+            "border-secondary"
+          )
+  
+          imgElement.addEventListener('click', () => {
+              openImageModal(listing.media[0].url, listing.media[0].alt || 'Image');
+          });
+  
+          imagesContainer.appendChild(imgElement);
+      }
+>>>>>>> Stashed changes
   } else {
     // Use default image if no images are available
     const defaultImg = document.createElement("img");
@@ -661,9 +716,7 @@ export function createListingCard(listing, buttonType) {
 
   detailsContainer.appendChild(toggleBtnWrapper);
   
-
-
-// Listing belongs to the user; bidding is not allowed
+  // Listing belongs to the user; bidding is not allowed
   if(token) {
     const userName = profile.name || '';
     if (bidControls) {
@@ -673,7 +726,7 @@ export function createListingCard(listing, buttonType) {
           bidControls.classList.add("pt-3", "p-0");
           bidControls.innerHTML = `<p>"You own this! No bidding."</p>`;
       } 
-  }
+    }
   }
 
   // Appendings
@@ -689,3 +742,74 @@ export function createListingCard(listing, buttonType) {
 
   return postContainer;
 }
+<<<<<<< Updated upstream
+=======
+
+
+
+// CAROUSEL FUNCTION
+function initializeCarousel(carousel) {
+  const images = carousel.querySelectorAll('.carousel-image');
+  let currentIndex = 0;
+
+  const prevButton = document.createElement('button');
+  prevButton.innerHTML = '<i class="bi bi-arrow-left-circle text-white bg-secondary fs-1 rounded-5"></i>';
+  const nextButton = document.createElement('button');
+  nextButton.innerHTML = '<i class="bi bi-arrow-right-circle text-white bg-secondary fs-1 rounded-5"></i>';
+  
+  prevButton.classList.add("border-0", "bg-transparent");
+  nextButton.classList.add("border-0", "bg-transparent");
+
+  carousel.style.position = 'relative';
+  carousel.style.overflow = 'hidden';
+
+  const carouselHeight = images[0].naturalHeight || 300;
+  carousel.style.height = `${carouselHeight}px`;
+
+  images.forEach((img, index) => {
+    img.style.position = 'absolute';
+    img.style.top = '0';
+    img.style.left = '0';
+    img.style.width = '100%'; 
+    img.style.height = '300px';
+    img.style.display = index === currentIndex ? 'block' : 'none';
+    img.style.transition = 'opacity 0.5s ease-in-out'; 
+    img.style.opacity = index === currentIndex ? '1' : '0';
+  });
+
+  function showImage(index) {
+    images[currentIndex].style.opacity = '0';
+    setTimeout(() => {
+      images[currentIndex].style.display = 'none';
+      currentIndex = index;
+      images[currentIndex].style.display = 'block';
+      setTimeout(() => {
+        images[currentIndex].style.opacity = '1';
+      }, 10);
+    }, 500);
+  }
+
+  prevButton.addEventListener('click', () => {
+      const newIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+      showImage(newIndex);
+  });
+
+  nextButton.addEventListener('click', () => {
+      const newIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+      showImage(newIndex);
+  });
+
+  prevButton.style.position = 'absolute';
+  prevButton.style.left = '2px';
+  prevButton.style.top = '50%';
+  prevButton.style.transform = 'translateY(-50%)';
+  
+  nextButton.style.position = 'absolute';
+  nextButton.style.right = '-4px';
+  nextButton.style.top = '50%';
+  nextButton.style.transform = 'translateY(-50%)';
+
+  carousel.appendChild(prevButton);
+  carousel.appendChild(nextButton);
+}
+>>>>>>> Stashed changes
