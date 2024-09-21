@@ -23,14 +23,10 @@ header, body, main, footer {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px !important;
 }
 
-main {
-  max-height: 100vh !important;
-}
-
 #footerContent {
   bottom: 0;
   left: 0;
-  position: sticky;
+  position: relative;
   padding: 0;
 }
 
@@ -319,6 +315,7 @@ button {
   align-items: center;
   margin: 100px auto;
   padding: 0 20px;
+  height: 70vh !important;
 }
 
 .profileBanner {
@@ -409,12 +406,18 @@ button {
   display: flex;
   margin: auto;
   justify-content: center;
+  position: relative;
 }
 
 #singleListings .postcard-image {
-  height: 400px !important;
+  align-items: first baseline;
+}
+
+#singleListings .postcard-image, #singleListings .carousel-image {
+  display: flex;
+  height: 500px !important;
   width: 300px !important;
-  margin: -30px auto 0 !important;
+  margin: -30px auto 30px !important;
   padding: 0 !important;
 }
 
