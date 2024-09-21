@@ -24,7 +24,7 @@ export function registerFormListener() {
             try {
                 const response = await registerUser(profile);
                 formElement.reset();
-               // window.location.href = '/index.html';
+                window.location.href = '/feed/profile/';
             } catch (error) {
                 console.error('Registration failed', error);
                 displayError('generalError', 'Registration failed. Please try again later.');

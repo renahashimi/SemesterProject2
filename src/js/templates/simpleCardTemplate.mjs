@@ -8,7 +8,7 @@ export function simpleListingCard(listing) {
       "m-auto", 
       "justify-content-center",
       "bg-white",
-      "p-2",
+      "px-2",
       "border",
       "border-5",
       "border-tealgreen",

@@ -23,10 +23,14 @@ header, body, main, footer {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px !important;
 }
 
+main {
+  max-height: 100vh !important;
+}
+
 #footerContent {
   bottom: 0;
   left: 0;
-  position: relative;
+  position: sticky;
   padding: 0;
 }
 
@@ -315,7 +319,6 @@ button {
   align-items: center;
   margin: 100px auto;
   padding: 0 20px;
-  height: 70vh !important;
 }
 
 .profileBanner {
@@ -326,7 +329,7 @@ button {
 #allListingsContainer, #searchresult, #myListings, #userListings, #myWins, #userWins {
   display: flex !important;
   flex-wrap: wrap !important;
-  gap: 1rem !important;
+  gap: 2rem !important;
 }
 
 .postCard {
@@ -406,7 +409,12 @@ button {
   display: flex;
   margin: auto;
   justify-content: center;
-  position: relative;
+}
+
+#singleListings .postcard-image {
+  height: 400px !important;
+  width: 300px !important;
+  margin: -30px auto 0 !important;
 }
 
 #singleListings .postcard-image {
@@ -414,7 +422,6 @@ button {
 }
 
 #singleListings .postcard-image, #singleListings .carousel-image {
-  display: flex;
   height: 500px !important;
   width: 300px !important;
   margin: -30px auto 30px !important;
@@ -596,7 +603,9 @@ button {
   }
   .wahTxt {
     color: #2C2C2C;
+    backdrop-filter: blur(10px);
   }
+  
   #aboutTxt {
     text-align: center;
     font-size: 1.1em !important;
@@ -607,14 +616,15 @@ button {
     object-fit: cover;
     height: max-content;
   }
-  .text-overlay, #aboutTxt h2, #aboutTxt .h2 {
+  .text-overlay, #aboutTxt h2 {
     align-items: flex-start;
     text-align: left;
-    background: transparent;
+    background: transparent; 
     top: 0;
   }
   #contactUsContent {
-    margin: 350px 5px;
+    margin: 400px 5px;
+    left: 50%;
     border: none !important;
     background: transparent;
     z-index: 1;
@@ -622,7 +632,7 @@ button {
 }
 @media (min-width: 768px) {
   main {
-    margin: 60px auto -60px !important;
+    margin: 60px auto -20px !important;
   }
   footer {
     margin-bottom: 15px !important;
@@ -634,7 +644,8 @@ button {
   .headP {
     font-size: 1.1em !important;
   }
-  #allListingsContainer, #searchresult, #myListings, #userListings, #myWins, #userWins {
+  #allListingsContainer, #myListings, #userListings, #myWins, #userWins {
+
     display: grid !important;
     grid-template-columns: auto auto;
     gap: 1rem !important;
@@ -659,7 +670,17 @@ button {
   #singleListings .postCard {
     display: flex !important;
     width: 700px !important;
-    padding: 20px !important;
+    padding: 5px !important;
+  }
+  #singleListings .images-container {
+    margin-top: -60px;
+    padding: 5px;
+    height: 400px !important;
+    width: 300px !important;
+  }
+  #singleListings .images-container img {
+    object-fit: cover;
+    height: 100% !important;
   }
   #singleListings .img-content, #singleListing .postcard-content {
     padding-right: 20px !important;
