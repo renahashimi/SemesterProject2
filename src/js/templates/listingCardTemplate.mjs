@@ -716,7 +716,7 @@ function initializeCarousel(carousel) {
         images[currentIndex].style.opacity = '1';
       }, 10);
     }, 500);
-
+  }
   prevButton.addEventListener('click', () => {
       const newIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
       showImage(newIndex);
