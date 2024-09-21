@@ -45,7 +45,6 @@ export async function renderMyProfile() {
         }
 
         const profileData = await getProfile(userName);
-        console.log('Fetched PROFILE:', profileData);
 
         if (!profileContainer) {
             throw new Error('Profile container not found.');
@@ -69,13 +68,11 @@ export async function renderMyProfile() {
 
                 const listingsData = await listingsResponse.json();
                 const listings = listingsData.data; 
-                console.log('Fetched Listings:', listings); 
         
                 myListingsContainer.innerHTML = ''; 
         
                 if (Array.isArray(listings) && listings.length > 0) {
                     listings.forEach((listing) => {
-                        console.log('Listing object:', listing); 
                         const listingCard = createListingCard(listing, "my-listing");
             
                         const bidControls = listingCard.querySelector(`#bidControls-${listing.id}`);
@@ -112,15 +109,12 @@ export async function renderMyProfile() {
         if (myWinsContainer) {
             try {
                 const wonListingsData = await getWins(profile.name)
-                console.log('Fetched Won Listings Data:', wonListingsData);        
                 const wonListings = wonListingsData.data; 
-                console.log('Won Listings:', wonListings);
         
                 myWinsContainer.innerHTML = ''; 
                 
                 if (Array.isArray(wonListings) && wonListings.length > 0) {
                     wonListings.forEach((listing) => {
-                        console.log('Won Listing object:', listing); 
                         const listingCard = simpleListingCard(listing);
                     
                         myWinsContainer.appendChild(listingCard);

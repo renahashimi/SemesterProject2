@@ -29,8 +29,8 @@ $font-kolker: 'Kolker Brush', cursive;
   font-style: normal;
 }
 
-/* ALL PAGES */
 
+/* ALL PAGES */
 *,
 *::before,
 *::after {
@@ -44,7 +44,6 @@ html {
   background-repeat: repeat
 }
 
-
 header, body, main, footer {
   overflow-x: hidden; 
   background-color: white !important;
@@ -54,14 +53,10 @@ header, body, main, footer {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px !important;
 }
 
-main {
-    max-height: 100vh !important;
-}
-
 #footerContent {
   bottom: 0;
   left: 0;
-  position: sticky;
+  position: relative;
   padding: 0;
 }
 
@@ -233,7 +228,6 @@ button {
   margin: 20px 0;
 }
 
-
 #clearSearchResultBtn {
   display: none; 
   font-family: $font-tenor;
@@ -282,6 +276,7 @@ button {
   font-size: 4em;
   flex-grow: 4 !important;
 }
+
 
 /* SPINNER */
 .spinner {
@@ -339,11 +334,9 @@ button {
   z-index: 9999;
 }
 
-
 #login-overlay.show {
   display: flex;
 }
-
 
 
 /* PROFILE */
@@ -361,6 +354,7 @@ button {
   align-items: center;
   margin: 100px auto;
   padding: 0 20px;
+  height: 70vh !important;
 }
 
 .profileBanner {
@@ -454,12 +448,19 @@ button {
   display: flex;
   margin: auto;
   justify-content: center;
+  position: relative;
 }
 
 #singleListings .postcard-image {
-  height: 400px !important;
+  align-items: first baseline;
+
+
+} 
+#singleListings .postcard-image, #singleListings .carousel-image { 
+  display: flex;
+  height: 500px !important;
   width: 300px !important;
-  margin: -30px auto 0 !important;
+  margin: -30px auto 30px !important;
   padding: 0 !important;
 }
 
