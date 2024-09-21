@@ -14,10 +14,6 @@ const action = "?_seller=true&_bids=true";
  * @returns {Promise<Object>} The updated listing data.
  * @throws {Error} Throws an error if the request fails or if there is an issue with the response.
  * 
- * @example
- * updateListing("12345", { title: "New Title", description: "Updated Description" })
- *     .then(updatedListing => console.log('Listing updated successfully:', updatedListing))
- *     .catch(error => console.error('Error updating listing:', error));
  */
 export async function updateListing(listingId, listingData) {
     const updateUrl = `${API_AUCTION_URL}/listings/${listingId}${action}`;
@@ -37,11 +33,8 @@ export async function updateListing(listingId, listingData) {
 
         if (response.ok) {
             const updatedListing = await response.json();
-            
-            // Redirect to the edit page or any other page you need
+        
             window.location.href = `/feed/listings/edit/?listing=${listingId}`;
-
-            console.log('Listing updated successfully:', updatedListing);
             return updatedListing;
         } else {
             const errorText = await response.text();

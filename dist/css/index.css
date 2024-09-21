@@ -415,6 +415,16 @@ button {
   height: 400px !important;
   width: 300px !important;
   margin: -30px auto 0 !important;
+}
+
+#singleListings .postcard-image {
+  align-items: first baseline;
+}
+
+#singleListings .postcard-image, #singleListings .carousel-image {
+  height: 500px !important;
+  width: 300px !important;
+  margin: -30px auto 30px !important;
   padding: 0 !important;
 }
 
@@ -595,6 +605,7 @@ button {
     color: #2C2C2C;
     backdrop-filter: blur(10px);
   }
+  
   #aboutTxt {
     text-align: center;
     font-size: 1.1em !important;
@@ -605,10 +616,10 @@ button {
     object-fit: cover;
     height: max-content;
   }
-  .text-overlay, #aboutTxt h2, #aboutTxt .h2 {
+  .text-overlay, #aboutTxt h2 {
     align-items: flex-start;
     text-align: left;
-    background: transparent;
+    background: transparent; 
     top: 0;
   }
   #contactUsContent {
@@ -634,6 +645,7 @@ button {
     font-size: 1.1em !important;
   }
   #allListingsContainer, #myListings, #userListings, #myWins, #userWins {
+
     display: grid !important;
     grid-template-columns: auto auto;
     gap: 1rem !important;
@@ -669,6 +681,9 @@ button {
   #singleListings .images-container img {
     object-fit: cover;
     height: 100% !important;
+  }
+  #singleListings .img-content, #singleListing .postcard-content {
+    padding-right: 20px !important;
   }
   .text-overlay {
     flex-direction: column;

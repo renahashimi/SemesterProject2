@@ -33,7 +33,6 @@ export async function renderProfiles() {
         const url = new URL(location.href);
         const name = url.searchParams.get("name");
 
-        console.log()
         if (!name) {
             console.error('No user name provided in the URL.');
             return; 
@@ -44,7 +43,6 @@ export async function renderProfiles() {
         }
 
         const userProfileData = await getProfile(name);
-        console.log("User Profile Data:", userProfileData);
 
         if (userContainer) {
             const profileContainer = await profileTemplate(userProfileData);
@@ -56,7 +54,6 @@ export async function renderProfiles() {
         }
         
         const listings = userProfileData.data.listings || [];
-        console.log("Listings:", listings);
         
         const listContainer = document.getElementById("userListings");
         if (listContainer) {
@@ -76,18 +73,15 @@ export async function renderProfiles() {
             console.error('Listings container not found.');
         }
 
-        // Fetch and render won listings
         if (winsContainer) {
             try {
                 const wonListingsData = await getWins(name);
-                console.log('Fetched Won Listings Data:', wonListingsData);
 
                 const wonListings = wonListingsData.data || [];
                 winsContainer.innerHTML = ''; 
                 
                 if (Array.isArray(wonListings) && wonListings.length > 0) {
                     wonListings.forEach((listing) => {
-                        console.log('Won Listing object:', listing); 
                         const listingCard = simpleListingCard(listing);
                         winsContainer.appendChild(listingCard);
                     });

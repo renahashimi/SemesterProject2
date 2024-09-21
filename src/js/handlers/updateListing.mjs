@@ -28,7 +28,6 @@ export async function setUpdateListingListener() {
                     mediaAddBtn(); 
                     const response = await getListing(id);
                     const listing = response.data; 
-                    console.log("Fetched listing data:", listing);
 
                     form.querySelector("#title").value = listing.title || "";
                     form.querySelector("#description").value = listing.description || "";
@@ -121,8 +120,6 @@ export async function setUpdateListingListener() {
                     tags,
                     media,
                 };
-
-                console.log("Listing Data to be sent:", listingData);
 
                 if (!listingData.title || listingData.title.length < 3) {
                     alert("Title is required and must be at least 3 characters long.");

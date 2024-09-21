@@ -134,11 +134,10 @@ export async function profileTemplate(profileData) {
     profileCreditContainer.appendChild(profileCreditsText);
     profileCreditContainer.appendChild(profileCredits);
     
-    // Create the profile wins container
+
     const profileWinsContainer = document.createElement("div");
     profileWinsContainer.classList.add("profile-wins-container", "d-block", "border-start", "border-end", "border-2", "border-tealgreen", "px-1", "my-2");
   
-    // Create the link element for Wins
     const profileWinsText = document.createElement("a");
     profileWinsText.textContent = `Wins`;
     profileWinsText.href = "#myWins"; 
@@ -151,7 +150,7 @@ export async function profileTemplate(profileData) {
       "text-uppercase",
     );
   
-    // Create the profile wins count
+
     const profileWins = document.createElement("p");
     profileWins.textContent = `${profileData.data._count?.wins || 0}`;
     profileWins.classList.add(
@@ -163,11 +162,9 @@ export async function profileTemplate(profileData) {
       "mt-n2"
     );
   
-    // Append elements to the container
     profileWinsContainer.appendChild(profileWinsText);
     profileWinsContainer.appendChild(profileWins);
   
-    // Append the container to the desired section
     const winsSection = document.getElementById('myWins');
     if (winsSection) {
       winsSection.appendChild(profileWinsContainer);
@@ -176,7 +173,6 @@ export async function profileTemplate(profileData) {
     const profileListingContainer = document.createElement("div");
     profileListingContainer.classList.add("profile-listing-container", "d-block", "border-start", "border-end", "border-2", "border-secondary", "px-1", "my-2");
     
-    // Create the link element for Listings
     const profileListingText = document.createElement("a");
     profileListingText.textContent = `Listings`;
     profileListingText.href = "#myListings";
@@ -189,7 +185,6 @@ export async function profileTemplate(profileData) {
       "text-uppercase",
     );
     
-    // Create the profile listings count
     const profileListing = document.createElement("p");
     profileListing.textContent = `${profileData.data._count?.listings || 0}`;
     profileListing.classList.add(
@@ -201,11 +196,9 @@ export async function profileTemplate(profileData) {
       "mt-n2"
     );
     
-    // Append elements to the container
     profileListingContainer.appendChild(profileListingText);
     profileListingContainer.appendChild(profileListing);
     
-    // Append the container to the desired section
     const profileSection = document.getElementById('myListings');
     if (profileSection) {
       profileSection.appendChild(profileListingContainer);

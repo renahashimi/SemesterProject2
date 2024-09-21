@@ -6,7 +6,6 @@ export async function renderHomeListings() {
   const carouselContainer = document.getElementById("carouselContainer");
 
   if (!switchContainer || !carouselContainer) {
-    console.error("Container element(s) not found.");
     return;
   }
 

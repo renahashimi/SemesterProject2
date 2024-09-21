@@ -1,6 +1,7 @@
 # Semester Project 2 - Noroff
 
-![midas touch](https://github.com/user-attachments/assets/a81b26fd-66ba-43de-8281-eb4777888518)
+![Skjermbilde_21-9-2024_143758_midastouch-rh-sp2 netlify app](https://github.com/user-attachments/assets/bbc77483-9657-49f2-b0f7-46da233c898e)
+
 
 ## Description
 
@@ -12,6 +13,16 @@ To take the skills learned over the past three semesters and create an auction w
 
 An auction site is looking to launch a website where users can add items to be bid on and bid on items other users have put up for auction.
 When a new user joins the website, they are given 1000 credits to use on the site. They can get credits by selling items and use credit by buying items. Non-registered users can search through the listings, but only registered users can make bids on listings.
+
+### Contains
+- Home 
+- Profile
+- Listings
+- Single Listings
+- Contact
+- Register
+- Login
+- Create / Update 
 
 ## Build with
 
@@ -35,7 +46,7 @@ When a new user joins the website, they are given 1000 credits to use on the sit
 
 ### Netlify
 
-- LIVE
+- [LIVE](https://midastouch-rh-sp2.netlify.app/)
 
 ## Installation & Running
 

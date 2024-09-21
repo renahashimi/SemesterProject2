@@ -7,10 +7,8 @@ export function registerFormListener() {
         formElement.addEventListener('submit', async (event) => {
             event.preventDefault();
 
-            // Clear previous error messages
             clearErrors();
 
-            // Validate form
             const { isValid } = validateForm();
             if (!isValid) {
                 return;
@@ -25,7 +23,6 @@ export function registerFormListener() {
 
             try {
                 const response = await registerUser(profile);
-                console.log('Registration successful', response);
                 formElement.reset();
                 window.location.href = '/feed/profile/';
             } catch (error) {

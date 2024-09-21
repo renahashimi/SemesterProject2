@@ -11,9 +11,7 @@ import { renderAllListings } from "./renderListings.mjs";
 export async function searchListings(query) {
     try {
         const result = await getListings(1, 100);
-        console.log("API result:", result);
 
-        // Ensure result is an array (adjust this based on your API response)
         if (!result || !Array.isArray(result)) {
             console.error("Listings data is missing or incorrect:", result);
             return [];
@@ -95,6 +93,7 @@ function clearSearch() {
     const searchResultContainer = document.getElementById("searchresult");
     const clearSearchResultBtn = document.getElementById("clearSearchResultBtn");
 
+
     if (searchInput && searchResultContainer) {
         searchInput.value = "";
         searchResultContainer.innerHTML = "";
@@ -106,6 +105,7 @@ function clearSearch() {
 }
 
 const searchResultContainer = document.getElementById("searchresult");
+
 if (searchResultContainer) {
     searchResultContainer.addEventListener("click", clearSearch);
 }
@@ -114,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchForm = document.querySelector("#searchForm");
     const clearSearchResultBtn = document.getElementById("clearSearchResultBtn");
     const clearSearchBtn = document.getElementById("clearSearchBtn");
+
 
     if (searchForm) {
         searchForm.addEventListener("submit", handleSearchFormSubmit);

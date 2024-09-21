@@ -245,6 +245,7 @@ export function createListingCard(listing, buttonType) {
   
   const imagesContainer = document.createElement('div');
   imagesContainer.classList.add("images-container");
+
   
   if (listing.media && listing.media.length > 0) {
       if (listing.media.length > 1) {
@@ -255,7 +256,7 @@ export function createListingCard(listing, buttonType) {
               const imgElement = document.createElement('img');
               imgElement.src = image.url; 
               imgElement.style.width = "100%"; 
-              imgElement.style.height = "500px"; 
+              imgElement.style.height = "300px"; 
               imgElement.style.objectFit = "cover";
               imgElement.style.borderRadius = "5px";
               imgElement.classList.add(
@@ -264,7 +265,7 @@ export function createListingCard(listing, buttonType) {
                 "border-3",
                 "border-secondary"
               );
-              
+
               imgElement.addEventListener('click', () => {
                   openImageModal(image.url, image.alt || 'Image');
               });
@@ -286,6 +287,7 @@ export function createListingCard(listing, buttonType) {
             "border-3",
             "border-secondary"
           )
+
   
           imgElement.addEventListener('click', () => {
               openImageModal(listing.media[0].url, listing.media[0].alt || 'Image');
@@ -714,7 +716,6 @@ function initializeCarousel(carousel) {
         images[currentIndex].style.opacity = '1';
       }, 10);
     }, 500);
-  }
 
   prevButton.addEventListener('click', () => {
       const newIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
