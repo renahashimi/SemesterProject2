@@ -1,4 +1,4 @@
-import { loadLoginOverlay, setupMobileMenu, updateBtnForLogIn } from './index.mjs';
+import { loadLoginOverlay, setupMobileMenu, updateBtnForLogIn } from "./index.mjs";
 import { load } from "../storage/index.mjs";
 import { closeLoginOverlay, openLoginOverlay } from "./overlayUtils.mjs";
 import { handleLogOut } from "./logOut.mjs";
@@ -65,9 +65,9 @@ export function highlightActiveLink() {
  * Also updates the login button state.
  */
 function loadHeaderOverlay() {
-    const overlayContainer = document.getElementById('overlay-container');
+    const overlayContainer = document.getElementById("overlay-container");
     if (overlayContainer) {
-        fetch('/feed/helpers/loginOverlay.html')
+        fetch("/feed/helpers/loginOverlay.html")
             .then((response) => response.text())
             .then((data) => {
                 overlayContainer.innerHTML = data;
@@ -75,80 +75,80 @@ function loadHeaderOverlay() {
                     updateLoginButtonState();
                 }, 0);
 
-                import('../../js/handlers/login.mjs')
+                import("../../js/handlers/login.mjs")
                     .then((module) => {
                         if (module.setupButtonListeners) {
                             module.setupButtonListeners();
                         } else {
-                            console.error('setupButtonListeners not found in module');
+                            console.error("setupButtonListeners not found in module");
                         }
                     })
-                    .catch((error) => console.error('Error importing module:', error));
+                    .catch((error) => console.error("Error importing module:", error));
 
                 updateLoginButtonState();
             })
-            .catch((error) => console.error('Error loading overlay:', error));
+            .catch((error) => console.error("Error loading overlay:", error));
     } else {
-        console.error('Element with ID "overlay-container" not found.');
+        console.error("Element with ID 'overlay-container' not found.");
     }
 }
 
 /**
- * Updates the login button state based on the user's login status.
+ * Updates the login button state based on the user"s login status.
  */
 function updateLoginButtonState() {
-    const button = document.getElementById('open-overlay-btn');
+    const button = document.getElementById("open-overlay-btn");
     if (button) {
-        const isLoggedIn = !!localStorage.getItem('profile');
+        const isLoggedIn = !!localStorage.getItem("profile");
 
-        const icon = button.querySelector('i');
-        const textElement = button.querySelector('p');
+        const icon = button.querySelector("i");
+        const textElement = button.querySelector("p");
 
         if (textElement && icon) {
             if (isLoggedIn) {
-                icon.classList.replace('bi-door-open', 'bi-door-closed');
-                textElement.textContent = 'LOGOUT';
+                icon.classList.replace("bi-door-open", "bi-door-closed");
+                textElement.textContent = "LOGOUT";
             } else {
-                icon.classList.replace('bi-door-closed', 'bi-door-open');
-                textElement.textContent = 'LOGIN';
+                icon.classList.replace("bi-door-closed", "bi-door-open");
+                textElement.textContent = "LOGIN";
             }
         } else {
-            console.error('Icon or text element not found within the button.');
+            console.error("Icon or text element not found within the button.");
         }
     } else {
-        console.error('Button with ID "open-overlay-btn" not found.');
+        console.error("Button with ID 'open-overlay-btn' not found.");
     }
 }
 
 /**
- * Toggles the visibility of authentication buttons based on the user's login status.
+ * Toggles the visibility of authentication buttons based on the user"s login status.
  * Adds event listeners for login or logout actions.
  * 
  * @param {boolean} isLoggedIn - Indicates if the user is logged in.
  */
 function toggleAuthButtons(isLoggedIn) {
-    const loginButtonDesktop = document.getElementById('desktop-open-overlay-btn');
-    const logoutButtonDesktop = document.getElementById('desktop-logout-btn');
-    const loginButtonMobile = document.getElementById('mobile-open-overlay-btn');
-    const logoutButtonMobile = document.getElementById('mobile-logout-btn');
+    const loginButtonDesktop = document.getElementById("desktop-open-overlay-btn");
+    const logoutButtonDesktop = document.getElementById("desktop-logout-btn");
+    const loginButtonMobile = document.getElementById("mobile-open-overlay-btn");
+    const logoutButtonMobile = document.getElementById("mobile-logout-btn");
 
     if (loginButtonDesktop && logoutButtonDesktop && loginButtonMobile && logoutButtonMobile) {
         if (isLoggedIn) {
-            loginButtonDesktop.style.display = 'none';
-            logoutButtonDesktop.style.display = 'block';
-            loginButtonMobile.style.display = 'none';
-            logoutButtonMobile.style.display = 'block';
+            loginButtonDesktop.style.display = "none";
+            logoutButtonDesktop.style.display = "block";
+            loginButtonMobile.style.display = "none";
+            logoutButtonMobile.style.display = "block";
 
-            logoutButtonDesktop.addEventListener('click', handleLogOut);
-            logoutButtonMobile.addEventListener('click', handleLogOut);
+            logoutButtonDesktop.addEventListener("click", handleLogOut);
+            logoutButtonMobile.addEventListener("click", handleLogOut);
         } else {
-            loginButtonDesktop.style.display = 'block';
-            logoutButtonDesktop.style.display = 'none';
-            loginButtonMobile.style.display = 'block';
-            logoutButtonMobile.style.display = 'none';
+            loginButtonDesktop.style.display = "block";
+            logoutButtonDesktop.style.display = "none";
+            loginButtonMobile.style.display = "block";
+            logoutButtonMobile.style.display = "none";
 
-            loginButtonDesktop.addEventListener('click', openLoginOverlay);
-            loginButtonMobile.addEventListener('click', openLoginOverlay);
+            loginButtonDesktop.addEventListener("click", openLoginOverlay);
+            loginButtonMobile.addEventListener("click", openLoginOverlay);
         }
     }
 }
@@ -158,8 +158,8 @@ function toggleAuthButtons(isLoggedIn) {
  * Updates the UI and login overlay based on whether the user is logged in or not.
  */
 export function checkAuthStatus() {
-    const token = load('token'); 
-    const profile = load('profile');
+    const token = load("token"); 
+    const profile = load("profile");
     if (token && profile) {
         updateBtnForLogIn(); 
         closeLoginOverlay();
@@ -170,9 +170,9 @@ export function checkAuthStatus() {
 
 
 /**
- * Updates the UI based on the user's authentication status.
+ * Updates the UI based on the user"s authentication status.
  */
 export function updateUIBasedOnAuth() {
-    const token = load('token');
+    const token = load("token");
     toggleAuthButtons(!!token);
 }

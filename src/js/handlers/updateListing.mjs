@@ -10,7 +10,7 @@ export async function setUpdateListingListener() {
             return;
         }
 
-        const isUpdate = form.dataset.mode === 'update'; 
+        const isUpdate = form.dataset.mode === "update"; 
         if (isUpdate) {
             const url = new URL(location.href);
             const id = url.searchParams.get("listing"); 

@@ -8,7 +8,7 @@ import { openLoginOverlay } from "../handlers/overlayUtils.mjs";
 import { load } from "../storage/index.mjs";
 
 const token = load("token");
-const profile = load('profile');
+const profile = load("profile");
 
 export function createListingCard(listing, buttonType) {
   const postContainer = document.createElement("div");
@@ -101,7 +101,7 @@ export function createListingCard(listing, buttonType) {
 
   const sellerNameUrl = document.createElement("a");
   const sellerName = document.createElement("h2");
-  sellerName.textContent = `${listing.seller.name || 'Unknown'}`;
+  sellerName.textContent = `${listing.seller.name || "Unknown"}`;
   sellerName.classList.add(
     "seller-name", 
     "fs-6",
@@ -120,7 +120,7 @@ export function createListingCard(listing, buttonType) {
   if (buttonType === "my-listing") {
     // Toggle button with Update and Delete options
     viewButton = document.createElement("button");
-    viewButton.style.zIndex = '999';
+    viewButton.style.zIndex = "999";
     viewButton.classList.add(
         "toggleBtn",
         "d-block",
@@ -141,7 +141,7 @@ export function createListingCard(listing, buttonType) {
 
     const toggleMenu = document.createElement("div");
     toggleMenu.style.width = "min-content";
-    toggleMenu.style.zIndex = '1000';
+    toggleMenu.style.zIndex = "1000";
     toggleMenu.classList.add(
       "toggleMenu", 
       "d-none", 
@@ -190,7 +190,7 @@ export function createListingCard(listing, buttonType) {
                 await removeListing(listingId); 
                 postContainer.remove();
             } catch (error) {
-                console.error('Error deleting listing:', error);
+                console.error("Error deleting listing:", error);
             }
         }
     });
@@ -243,17 +243,17 @@ export function createListingCard(listing, buttonType) {
   imgContent.style.height = "320px";
   imgContent.classList.add("img-content");
   
-  const imagesContainer = document.createElement('div');
+  const imagesContainer = document.createElement("div");
   imagesContainer.classList.add("images-container");
 
   
   if (listing.media && listing.media.length > 0) {
       if (listing.media.length > 1) {
-          const carousel = document.createElement('div');
-          carousel.classList.add('carousel');
+          const carousel = document.createElement("div");
+          carousel.classList.add("carousel");
   
           listing.media.forEach(image => {
-              const imgElement = document.createElement('img');
+              const imgElement = document.createElement("img");
               imgElement.src = image.url; 
               imgElement.style.width = "100%"; 
               imgElement.style.height = "300px"; 
@@ -266,8 +266,8 @@ export function createListingCard(listing, buttonType) {
                 "border-secondary"
               );
 
-              imgElement.addEventListener('click', () => {
-                  openImageModal(image.url, image.alt || 'Image');
+              imgElement.addEventListener("click", () => {
+                  openImageModal(image.url, image.alt || "Image");
               });
   
               carousel.appendChild(imgElement);
@@ -276,7 +276,7 @@ export function createListingCard(listing, buttonType) {
           initializeCarousel(carousel);
           imagesContainer.appendChild(carousel);
       } else {
-          const imgElement = document.createElement('img');
+          const imgElement = document.createElement("img");
           imgElement.src = listing.media[0].url; 
           imgElement.style.width = "100%"; 
           imgElement.style.height = "300px"; 
@@ -289,14 +289,14 @@ export function createListingCard(listing, buttonType) {
           )
 
   
-          imgElement.addEventListener('click', () => {
-              openImageModal(listing.media[0].url, listing.media[0].alt || 'Image');
+          imgElement.addEventListener("click", () => {
+              openImageModal(listing.media[0].url, listing.media[0].alt || "Image");
           });
   
           imagesContainer.appendChild(imgElement);
       }
   } else {
-      const noImageMessage = document.createElement('p');
+      const noImageMessage = document.createElement("p");
       noImageMessage.textContent = "No images available.";
       imagesContainer.appendChild(noImageMessage);
   }
@@ -351,7 +351,7 @@ export function createListingCard(listing, buttonType) {
     "justify-content-between"
   );
 
-  tagsContainer.innerHTML = '';
+  tagsContainer.innerHTML = "";
 
   if (listing.tags && listing.tags.length > 0) {
       listing.tags.forEach((tag) => {
@@ -503,18 +503,18 @@ export function createListingCard(listing, buttonType) {
       if (bidSum && !isNaN(bidSum) && bidSum > 0) {  
         try {
           await handleBid(listing.id, bidSum);
-          alert('Bid placed successfully!');
+          alert("Bid placed successfully!");
           window.location.reload(); 
         } catch (error) {
           console.error("Error placing bid:", error);
-          alert('Failed to place bid. Please try again.');
+          alert("Failed to place bid. Please try again.");
         }
       } else {
         alert("Please enter a valid bid amount.");
       }
     });
   } else {
-    bidBtn.textContent = 'Login to place bid';
+    bidBtn.textContent = "Login to place bid";
     bidBtn.classList.remove("fs-2");
     bidBtn.classList.add("fs-5", "btn-secondary");
     bidBtn.id = "bid-open-overlay-btn"; 
@@ -533,7 +533,7 @@ export function createListingCard(listing, buttonType) {
   endTimeAndBidBtnContainer.appendChild(bidBtnContent);
  
   
-  const currentBidderContainer = document.createElement('div');
+  const currentBidderContainer = document.createElement("div");
   currentBidderContainer.classList.add(
     "currentBidder",
     "font-raleway",
@@ -550,21 +550,21 @@ export function createListingCard(listing, buttonType) {
     }, listing.bids[0]);
 
 
-    const bidderDiv = document.createElement('div');
-    bidderDiv.classList.add('current-bidder');
+    const bidderDiv = document.createElement("div");
+    bidderDiv.classList.add("current-bidder");
     
-    const bidderName = document.createElement('span');
-    bidderName.textContent = `Current bidder: ${mostRecentBid.bidder.name || 'Unknown' }`;
-    bidderName.classList.add('bidder-name', 'fs-7');
+    const bidderName = document.createElement("span");
+    bidderName.textContent = `Current bidder: ${mostRecentBid.bidder.name || "Unknown" }`;
+    bidderName.classList.add("bidder-name", "fs-7");
     
-    const bidAmount = document.createElement('span');
+    const bidAmount = document.createElement("span");
     bidAmount.textContent = ` -  $${mostRecentBid.amount}`;
-    bidAmount.classList.add('bid-amount', 'fs-6');
+    bidAmount.classList.add("bid-amount", "fs-6");
     
     bidderDiv.appendChild(bidderName);
     bidderDiv.appendChild(bidAmount);
     
-    currentBidderContainer.innerHTML = ''; 
+    currentBidderContainer.innerHTML = ""; 
     currentBidderContainer.appendChild(bidderDiv);
   } else {
     currentBidderContainer.innerHTML = '<p class="p-0 m-0">No bids available</p>';
@@ -600,11 +600,11 @@ export function createListingCard(listing, buttonType) {
 
   toggleBtnWrapper.appendChild(toggleBidsButton);
 
-  const bidsContainer = document.createElement('div');
-  bidsContainer.style.display = 'none'; 
+  const bidsContainer = document.createElement("div");
+  bidsContainer.style.display = "none"; 
   bidsContainer.style.width = "100%";
   bidsContainer.classList.add(
-    'bidsContainer',
+    "bidsContainer",
     "container-fluid",
     "text-center",
     "m-auto",
@@ -636,11 +636,11 @@ export function createListingCard(listing, buttonType) {
 
   toggleBidsButton.addEventListener("click", (e) => {
     e.stopPropagation();
-    if (bidsContainer.style.display === 'none') {
-      bidsContainer.style.display = 'block';
+    if (bidsContainer.style.display === "none") {
+      bidsContainer.style.display = "block";
       toggleBidsButton.textContent = "Hide Bids";
     } else {
-      bidsContainer.style.display = 'none';
+      bidsContainer.style.display = "none";
       toggleBidsButton.textContent = `ALL BIDS: ${listing.bids.length}`;
     }
   });
@@ -649,7 +649,7 @@ export function createListingCard(listing, buttonType) {
   
   // Listing belongs to the user; bidding is not allowed
   if(token) {
-    const userName = profile.name || '';
+    const userName = profile.name || "";
     if (bidControls) {
       if (listing.seller?.name === userName) {
           bidControls.style.display = "none";
@@ -678,64 +678,64 @@ export function createListingCard(listing, buttonType) {
 
 // CAROUSEL FUNCTION
 function initializeCarousel(carousel) {
-  const images = carousel.querySelectorAll('.carousel-image');
+  const images = carousel.querySelectorAll(".carousel-image");
   let currentIndex = 0;
 
-  const prevButton = document.createElement('button');
+  const prevButton = document.createElement("button");
   prevButton.innerHTML = '<i class="bi bi-arrow-left-circle text-white bg-secondary fs-1 rounded-5"></i>';
-  const nextButton = document.createElement('button');
+  const nextButton = document.createElement("button");
   nextButton.innerHTML = '<i class="bi bi-arrow-right-circle text-white bg-secondary fs-1 rounded-5"></i>';
   
   prevButton.classList.add("border-0", "bg-transparent");
   nextButton.classList.add("border-0", "bg-transparent");
 
-  carousel.style.position = 'relative';
-  carousel.style.overflow = 'hidden';
+  carousel.style.position = "relative";
+  carousel.style.overflow = "hidden";
 
   const carouselHeight = images[0].naturalHeight || 300;
   carousel.style.height = `${carouselHeight}px`;
 
   images.forEach((img, index) => {
-    img.style.position = 'absolute';
-    img.style.top = '0';
-    img.style.left = '0';
-    img.style.width = '100%'; 
-    img.style.height = '300px';
-    img.style.display = index === currentIndex ? 'block' : 'none';
-    img.style.transition = 'opacity 0.5s ease-in-out'; 
-    img.style.opacity = index === currentIndex ? '1' : '0';
+    img.style.position = "absolute";
+    img.style.top = "0";
+    img.style.left = "0";
+    img.style.width = "100%"; 
+    img.style.height = "300px";
+    img.style.display = index === currentIndex ? "block" : "none";
+    img.style.transition = "opacity 0.5s ease-in-out"; 
+    img.style.opacity = index === currentIndex ? "1" : "0";
   });
 
   function showImage(index) {
-    images[currentIndex].style.opacity = '0';
+    images[currentIndex].style.opacity = "0";
     setTimeout(() => {
-      images[currentIndex].style.display = 'none';
+      images[currentIndex].style.display = "none";
       currentIndex = index;
-      images[currentIndex].style.display = 'block';
+      images[currentIndex].style.display = "block";
       setTimeout(() => {
-        images[currentIndex].style.opacity = '1';
+        images[currentIndex].style.opacity = "1";
       }, 10);
     }, 500);
   }
-  prevButton.addEventListener('click', () => {
+  prevButton.addEventListener("click", () => {
       const newIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
       showImage(newIndex);
   });
 
-  nextButton.addEventListener('click', () => {
+  nextButton.addEventListener("click", () => {
       const newIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
       showImage(newIndex);
   });
 
-  prevButton.style.position = 'absolute';
-  prevButton.style.left = '2px';
-  prevButton.style.top = '50%';
-  prevButton.style.transform = 'translateY(-50%)';
+  prevButton.style.position = "absolute";
+  prevButton.style.left = "2px";
+  prevButton.style.top = "50%";
+  prevButton.style.transform = "translateY(-50%)";
   
-  nextButton.style.position = 'absolute';
-  nextButton.style.right = '-4px';
-  nextButton.style.top = '50%';
-  nextButton.style.transform = 'translateY(-50%)';
+  nextButton.style.position = "absolute";
+  nextButton.style.right = "-4px";
+  nextButton.style.top = "50%";
+  nextButton.style.transform = "translateY(-50%)";
 
   carousel.appendChild(prevButton);
   carousel.appendChild(nextButton);

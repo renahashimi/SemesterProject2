@@ -1,3 +1,3 @@
-import router from './router.mjs'
+import router from "./router.mjs"
 
 router();

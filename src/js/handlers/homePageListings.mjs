@@ -29,7 +29,7 @@ export async function renderHomeListings() {
 
 function displaySingleListingSwitch(listings) {
   const switchContainer = document.getElementById("switchContainer");
-  switchContainer.innerHTML = '';
+  switchContainer.innerHTML = "";
 
   if (listings.length === 0) {
     switchContainer.innerHTML = "<p>No listings available.</p>";
@@ -39,7 +39,7 @@ function displaySingleListingSwitch(listings) {
   let index = 0;
 
   function updateListing() {
-    switchContainer.innerHTML = '';
+    switchContainer.innerHTML = "";
     const listingCard = simpleListingCard(listings[index]);
     if (listingCard) {
       switchContainer.appendChild(listingCard);
@@ -53,7 +53,7 @@ function displaySingleListingSwitch(listings) {
 
 function displayCarouselListings(listings) {
   const carouselContainer = document.getElementById("carouselContainer");
-  carouselContainer.innerHTML = '';
+  carouselContainer.innerHTML = "";
 
   const carousel = document.createElement("div");
   carousel.classList.add("carousel", "slide", "m-auto");
@@ -119,7 +119,7 @@ function displayCarouselListings(listings) {
 
   carouselContainer.appendChild(carousel);
 
-  const carouselElement = document.getElementById('carouselExample');
+  const carouselElement = document.getElementById("carouselExample");
   if (carouselElement) {
     new bootstrap.Carousel(carouselElement, {
       interval: 7000,
@@ -127,4 +127,4 @@ function displayCarouselListings(listings) {
   }
 }
 
-window.addEventListener('resize', renderHomeListings);
+window.addEventListener("resize", renderHomeListings);
