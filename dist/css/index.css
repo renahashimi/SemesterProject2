@@ -23,14 +23,10 @@ header, body, main, footer {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px !important;
 }
 
-main {
-  max-height: 100vh !important;
-}
-
 #footerContent {
   bottom: 0;
   left: 0;
-  position: sticky;
+  position: relative;
   padding: 0;
 }
 
@@ -319,6 +315,7 @@ button {
   align-items: center;
   margin: 100px auto;
   padding: 0 20px;
+  height: 70vh !important;
 }
 
 .profileBanner {
@@ -409,12 +406,7 @@ button {
   display: flex;
   margin: auto;
   justify-content: center;
-}
-
-#singleListings .postcard-image {
-  height: 400px !important;
-  width: 300px !important;
-  margin: -30px auto 0 !important;
+  position: relative;
 }
 
 #singleListings .postcard-image {
@@ -422,6 +414,7 @@ button {
 }
 
 #singleListings .postcard-image, #singleListings .carousel-image {
+  display: flex;
   height: 500px !important;
   width: 300px !important;
   margin: -30px auto 30px !important;
@@ -605,7 +598,6 @@ button {
     color: #2C2C2C;
     backdrop-filter: blur(10px);
   }
-  
   #aboutTxt {
     text-align: center;
     font-size: 1.1em !important;
@@ -616,10 +608,10 @@ button {
     object-fit: cover;
     height: max-content;
   }
-  .text-overlay, #aboutTxt h2 {
+  .text-overlay, #aboutTxt h2, #aboutTxt .h2 {
     align-items: flex-start;
     text-align: left;
-    background: transparent; 
+    background: transparent;
     top: 0;
   }
   #contactUsContent {
@@ -645,7 +637,6 @@ button {
     font-size: 1.1em !important;
   }
   #allListingsContainer, #myListings, #userListings, #myWins, #userWins {
-
     display: grid !important;
     grid-template-columns: auto auto;
     gap: 1rem !important;
@@ -681,9 +672,6 @@ button {
   #singleListings .images-container img {
     object-fit: cover;
     height: 100% !important;
-  }
-  #singleListings .img-content, #singleListing .postcard-content {
-    padding-right: 20px !important;
   }
   .text-overlay {
     flex-direction: column;
