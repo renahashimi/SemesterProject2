@@ -372,7 +372,7 @@ button {
 #allListingsContainer, #searchresult, #myListings, #userListings, #myWins, #userWins {
   display: flex !important;
   flex-wrap: wrap !important;
-  gap: 1rem !important; 
+  gap: 2rem !important; 
 }
 
 .postCard {
@@ -499,6 +499,7 @@ justify-content: flex-start; /* Align items to the start of the container */
 }
 
 
+
 /* COUNTDOWN */
 .countdown-container {
   font-size: 1.2em;
@@ -598,7 +599,6 @@ justify-content: flex-start; /* Align items to the start of the container */
   }
 
   .text-overlay2 p {
-
     padding: 20px;
   }
 }
@@ -657,6 +657,7 @@ justify-content: flex-start; /* Align items to the start of the container */
   
   .wahTxt {
     color: $primary;
+    backdrop-filter: blur(10px);
   }
 
   #aboutTxt {
@@ -680,7 +681,8 @@ justify-content: flex-start; /* Align items to the start of the container */
 
 
   #contactUsContent {
-    margin: 350px 5px; 
+    margin: 400px 5px; 
+    left: 50%;
     border: none !important;
     background: transparent;
     z-index: 1;
@@ -692,7 +694,7 @@ justify-content: flex-start; /* Align items to the start of the container */
 
 @media (min-width: 768px) {
   main {
-    margin: 60px auto -60px !important;
+    margin: 60px auto -20px !important;
   }
 
   footer {
@@ -708,7 +710,7 @@ justify-content: flex-start; /* Align items to the start of the container */
     font-size: 1.1em !important;
   }
 
-  #allListingsContainer, #searchresult, #myListings, #userListings, #myWins, #userWins {
+  #allListingsContainer, #myListings, #userListings, #myWins, #userWins {
     display: grid !important;
     grid-template-columns: auto auto;
     gap: 1rem !important; 
@@ -738,13 +740,21 @@ justify-content: flex-start; /* Align items to the start of the container */
   #singleListings .postCard {
     display: flex !important;
     width: 700px !important;
-    padding: 20px !important;
+    padding: 5px !important;
   }
 
-  #singleListings .img-content, #singleListing .postcard-content {
-    padding-right: 20px !important;
+  #singleListings .images-container {
+    margin-top: -60px;
+    padding: 5px;
+    height: 400px !important;
+    width: 300px !important;
   }
 
+  #singleListings .images-container img {
+     object-fit: cover;
+     height: 100% !important;
+
+  }
   .text-overlay {
     flex-direction: column;
     width: 100%;
