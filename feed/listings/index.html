@@ -24,9 +24,9 @@
         <h1 class="container-fluid font-tenor text-center text-uppercase my-3">Listings</h1>
       
         <!-- SEARCH & FILTER -->
-        <div class="container-fluid d-block d-sm-flex justify-content-center align-items-center my-4" style="max-width: 900px;">
+        <div class="container-fluid d-block d-md-flex justify-content-center align-items-center my-4" style="max-width: 900px;">
             <!-- SEARCH -->
-            <div class="col-12 col-sm-8 searchbox mb-3">
+            <div class="col-12 col-md-8 searchbox mb-3">
                 <form id="searchForm" class="form-inline d-flex mw-50 justify-content-center md-form form-sm m-2 p-1 border border-2 border-secondary">
                     <div class="input-group border-0 search-box">
                         <i class="bi bi-search-heart pt-1" aria-hidden="true"></i>
@@ -38,9 +38,9 @@
             </div>
 
             <!-- FILTER -->
-            <div id="filterBox" class="col-12 col-sm-4 d-flex justify-content-center font-prata">
+            <div class="col-12 col-md-4 d-flex justify-content-center font-prata">
                 <div class="dropdown">
-                    <button class="btn btn-white border-secondary border-3 me-2  dropdown-toggle m-auto p-1" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="width: 200px;">
+                    <button id="filterBox"  class="btn btn-white border-tealgreen border-3 me-2  dropdown-toggle m-auto p-1" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="width: 200px;">
                         FILTER
                     </button>
                     <ul class="dropdown-menu justify-content-end text-end" aria-labelledby="filterDropdown" style="width: 200px;">
@@ -56,9 +56,6 @@
             <button id="clearSearchResultBtn" style="display: none;"><p>CLEAR</p></button>
             <div class="container-fluid searchresult bg-teallight" id="searchresult"></div>
         </div>  
-
-
- 
         
         <!-- LISTINGS & LOAD-BTN -->
         <div class="container-fluid mt-2 d-flex" id="allListingsContainer"></div>
