@@ -81,7 +81,7 @@ export async function renderProfiles() {
                 });
             } else {
                 listContainer.innerHTML = `
-                <div class="noListingTxt d-block text-center font-raleway-900 text-uppercase mt-5">
+                <div class="noListingTxt d-block m-auto justify-content-center text-center font-raleway-900 text-uppercase mt-5">
                     <h2 class="text-tenor fs-4">No listings yet!</h2>
                 </div>`;
             }
@@ -103,14 +103,14 @@ export async function renderProfiles() {
                     });
                 } else {
                     winsContainer.innerHTML = `
-                    <div class="noListingTxt d-block text-center font-raleway-900 text-uppercase mt-5">
+                    <div class="noListingTxt d-block m-auto justify-content-center text-center font-raleway-900 text-uppercase mt-5">
                         <h2 class="text-tenor fs-4">No wins yet?</h2>
                     </div>`;
                 }
             } catch (error) {
                 console.error("Failed to load won listings:", error);
                 winsContainer.innerHTML = `
-                <div class="noListingTxt d-block text-center font-raleway-900 text-uppercase mt-5">
+                <div class="noListingTxt d-block m-auto justify-content-center text-center font-raleway-900 text-uppercase mt-5">
                     <h3 class="text-tenor fs-4">Error loading wins!</h3>
                 </div>`;
             }
