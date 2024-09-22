@@ -1,5 +1,5 @@
 export function openImageModal(src, alt) {
-    const existingModal = document.getElementById('imageModal');
+    const existingModal = document.getElementById("imageModal");
     if (existingModal) {
       existingModal.remove();
     }
@@ -16,12 +16,12 @@ export function openImageModal(src, alt) {
       </div>
     `;
     
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-    const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+    document.body.insertAdjacentHTML("beforeend", modalHTML);
+    const imageModal = new bootstrap.Modal(document.getElementById("imageModal"));
     imageModal.show();
   
-    document.getElementById('imageModal').addEventListener('hidden.bs.modal', () => {
-      document.getElementById('imageModal').remove();
+    document.getElementById("imageModal").addEventListener("hidden.bs.modal", () => {
+      document.getElementById("imageModal").remove();
     });
   }
   

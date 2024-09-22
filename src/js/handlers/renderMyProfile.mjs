@@ -1,62 +1,62 @@
-import { openLoginOverlay } from './overlayUtils.mjs';
-import { load } from '../storage/index.mjs';
-import { getProfile } from '../api/profile/get.mjs';
-import { profileTemplate } from '../templates/profileTemplate.mjs';
-import { API_AUCTION_URL } from '../api/constants.mjs';
-import { createListingCard } from '../templates/listingCardTemplate.mjs';
-import { authFetch } from '../api/authFetch.mjs';
-import { simpleListingCard } from '../templates/simpleCardTemplate.mjs';
-import getWins from '../api/profile/wins.mjs';
+import { openLoginOverlay } from "./overlayUtils.mjs";
+import { load } from "../storage/index.mjs";
+import { getProfile } from "../api/profile/get.mjs";
+import { profileTemplate } from "../templates/profileTemplate.mjs";
+import { API_AUCTION_URL } from "../api/constants.mjs";
+import { createListingCard } from "../templates/listingCardTemplate.mjs";
+import { authFetch } from "../api/authFetch.mjs";
+import { simpleListingCard } from "../templates/simpleCardTemplate.mjs";
+import getWins from "../api/profile/wins.mjs";
 
 const listingsAction = "/listings?_seller=true&_bids=true";
 const winsAction = "/wins?_seller=true&_bids=true";
 
 export async function renderMyProfile() {
-    const token = load('token');
-    const profile = load('profile');
+    const token = load("token");
+    const profile = load("profile");
 
-    const profileContainer = document.getElementById('profileContainer');
-    const myListingsContainer = document.getElementById('myListings');
-    const myWinsContainer = document.getElementById('myWins');
-    const userTitleElement = document.getElementById('userTitle');
+    const profileContainer = document.getElementById("profileContainer");
+    const myListingsContainer = document.getElementById("myListings");
+    const myWinsContainer = document.getElementById("myWins");
+    const userTitleElement = document.getElementById("userTitle");
 
-    if (window.location.pathname === '/feed/profile/' && !token) {
+    if (window.location.pathname === "/feed/profile/" && !token) {
         const myProfile = document.getElementById("myProfile")
         myProfile.style.display = "none";
         if (profileContainer) {
             profileContainer.innerHTML = `
                 <div class="profile-alert fonyt-raleway align-items-center border-tealgreen text-center" style="max-width: 600px;" role="alert">
                     <h1 class="alert-heading font-raleway-900 fs-6 text-tealgreen text-uppercase">Whoa there, adventurer!</h1>
-                    <p class="text-secondary">It seems you're not logged in. To see your profile and the magical wonders within, please log in using the overlay.</p>
-                    <p class="text-secondary">Don't worry, logging in is easier than finding a needle in a haystack!</p>
+                    <p class="text-secondary">It seems you"re not logged in. To see your profile and the magical wonders within, please log in using the overlay.</p>
+                    <p class="text-secondary">Don"t worry, logging in is easier than finding a needle in a haystack!</p>
                     <button id="profile-open-overlay-btn" class="m-auto text-center pt-3 border-0 font-tenor fs-4 text-uppercase bg-white">LOGIN</button>  
                 </div>
             `;
-            document.getElementById('profile-open-overlay-btn').addEventListener('click', openLoginOverlay);
+            document.getElementById("profile-open-overlay-btn").addEventListener("click", openLoginOverlay);
         }
         return; 
     }
 
     try {
-        const userName = profile.name || '';
+        const userName = profile.name || "";
         
         if (userTitleElement) {
-            userTitleElement.textContent = `${userName.toUpperCase()}'S PROFILE - MIDAS TOUCH`;
+            userTitleElement.textContent = `${userName.toUpperCase()}"S PROFILE - MIDAS TOUCH`;
         }
 
         const profileData = await getProfile(userName);
 
         if (!profileContainer) {
-            throw new Error('Profile container not found.');
+            throw new Error("Profile container not found.");
         }
 
         const profileInfo = await profileTemplate(profileData);
-        profileContainer.innerHTML = '';
+        profileContainer.innerHTML = "";
         profileContainer.append(profileInfo);
         
         const credits = profileData.data?.credits;
         if (credits !== undefined) {
-            localStorage.setItem('credits', credits);
+            localStorage.setItem("credits", credits);
         }
 
         if (myListingsContainer) {
@@ -69,7 +69,7 @@ export async function renderMyProfile() {
                 const listingsData = await listingsResponse.json();
                 const listings = listingsData.data; 
         
-                myListingsContainer.innerHTML = ''; 
+                myListingsContainer.innerHTML = ""; 
         
                 if (Array.isArray(listings) && listings.length > 0) {
                     listings.forEach((listing) => {
@@ -94,7 +94,7 @@ export async function renderMyProfile() {
                     </div>`;
                 }
             } catch (error) {
-                console.error('Failed to load listings:', error);
+                console.error("Failed to load listings:", error);
                 if (myListingsContainer) {
                     myListingsContainer.innerHTML = `
                     <div class="noListingTxt d-block text-center font-raleway-900 text-uppercase mt-5">
@@ -111,7 +111,7 @@ export async function renderMyProfile() {
                 const wonListingsData = await getWins(profile.name)
                 const wonListings = wonListingsData.data; 
         
-                myWinsContainer.innerHTML = ''; 
+                myWinsContainer.innerHTML = ""; 
                 
                 if (Array.isArray(wonListings) && wonListings.length > 0) {
                     wonListings.forEach((listing) => {
@@ -127,7 +127,7 @@ export async function renderMyProfile() {
                     </div>`;
                 }
             } catch (error) {
-                console.error('Failed to load won listings:', error);
+                console.error("Failed to load won listings:", error);
                 myWinsContainer.innerHTML = `
                 <div class="noListingTxt d-block text-center font-raleway-900 text-uppercase mt-5">
                     <h3 class="text-tenor fs-4">Error loading wins!</h3>
@@ -136,9 +136,9 @@ export async function renderMyProfile() {
             }
         }
     } catch (error) {
-        console.error('Failed to load profile or listings:', error);
+        console.error("Failed to load profile or listings:", error);
         if (profileContainer) {
-            profileContainer.innerHTML = '<p>Failed to load profile. Please try again later.</p>';
+            profileContainer.innerHTML = "<p>Failed to load profile. Please try again later.</p>";
         }
     }
 }
