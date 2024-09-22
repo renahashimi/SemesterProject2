@@ -277,6 +277,7 @@ export function createListingCard(listing, buttonType) {
       if (listing.media.length > 1) {
           const carousel = document.createElement("div");
           carousel.classList.add("carousel");
+          carousel.style.maxHeight = "500px";
   
           listing.media.forEach(image => {
               const imgElement = document.createElement("img");
