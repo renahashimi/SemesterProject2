@@ -2,18 +2,16 @@
 
 /**
  * Starts a countdown timer that updates the specified HTML element with the remaining time
- * until the specified end time. Disables the bid button and input field when the time is up.
+ * until the specified end time. Disables the bid button when the time is up.
  *
  * @param {string} endTime - The end time of the countdown in a format recognized by the Date constructor.
  * @param {string} elementId - The ID of the HTML element where the countdown will be displayed.
  * @param {number} bidCount - The current count of bids made on the listing.
  * @param {string} bidButtonId - The ID of the bid button to be disabled when the countdown ends.
- * @param {string} listingId - The ID of the listing to locate the bid amount input field.
  */
-export function countdown(endTime, elementId, bidCount, bidButtonId, listingId) {
+export function countdown(endTime, elementId, bidCount, bidButtonId) {
     const countdownElement = document.getElementById(elementId);
     const bidButton = document.getElementById(bidButtonId);
-    const bidAmountInput = document.querySelector(`#bidAmountInput-${listingId}`);
 
     if (!countdownElement) {
         console.error(`Countdown element with id ${elementId} not found.`);
@@ -36,12 +34,6 @@ export function countdown(endTime, elementId, bidCount, bidButtonId, listingId) 
                 bidButton.style.backgroundColor = '#ccc'; 
                 bidButton.classList.add("timeOverBtn");
                 bidButton.style.pointerEvents = 'none'; 
-            }
-
-            if (bidAmountInput) {
-                bidAmountInput.disabled = true; 
-                bidAmountInput.style.opacity = '0.5';
-                bidAmountInput.style.pointerEvents = 'none';
             }
 
             if (bidCount > 0) {

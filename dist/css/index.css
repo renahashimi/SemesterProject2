@@ -242,6 +242,10 @@ button {
   flex-grow: 4 !important;
 }
 
+#cancelBtn {
+  border-bottom: 3px solid #708090 !important;
+}
+
 /* SPINNER */
 .spinner {
   border: 5px solid #708090;
@@ -703,6 +707,9 @@ button {
   }
   .dropdown {
     margin-top: -20px;
+  }
+  .formImg {
+    object-fit: cover;
   }
 }
 @media (min-width: 1000px) {

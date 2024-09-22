@@ -277,6 +277,10 @@ button {
   flex-grow: 4 !important;
 }
 
+#cancelBtn {
+  border-bottom: 3px solid $tealgreen !important;
+}
+
 
 /* SPINNER */
 .spinner {
@@ -789,6 +793,10 @@ justify-content: flex-start; /* Align items to the start of the container */
 
   .dropdown {
     margin-top: -20px;
+  }
+
+  .formImg {
+    object-fit: cover;
   }
   
 }
