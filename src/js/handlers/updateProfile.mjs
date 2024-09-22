@@ -89,13 +89,15 @@ function validateProfile(profile) {
         errors.push("Avatar URL is not valid.");
     }
 
-    // Validate Bio (Optional, no specific requirements)
     if (profile.bio && typeof profile.bio !== 'string') {
         errors.push("Bio must be a string.");
+    } else if (profile.bio && profile.bio.length > 160) {
+        errors.push("Bio cannot be greater than 160 characters.");
     }
 
     return errors;
 }
+
 
 function isValidURL(string) {
     try {

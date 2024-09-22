@@ -43,10 +43,10 @@ export async function renderSingleItem() {
   
     if (singleListingContainer) {
       singleListingContainer.innerHTML = `
-        <div class="profile-alert font-raleway bg-white align-items-center border-tealgreen text-center" style="max-width: 600px;" role="alert">
-          <h1 class="alert-heading font-raleway-900 fs-6 text-tealgreen text-uppercase">Whoa there, adventurer!</h1>
-          <p class="text-secondary">It seems you"re not logged in. To see this listing and the magical wonders within, please log in using the overlay.</p>
-          <p class="text-secondary">Don"t worry, logging in is easier than finding a needle in a haystack!</p>
+        <div class="profile-alert font-prata bg-white align-items-center border-tealgreen text-center" style="max-width: 600px;" role="alert">
+          <h1 class="alert-heading font-raleway-900 fs-6 mb-3 text-tealgreen text-uppercase">Whoa there, adventurer!</h1>
+          <p class="text-secondary">It seems you're not logged in. To see this listing and the magical wonders within, please log in using the overlay.</p>
+          <p class="text-secondary">Don't worry, logging in is easier than finding a needle in a haystack!</p>
           <button id="profile-open-overlay-btn" class="m-auto text-center pt-3 border-0 font-tenor fs-4 text-uppercase bg-white">LOGIN</button>  
         </div>
       `;
