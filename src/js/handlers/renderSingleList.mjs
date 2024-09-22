@@ -73,7 +73,7 @@ export async function renderSingleItem() {
     );
 
     const userName = document.createElement("h1");
-    userName.textContent = `${listing.seller.name || "Unknown"}"s listing`;
+    userName.textContent = `${listing.seller.name || "Unknown"}'s listing`;
     userName.classList.add("font-tenor", "text-uppercase", "text-primary", "fs-4");
 
     const userCreated = document.createElement("p");
