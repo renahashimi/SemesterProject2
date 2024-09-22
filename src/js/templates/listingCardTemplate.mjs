@@ -531,36 +531,6 @@ export function createListingCard(listing, buttonType) {
     "border-0"
   );
 
-  if (isAuthenticated()) {
-    bidBtn.addEventListener("click", async (e) => {
-      e.stopPropagation();
-      const bidSum = parseFloat(bidAmountInput.value);
-  
-      if (bidSum && !isNaN(bidSum) && bidSum > 0) {  
-        try {
-          await handleBid(listing.id, bidSum);
-          alert("Bid placed successfully!");
-          window.location.reload(); 
-        } catch (error) {
-          console.error("Error placing bid:", error);
-          alert("Failed to place bid. Please try again.");
-        }
-      } else {
-        alert("Please enter a valid bid amount.");
-      }
-    });
-  } else {
-    bidBtn.textContent = "Login to place bid";
-    bidBtn.classList.remove("fs-2");
-    bidBtn.classList.add("fs-5", "btn-secondary");
-    bidBtn.id = "bid-open-overlay-btn"; 
-    bidAmountInput.style.display = "none";
-  
-    bidBtn.addEventListener("click", () => {
-      openLoginOverlay();
-    });
-  }
-
   bidControls.appendChild(bidAmountInput);
   bidControls.appendChild(bidBtn);
   bidBtnContent.appendChild(bidControls);
@@ -579,37 +549,69 @@ export function createListingCard(listing, buttonType) {
     "p-0",
     "m-0"
   )
- 
-  if (listing.bids && listing.bids.length > 0) {
-    const mostRecentBid = listing.bids.reduce((latest, bid) => {
-      return new Date(bid.created) > new Date(latest.created) ? bid : latest;
-    }, listing.bids[0]);
+  if (isAuthenticated()) {
+    if (listing.bids && listing.bids.length > 0) {
+      const mostRecentBid = listing.bids.reduce((latest, bid) => {
+        return new Date(bid.created) > new Date(latest.created) ? bid : latest;
+      }, listing.bids[0]);
 
 
-    const bidderDiv = document.createElement("div");
-    bidderDiv.classList.add("current-bidder");
-    
-    const bidderName = document.createElement("span");
-    bidderName.textContent = `Current bidder: ${mostRecentBid.bidder.name || "Unknown" }`;
-    bidderName.classList.add("bidder-name", "fs-7");
-    
-    const bidAmount = document.createElement("span");
-    bidAmount.textContent = ` -  $${mostRecentBid.amount}`;
-    bidAmount.classList.add("bid-amount", "fs-6");
-    
-    bidderDiv.appendChild(bidderName);
-    bidderDiv.appendChild(bidAmount);
-    
-    currentBidderContainer.innerHTML = ""; 
-    currentBidderContainer.appendChild(bidderDiv);
+      const bidderDiv = document.createElement("div");
+      bidderDiv.classList.add("current-bidder");
+      
+      const bidderName = document.createElement("span");
+      bidderName.textContent = `Current bidder: ${mostRecentBid.bidder.name || "Unknown" }`;
+      bidderName.classList.add("bidder-name", "fs-7");
+      
+      const bidAmount = document.createElement("span");
+      bidAmount.textContent = ` -  $${mostRecentBid.amount}`;
+      bidAmount.classList.add("bid-amount", "fs-6");
+      
+      bidderDiv.appendChild(bidderName);
+      bidderDiv.appendChild(bidAmount);
+      
+      currentBidderContainer.innerHTML = ""; 
+      currentBidderContainer.appendChild(bidderDiv);
+    } else {
+      currentBidderContainer.innerHTML = '<p class="p-0 m-0">No bids available</p>';
+    }
+  
+
+
+    bidBtn.addEventListener("click", async (e) => {
+      e.stopPropagation();
+      const bidSum = parseFloat(bidAmountInput.value);
+  
+      if (bidSum && !isNaN(bidSum) && bidSum > 0) {  
+        try {
+          await handleBid(listing.id, bidSum);
+          alert("Bid placed successfully!");
+          window.location.reload(); 
+        } catch (error) {
+          console.error("Error placing bid:", error);
+          alert("Failed to place bid. Please try again.");
+        }
+      } else {
+        alert("Please enter a valid bid amount.");
+      }
+    });
   } else {
-    currentBidderContainer.innerHTML = '<p class="p-0 m-0">No bids available</p>';
+    bidBtn.textContent = "LOGIN TO BID";
+    bidBtn.classList.remove("fs-2");
+    bidBtn.classList.add("fs-5", "btn-secondary");
+    bidBtn.id = "bid-open-overlay-btn"; 
+    bidAmountInput.style.display = "none";
+    currentBidderContainer.style.display = "none";
+    bidBtn.addEventListener("click", () => {
+      openLoginOverlay();
+    });
+  
   }
-
   detailsContainer.appendChild(currentBidderContainer)
 
 
   // Bids section
+
   const toggleBidsButton = document.createElement("button");
   toggleBidsButton.id = `toggleBidsButton-${listing.id}`;
   toggleBidsButton.textContent = `ALL BIDS: ${listing.bids.length}`;
@@ -625,64 +627,67 @@ export function createListingCard(listing, buttonType) {
     "border-secondary"
   );
 
-  const toggleBtnWrapper = document.createElement("div");
-  toggleBtnWrapper.style.width = "100%";  
-  toggleBtnWrapper.style.margin = "2px 0";    
-  toggleBtnWrapper.classList.add(
-    "d-flex", 
-    "justify-content-center", 
-    "align-items-center"
-  );
+  if (isAuthenticated()) {
+    const toggleBtnWrapper = document.createElement("div");
+    toggleBtnWrapper.style.width = "100%";  
+    toggleBtnWrapper.style.margin = "2px 0";    
+    toggleBtnWrapper.classList.add(
+      "d-flex", 
+      "justify-content-center", 
+      "align-items-center"
+    );
 
-  toggleBtnWrapper.appendChild(toggleBidsButton);
+    toggleBtnWrapper.appendChild(toggleBidsButton);
 
-  const bidsContainer = document.createElement("div");
-  bidsContainer.style.display = "none"; 
-  bidsContainer.style.width = "100%";
-  bidsContainer.classList.add(
-    "bidsContainer",
-    "container-fluid",
-    "text-center",
-    "m-auto",
-    "justify-content-center",
-  );
+    const bidsContainer = document.createElement("div");
+    bidsContainer.style.display = "none"; 
+    bidsContainer.style.width = "100%";
+    bidsContainer.classList.add(
+      "bidsContainer",
+      "container-fluid",
+      "text-center",
+      "m-auto",
+      "justify-content-center",
+    );
 
-  const bidsContent = document.createElement("div");
-  bidsContent.classList.add("bidsContent");
+    const bidsContent = document.createElement("div");
+    bidsContent.classList.add("bidsContent");
 
-  listing.bids.forEach(bid => {
-    const bidItem = document.createElement("div");
-    bidItem.classList.add("bidItem", "d-flex", "justify-content-between", "my-1", "border-bottom", "border-1");
+    listing.bids.forEach(bid => {
+      const bidItem = document.createElement("div");
+      bidItem.classList.add("bidItem", "d-flex", "justify-content-between", "my-1", "border-bottom", "border-1");
 
-    const bidderName = document.createElement("span");
-    bidderName.textContent = bid.bidder.name || "Unknown";
-    bidderName.classList.add("bidderName", "fs-6");
+      const bidderName = document.createElement("span");
+      bidderName.textContent = bid.bidder.name || "Unknown";
+      bidderName.classList.add("bidderName", "fs-6");
 
-    const bidAmount = document.createElement("span");
-    bidAmount.textContent = `$${bid.amount}`;
-    bidAmount.classList.add("bidAmount", "fs-6");
+      const bidAmount = document.createElement("span");
+      bidAmount.textContent = `$${bid.amount}`;
+      bidAmount.classList.add("bidAmount", "fs-6");
 
-    bidItem.appendChild(bidderName);
-    bidItem.appendChild(bidAmount);
-    bidsContent.appendChild(bidItem);
-  });
+      bidItem.appendChild(bidderName);
+      bidItem.appendChild(bidAmount);
+      bidsContent.appendChild(bidItem);
+    });
 
-  bidsContainer.appendChild(bidsContent);
-  detailsContainer.appendChild(bidsContainer);
 
-  toggleBidsButton.addEventListener("click", (e) => {
-    e.stopPropagation();
-    if (bidsContainer.style.display === "none") {
-      bidsContainer.style.display = "block";
-      toggleBidsButton.textContent = "Hide Bids";
-    } else {
-      bidsContainer.style.display = "none";
-      toggleBidsButton.textContent = `ALL BIDS: ${listing.bids.length}`;
-    }
-  });
+    bidsContainer.appendChild(bidsContent);
+    detailsContainer.appendChild(bidsContainer);
 
-  detailsContainer.appendChild(toggleBtnWrapper);
+      toggleBidsButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (bidsContainer.style.display === "none") {
+          bidsContainer.style.display = "block";
+          toggleBidsButton.textContent = "Hide Bids";
+        } else {
+          bidsContainer.style.display = "none";
+          toggleBidsButton.textContent = `ALL BIDS: ${listing.bids.length}`;
+        }
+      });
   
+
+    detailsContainer.appendChild(toggleBtnWrapper);
+  }
   // Listing belongs to the user; bidding is not allowed
   if(token) {
     const userName = profile.name || "";
@@ -764,12 +769,12 @@ function initializeCarousel(carousel) {
 
   prevButton.style.position = "absolute";
   prevButton.style.left = "2px";
-  prevButton.style.top = "50%";
+  prevButton.style.top = "150px";
   prevButton.style.transform = "translateY(-50%)";
   
   nextButton.style.position = "absolute";
   nextButton.style.right = "-4px";
-  nextButton.style.top = "50%";
+  nextButton.style.top = "150px";
   nextButton.style.transform = "translateY(-50%)";
 
   carousel.appendChild(prevButton);
