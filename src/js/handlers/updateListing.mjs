@@ -137,8 +137,8 @@ export async function setUpdateListingListener() {
                     alert("Title is required and must be at least 3 characters long.");
                     return;
                 }
-                if (!listingData.description || listingData.description.length < 8) {
-                    alert("Description is required and must be at least 8 characters long.");
+                if (!listingData.description || listingData.description.length < 5) {
+                    alert("Description is required and must be at least 5 characters long.");
                     return;
                 }
 
