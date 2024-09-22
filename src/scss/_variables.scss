@@ -281,6 +281,10 @@ button {
   border-bottom: 3px solid $tealgreen !important;
 }
 
+#dropdownItems{
+  transform: translate(0px, 42px) !important;
+}
+
 
 /* SPINNER */
 .spinner {
@@ -793,6 +797,12 @@ justify-content: flex-start; /* Align items to the start of the container */
 
   .dropdown {
     margin-top: -20px;
+  }
+
+  #dropdownItems{
+    text-align: end !important;
+    font-size: large;
+    transform: translate(-10px, 42px);
   }
 
   .formImg {
