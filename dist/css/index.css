@@ -415,9 +415,8 @@ button {
 
 #singleListings .postcard-image, #singleListings .carousel-image {
   display: flex;
-  height: 500px !important;
+  height: 300px !important;
   width: 300px !important;
-  margin: -30px auto 30px !important;
   padding: 0 !important;
 }
 
@@ -656,22 +655,24 @@ button {
   }
   #singleListings .postAllContent {
     display: flex;
-    width: 750px !important;
+    width: 800px !important;
   }
   #singleListings .postCard {
     display: flex !important;
-    width: 700px !important;
+    width: 800px !important;
     padding: 5px !important;
   }
-  #singleListings .images-container {
-    margin-top: -60px;
+  #singleListings .img-content {
+    margin: -40px 0 0;
     padding: 5px;
     height: 400px !important;
-    width: 300px !important;
-  }
-  #singleListings .images-container img {
+    width: 330px !important;
     object-fit: cover;
-    height: 100% !important;
+  }
+  #singleListings .img-content img, #singleListings .img-content .carousel {
+    height: 400px !important;
+    width: 300px !important;
+    object-fit: cover !important;
   }
   .text-overlay {
     flex-direction: column;

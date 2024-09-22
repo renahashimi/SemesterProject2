@@ -453,14 +453,12 @@ button {
 
 #singleListings .postcard-image {
   align-items: first baseline;
-
-
 } 
+
 #singleListings .postcard-image, #singleListings .carousel-image { 
   display: flex;
-  height: 500px !important;
+  height: 300px !important;
   width: 300px !important;
-  margin: -30px auto 30px !important;
   padding: 0 !important;
 }
 
@@ -688,7 +686,6 @@ justify-content: flex-start; /* Align items to the start of the container */
     background: transparent;
     z-index: 1;
   }
-  
 }
 
 
@@ -735,27 +732,30 @@ justify-content: flex-start; /* Align items to the start of the container */
   
   #singleListings .postAllContent {
     display: flex;
-    width: 750px !important;
+    width: 800px !important;
   }
 
   #singleListings .postCard {
     display: flex !important;
-    width: 700px !important;
+    width: 800px !important;
     padding: 5px !important;
   }
 
-  #singleListings .images-container {
-    margin-top: -60px;
+  #singleListings .img-content {
+    margin: -40px 0 0;
     padding: 5px;
     height: 400px !important;
+    width: 330px !important;
+    object-fit: cover;
+
+  }
+
+  #singleListings .img-content img,   #singleListings .img-content .carousel  {
+    height: 400px !important;
     width: 300px !important;
+    object-fit: cover !important;
   }
 
-  #singleListings .images-container img {
-     object-fit: cover;
-     height: 100% !important;
-
-  }
   .text-overlay {
     flex-direction: column;
     width: 100%;
