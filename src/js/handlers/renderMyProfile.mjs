@@ -1,3 +1,15 @@
+import { openLoginOverlay } from './overlayUtils.mjs';
+import { load } from '../storage/index.mjs';
+import { getProfile } from '../api/profile/get.mjs';
+import { profileTemplate } from '../templates/profileTemplate.mjs';
+import { API_AUCTION_URL } from '../api/constants.mjs';
+import { createListingCard } from '../templates/listingCardTemplate.mjs';
+import { authFetch } from '../api/authFetch.mjs';
+import { simpleListingCard } from '../templates/simpleCardTemplate.mjs';
+import getWins from '../api/profile/wins.mjs';
+
+const listingsAction = "/listings?_seller=true&_bids=true";
+const winsAction = "/wins?_seller=true&_bids=true";
 /**
  * Renders the user's profile, including their listings and wins.
  *

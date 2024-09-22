@@ -1,3 +1,8 @@
+import { getProfile } from '../api/profile/get.mjs';
+import getWins from '../api/profile/wins.mjs';
+import { load, save } from '../storage/index.mjs';
+import { profileTemplate } from '../templates/profileTemplate.mjs';
+import { simpleListingCard } from '../templates/simpleCardTemplate.mjs';
 /**
  * Renders the user's profile, including their listings and wins.
  * 
