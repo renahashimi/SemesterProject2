@@ -326,8 +326,8 @@ export function createListingCard(listing, buttonType) {
   }  else {
       // When there are no images, show a default image
       const imgElement = document.createElement("img");
-      imgElement.src = "/src/images/noimage.jpg"; // Default image when no media available
-      imgElement.alt = "No images available"; // Alt text for default image
+      imgElement.src = "/src/images/noimage.jpg";
+      imgElement.alt = "No images available"; 
       imgElement.style.width = "100%"; 
       imgElement.style.height = "300px"; 
       imgElement.style.objectFit = "cover";
