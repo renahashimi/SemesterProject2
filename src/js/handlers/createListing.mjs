@@ -2,6 +2,9 @@ import { createListing } from "../api/listings/create.mjs";
 import { save } from "../storage/index.mjs";
 import { mediaAddBtn } from "./addMoreImg.mjs";
 
+/**
+ * Sets up the event listeners and functionality for the "Create Listing" form.
+ */
 export function setupCreateListingForm() {
     document.addEventListener("DOMContentLoaded", () => {
         const form = document.getElementById("createPost");
@@ -12,9 +15,11 @@ export function setupCreateListingForm() {
         }
 
         const mediaContainer = document.getElementById("media-preview-container");
-
         mediaAddBtn(); 
 
+        /**
+         * Updates the media preview section based on the current media input values.
+         */
         const updateMediaPreviews = () => {
             const mediaInputs = form.querySelectorAll("input[name='media[]']");
             mediaContainer.innerHTML = ""; 
@@ -50,7 +55,6 @@ export function setupCreateListingForm() {
             event.preventDefault(); 
 
             const formData = new FormData(form);
-
             const listingData = {
                 title: formData.get("title"),
                 description: formData.get("description"),

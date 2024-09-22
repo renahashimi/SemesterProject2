@@ -1,5 +1,16 @@
 import { openImageModal } from "../handlers/modal.mjs";
-
+/**
+ * Creates a simple listing card element for a given listing.
+ *
+ * @param {Object} listing - The listing object.
+ * @param {string} listing.id - The unique identifier for the listing.
+ * @param {string} listing.title - The title of the listing.
+ * @param {Array<Object>} [listing.media] - An array of media objects associated with the listing.
+ * @param {Object} [listing.media[].url] - The URL of the media.
+ * @param {string} [listing.media[].alt] - The alt text for the media.
+ * 
+ * @returns {HTMLElement} The DOM element representing the simple listing card.
+ */
 export function simpleListingCard(listing) {
   const simpleListContainer = document.createElement("div");
   simpleListContainer.classList.add(

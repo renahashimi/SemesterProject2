@@ -6,18 +6,39 @@ import { simpleListingCard } from "../templates/simpleCardTemplate.mjs";
 import { formatDate } from "./date.mjs";
 import { openLoginOverlay } from "./overlayUtils.mjs";
 
+/**
+ * Renders a single listing item based on the listing ID from the URL.
+ * 
+ * This function checks if the user is logged in by verifying the token in local storage.
+ * If the user is not logged in, it displays a login prompt. If the user is logged in,
+ * it fetches the listing details and displays them along with the seller's other listings.
+ * 
+ * The function performs the following steps:
+ * - Fetches the listing based on the ID provided in the URL.
+ * - Displays listing details and seller information.
+ * - Displays other listings from the seller, excluding the current listing.
+ * - Handles errors in fetching data and updates the UI accordingly.
+ * 
+ * @returns {Promise<void>} - A promise that resolves when the rendering is complete.
+ * 
+ * @throws {Error} - Throws an error if there is a problem fetching the listing or user listings.
+ * 
+ * @example
+ * // Call this function to render a single item based on the URL parameter
+ * renderSingleItem();
+ */
 export async function renderSingleItem() {
   const urlParams = new URLSearchParams(window.location.search);
   const listingId = urlParams.get("listing");
   const singleListingContainer = document.getElementById("singleListings");
-  singleListingContainer.classList.add("border", "border-4", "border-primary", "pb-4")
+  singleListingContainer.classList.add("border", "border-4", "border-primary", "pb-4");
   const userSingleListingContainer = document.getElementById("userSingleListings");
-  userSingleListingContainer.classList.add("d-block")
+  userSingleListingContainer.classList.add("d-block");
   const token = load("token");
   
   if (!token) {
     if (userSingleListingContainer) {
-      userSingleListingContainer.classList.add("d-none")
+      userSingleListingContainer.classList.add("d-none");
     }
   
     if (singleListingContainer) {

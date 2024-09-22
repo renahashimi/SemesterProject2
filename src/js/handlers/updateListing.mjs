@@ -1,6 +1,20 @@
 import { getListing, updateListing } from "../api/listings/index.mjs";
 import { mediaAddBtn } from "./addMoreImg.mjs";
 
+/**
+ * Sets up an event listener for updating a listing. 
+ * This function retrieves the listing data when the page is loaded,
+ * populates the form fields, and handles the submission of the form
+ * to update the listing details.
+ * 
+ * @async
+ * @function setUpdateListingListener
+ * @returns {void}
+ * 
+ * @example
+ * // Call this function to initialize the update listener for the listing
+ * setUpdateListingListener();
+ */
 export async function setUpdateListingListener() {
     document.addEventListener("DOMContentLoaded", async () => {
         const form = document.querySelector("#editListing");
@@ -52,7 +66,7 @@ export async function setUpdateListingListener() {
                         listing.media.forEach(mediaItem => {
                             const mediaDiv = document.createElement("div");
                             mediaDiv.className = "media-item d-flex justify-content-between my-2";
-                    
+
                             // Add preview image
                             if (mediaItem.url) {
                                 const preview = document.createElement("img");
@@ -85,12 +99,10 @@ export async function setUpdateListingListener() {
 
                             const clearBtnIcon = document.createElement("i");
                             clearBtnIcon.classList.add("bi", "bi-trash-fill", "text-primary");
-                            
 
                             clearBtn.appendChild(clearBtnIcon);
                             mediaDiv.appendChild(clearBtn);
                             mediaContainer.appendChild(mediaDiv);
-
                         });
                     }
                 } catch (error) {

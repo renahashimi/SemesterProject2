@@ -10,6 +10,32 @@ import { load } from "../storage/index.mjs";
 const token = load("token");
 const profile = load("profile");
 
+/**
+ * Creates a listing card element for displaying a listing.
+ *
+ * @param {Object} listing - The listing data.
+ * @param {string} buttonType - The type of button to display on the card (e.g., "my-listing" or "default").
+ * @returns {HTMLElement} The created listing card element.
+ *
+ * @property {HTMLElement} postContainer - The main container for the listing card.
+ * @property {HTMLElement} postContent - The content area of the listing card.
+ * @property {HTMLElement} postCardContent - The card content wrapper.
+ * @property {HTMLElement} postCard - The card itself.
+ * @property {HTMLElement} postAllContent - Container for all post content.
+ * @property {HTMLElement} headContent - Header area containing seller info and action buttons.
+ * @property {HTMLElement} sellerInfo - Container for seller avatar and name.
+ * @property {HTMLElement} buttonCnt - Container for action buttons.
+ * @property {HTMLElement} viewButton - The action button for viewing or managing the listing.
+ * @property {HTMLElement} imgContent - Container for images associated with the listing.
+ * @property {HTMLElement} title - Title element for the listing.
+ * @property {HTMLElement} descriptionContainer - Container for listing description.
+ * @property {HTMLElement} tagsContainer - Container for listing tags.
+ * @property {HTMLElement} createdDate - Date element indicating when the listing was created.
+ * @property {HTMLElement} detailsContainer - Container for listing details such as bid controls and remaining time.
+ * @property {HTMLElement} endTimeAndBidBtnContainer - Container for countdown and bid button.
+ * @property {HTMLElement} bidControls - Container for bid input and button.
+ * @property {HTMLElement} currentBidderContainer - Displays the current highest bidder's information.
+ */
 export function createListingCard(listing, buttonType) {
   const postContainer = document.createElement("div");
   postContainer.classList.add(

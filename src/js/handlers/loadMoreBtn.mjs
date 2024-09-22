@@ -4,6 +4,13 @@ import { renderAllListings } from "./renderListings.mjs";
 let currentPage = 1; 
 const limit = 9; 
 
+/**
+ * Creates a "Load More" button that fetches and displays additional listings.
+ * When clicked, it increments the current page, fetches new listings,
+ * and renders them in the listings container.
+ *
+ * @returns {HTMLButtonElement} The created "Load More" button element.
+ */
 export function createLoadMoreButton() {
     const loadMoreBtn = document.createElement("button");
     loadMoreBtn.classList.add(
@@ -30,8 +37,8 @@ export function createLoadMoreButton() {
         "text-center",
         "justify-content-center",
         "align-items-center",         
-    )
-    loadMoreBtn.appendChild(loadMoreBtnTxt)
+    );
+    loadMoreBtn.appendChild(loadMoreBtnTxt);
 
     loadMoreBtn.addEventListener("click", async () => {
         loadMoreBtn.disabled = true; 

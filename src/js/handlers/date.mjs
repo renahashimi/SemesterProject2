@@ -1,11 +1,16 @@
+/**
+ * Formats a date string into a more readable format.
+ *
+ * @param {string} dateString - The date string to be formatted.
+ * @returns {string} The formatted date in the format "DD.MM.YYYY - HH:MM".
+ */
 export function formatDate(dateString) {
-    const date = new Date(dateString)
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-  
-  
-    return `${day}.${month}.${year} - ${hours}:${minutes}`
-  }
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+
+  return `${day}.${month}.${year} - ${hours}:${minutes}`;
+}

@@ -1,16 +1,19 @@
-import { openLoginOverlay } from "./overlayUtils.mjs";
-import { load } from "../storage/index.mjs";
-import { getProfile } from "../api/profile/get.mjs";
-import { profileTemplate } from "../templates/profileTemplate.mjs";
-import { API_AUCTION_URL } from "../api/constants.mjs";
-import { createListingCard } from "../templates/listingCardTemplate.mjs";
-import { authFetch } from "../api/authFetch.mjs";
-import { simpleListingCard } from "../templates/simpleCardTemplate.mjs";
-import getWins from "../api/profile/wins.mjs";
-
-const listingsAction = "/listings?_seller=true&_bids=true";
-const winsAction = "/wins?_seller=true&_bids=true";
-
+/**
+ * Renders the user's profile, including their listings and wins.
+ *
+ * This function checks if the user is logged in by verifying the presence of a token. 
+ * If the user is not logged in, an alert is displayed prompting them to log in. 
+ * If the user is logged in, the function fetches the user's profile data, updates the profile container,
+ * and displays their listings and wins.
+ *
+ * @async
+ * @function renderMyProfile
+ * @throws {Error} Will throw an error if the profile, listings, or wins fail to load.
+ *
+ * @example
+ * // Call the function to render the user's profile
+ * renderMyProfile();
+ */
 export async function renderMyProfile() {
     const token = load("token");
     const profile = load("profile");
@@ -21,7 +24,7 @@ export async function renderMyProfile() {
     const userTitleElement = document.getElementById("userTitle");
 
     if (window.location.pathname === "/feed/profile/" && !token) {
-        const myProfile = document.getElementById("myProfile")
+        const myProfile = document.getElementById("myProfile");
         myProfile.style.display = "none";
         if (profileContainer) {
             profileContainer.innerHTML = `
@@ -108,7 +111,7 @@ export async function renderMyProfile() {
         // Fetch and render won listings
         if (myWinsContainer) {
             try {
-                const wonListingsData = await getWins(profile.name)
+                const wonListingsData = await getWins(profile.name);
                 const wonListings = wonListingsData.data; 
         
                 myWinsContainer.innerHTML = ""; 

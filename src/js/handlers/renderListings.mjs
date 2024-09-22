@@ -29,7 +29,7 @@ export async function fetchListings(page = 1, limit = 9) {
     const cachedListings = localStorage.getItem("cachedListings");
     
     if (cachedListings) {
-      return JSON.parse(cachedListings).slice(0, pageSize); 
+      return JSON.parse(cachedListings); 
     }
 
     return [];
@@ -40,9 +40,8 @@ export async function fetchListings(page = 1, limit = 9) {
  * Renders all listings in the specified container, with optional appending.
  * @param {Array} listings - The listings to render.
  * @param {boolean} append - Whether to append to the existing listings.
- * @param {string} listingId - (Optional) A specific listing ID to render.
  */
-export async function renderAllListings(listings = [], append = false, listingId) {
+export async function renderAllListings(listings = [], append = false) {
   const listingContainer = document.getElementById("allListingsContainer");
   const loadMoreBtnContainer = document.getElementById("loadMoreBtnContainer");
 
@@ -60,43 +59,13 @@ export async function renderAllListings(listings = [], append = false, listingId
     const listingsData = listings.length > 0 ? listings : await fetchListings(1, 100);
 
     if (Array.isArray(listingsData)) {
-      let sortedListings;
-      if (sortOption === "newToOld") {
-        sortedListings = listingsData.sort((a, b) => new Date(b.created) - new Date(a.created));
-      } else if (sortOption === "oldToNew") {
-        sortedListings = listingsData.sort((a, b) => new Date(a.created) - new Date(b.created));
-      } else {
-        sortedListings = listingsData;
-      }
+      const displayedListings = listingsData.slice(0, pageSize); 
 
-      sortedListings.forEach(listing => {
-        const card = createListingCard(listing);
-        console.log("Listing created:", card);  
+      displayedListings.forEach(listing => {
+        const card = createListingCard(listing);  
 
         if (card instanceof HTMLElement) {
           listingContainer.appendChild(card);
-
-          // Log listing id and bid control elements
-          console.log(`Listing ID: ${listing.id}`);
-          const bidControls = document.getElementById(`bidControls-${listing.id}`);
-          console.log("Bid Controls Element:", bidControls);
-
-          if (bidControls) {
-            const endTime = new Date(listing.endTime).getTime();
-            const now = new Date().getTime();
-            const isSold = listing.bidCount > 0 && now >= endTime;
-            const isExpired = listing.bidCount === 0 && now >= endTime;
-
-            console.log(`Bid Status - isSold: ${isSold}, isExpired: ${isExpired}`);
-
-            if (isSold) {
-              bidControls.style.display = "none";
-              bidControls.innerHTML = '<p>"CLOSED / SOLD"</p>';
-            } else if (isExpired) {
-              bidControls.style.display = "none";
-              bidControls.innerHTML = '<p>"No bidding available."</p>';
-            }
-          }
         } else {
           console.error("Failed to create a valid listing card for:", listing);
         }
@@ -117,29 +86,26 @@ export async function renderAllListings(listings = [], append = false, listingId
 // Event listeners for filter buttons
 document.getElementById('filterAll').addEventListener('click', async (e) => {
   e.preventDefault();
-  const listings = await fetchListings();
+  const listings = await fetchListings(); 
   renderAllListings(listings);
 
-  // Update the dropdown button text to "All Listings"
   document.getElementById('filterDropdown').innerText = "All Listings";
 });
 
 document.getElementById('filterNewToOld').addEventListener('click', async (e) => {
   e.preventDefault();
-  const listings = await fetchListings();
+  const listings = await fetchListings(); 
   const sortedListings = listings.sort((a, b) => new Date(b.created) - new Date(a.created));
-  renderAllListings(sortedListings);
+  renderAllListings(sortedListings); 
 
-  // Update the dropdown button text to "Date: New to Old"
   document.getElementById('filterDropdown').innerText = "Date: New to Old";
 });
 
 document.getElementById('filterOldToNew').addEventListener('click', async (e) => {
   e.preventDefault();
-  const listings = await fetchListings();
+  const listings = await fetchListings(); 
   const sortedListings = listings.sort((a, b) => new Date(a.created) - new Date(b.created));
-  renderAllListings(sortedListings);
+  renderAllListings(sortedListings); 
 
-  // Update the dropdown button text to "Date: Old to New"
   document.getElementById('filterDropdown').innerText = "Date: Old to New";
 });

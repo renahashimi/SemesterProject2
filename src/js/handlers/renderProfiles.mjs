@@ -1,9 +1,20 @@
-import { getProfile } from "../api/profile/get.mjs";
-import getWins from "../api/profile/wins.mjs";
-import { load, save } from "../storage/index.mjs";
-import { profileTemplate } from "../templates/profileTemplate.mjs";
-import { simpleListingCard } from "../templates/simpleCardTemplate.mjs";
-
+/**
+ * Renders the user's profile, including their listings and wins.
+ * 
+ * This function first checks if the user is logged in by verifying the presence
+ * of a token. If the user is not logged in, an alert is displayed prompting
+ * them to log in. If the user is logged in, the function fetches the user's
+ * profile data, updates the profile container with the user's information,
+ * and displays their listings and wins.
+ * 
+ * @async
+ * @function renderProfiles
+ * @throws {Error} Will throw an error if the profile or listings fail to load.
+ * 
+ * @example
+ * // Call the function to render the user's profile
+ * renderProfiles();
+ */
 export async function renderProfiles() {
     const token = load("token");
 

@@ -1,3 +1,7 @@
+/**
+ * Handles the actions to be taken when the page is loaded.
+ * This includes hiding the loading spinner and displaying user profile elements.
+ */
 export function handlePageLoad() {
     const spinner = document.getElementById("spinner");
     const userProfile = document.getElementById("userProfile");
