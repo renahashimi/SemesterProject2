@@ -4,7 +4,6 @@ import { createLoadMoreButton } from "./loadMoreBtn.mjs";
 
 let currentPage = 1;
 const pageSize = 9;
-let sortOption = "all";
 
 /**
  * Fetches listings from the API, or retrieves them from local storage if unavailable.
@@ -27,7 +26,6 @@ export async function fetchListings(page = 1, limit = 9) {
     console.error("Failed to fetch listings:", error);
 
     const cachedListings = localStorage.getItem("cachedListings");
-    
     if (cachedListings) {
       return JSON.parse(cachedListings); 
     }
@@ -83,29 +81,50 @@ export async function renderAllListings(listings = [], append = false) {
   }
 }
 
+/**
+ * Filters and sorts the listings based on the specified option.
+ * @param {Array} listings - The listings to filter.
+ * @param {string} option - The sorting option ("all", "newToOld", "oldToNew").
+ * @returns {Array} The filtered and sorted listings.
+ */
+function filterListings(listings, option) {
+  switch (option) {
+    case "newToOld":
+      return listings.sort((a, b) => new Date(b.created) - new Date(a.created));
+    case "oldToNew":
+      return listings.sort((a, b) => new Date(a.created) - new Date(b.created));
+    default:
+      return listings; // No sorting for "all"
+  }
+}
+
 // Event listeners for filter buttons
-document.getElementById('filterAll').addEventListener('click', async (e) => {
-  e.preventDefault();
-  const listings = await fetchListings(); 
-  renderAllListings(listings);
+document.addEventListener("DOMContentLoaded", () => {
+  const listingContainer = document.getElementById("allListingsContainer");
 
-  document.getElementById('filterDropdown').innerText = "All Listings";
+  if (listingContainer) {
+    document.getElementById('filterAll')?.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const listings = await fetchListings(); 
+      renderAllListings(listings);
+      document.getElementById('filterDropdown').innerText = "All Listings";
+    });
+
+    document.getElementById('filterNewToOld')?.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const listings = await fetchListings(); 
+      const sortedListings = listings.sort((a, b) => new Date(b.created) - new Date(a.created));
+      renderAllListings(sortedListings); 
+      document.getElementById('filterDropdown').innerText = "New to Old";
+    });
+
+    document.getElementById('filterOldToNew')?.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const listings = await fetchListings(); 
+      const sortedListings = listings.sort((a, b) => new Date(a.created) - new Date(b.created));
+      renderAllListings(sortedListings); 
+      document.getElementById('filterDropdown').innerText = "Old to New";
+    });
+  }
 });
 
-document.getElementById('filterNewToOld').addEventListener('click', async (e) => {
-  e.preventDefault();
-  const listings = await fetchListings(); 
-  const sortedListings = listings.sort((a, b) => new Date(b.created) - new Date(a.created));
-  renderAllListings(sortedListings); 
-
-  document.getElementById('filterDropdown').innerText = "Date: New to Old";
-});
-
-document.getElementById('filterOldToNew').addEventListener('click', async (e) => {
-  e.preventDefault();
-  const listings = await fetchListings(); 
-  const sortedListings = listings.sort((a, b) => new Date(a.created) - new Date(b.created));
-  renderAllListings(sortedListings); 
-
-  document.getElementById('filterDropdown').innerText = "Date: Old to New";
-});
