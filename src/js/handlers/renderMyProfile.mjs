@@ -136,7 +136,7 @@ export async function renderMyProfile() {
                     });
                 } else {
                     myWinsContainer.innerHTML = `
-                    <div class="noListingTxt d-block m-auto justify-content-center text-center font-raleway-900 text-uppercase my-2">
+                    <div class="noListingTxt d-block m-auto justify-content-center text-white text-center font-raleway-900 text-uppercase my-2">
                         <h3 class="font-tenor fs-4">No wins yet?</h3>
                         <a class="text-white fs-6 mt-n5" href="/feed/listings/">Browse listings to place a bid</a>
                     </div>`;

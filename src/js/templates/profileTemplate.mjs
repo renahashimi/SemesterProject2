@@ -105,7 +105,7 @@ export async function profileTemplate(profileData) {
     profileName.classList.add(
       "m-auto", 
       "fs-4", 
-      "font-tenor", 
+      "font-prata", 
       "text-center", 
       "text-uppercase"
     );
@@ -148,7 +148,7 @@ export async function profileTemplate(profileData) {
     profileCredits.classList.add(
       "m-auto", 
       "fs-4", 
-      "font-raleway", 
+      "font-tenor", 
       "text-center", 
       "p-0", 
       "mt-n2"
@@ -178,7 +178,7 @@ export async function profileTemplate(profileData) {
     profileWins.classList.add(
       "m-auto", 
       "fs-4", 
-      "font-raleway", 
+      "font-tenor", 
       "text-center", 
       "p-0", 
       "mt-n2"
@@ -212,7 +212,7 @@ export async function profileTemplate(profileData) {
     profileListing.classList.add(
       "m-auto", 
       "fs-4", 
-      "font-raleway", 
+      "font-tenor", 
       "text-center", 
       "p-0", 
       "mt-n2"
@@ -311,15 +311,13 @@ export async function profileTemplate(profileData) {
     const profileBioText = document.createElement("p");
     profileBioText.classList.add(
       "m-auto", 
-      "fs-5", 
-      "font-raleway-900", 
+      "fs-6", 
+      "font-tenor", 
       "text-uppercase", 
       "text-white", 
       "text-start", 
       "p-3",
     );
-
-  
     profileBioText.textContent = `Biography of ${profileData.data.name || "this user"}`;
   
     const profileBio = document.createElement("p");
