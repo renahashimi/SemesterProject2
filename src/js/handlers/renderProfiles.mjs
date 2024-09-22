@@ -32,13 +32,18 @@ export async function renderProfiles() {
         if (userProfile) userProfile.style.display = "none";
         if (userContainer) {
             userContainer.innerHTML = `
-                    <div class="profile-alert font-prata bg-white align-items-center border-tealgreen text-center" style="max-width: 600px;" role="alert">
-                        <h1 class="alert-heading font-raleway-900 fs-6 mb-3 text-tealgreen text-uppercase">Whoa there, adventurer!</h1>
-                        <p class="text-secondary">It seems you're not logged in. To see this listing and the magical wonders within, please log in using the overlay.</p>
-                        <p class="text-secondary">Don't worry, logging in is easier than finding a needle in a haystack!</p>
-                        <button id="profile-open-overlay-btn" class="m-auto text-center pt-3 border-0 font-tenor fs-4 text-uppercase bg-white">LOGIN</button>  
-                    </div>
-                `;
+                        <div class="profile-alert font-prata bg-white align-items-center border-tealgreen text-center" style="max-width: 600px;" role="alert">
+                            <h1 class="alert-heading font-raleway-900 fs-6 mb-3 text-tealgreen text-uppercase">Whoa there, adventurer!</h1>
+                            <p class="text-secondary">It seems you're not logged in. To see this listing and the magical wonders within, please log in to your account.</p>
+                            <p class="text-secondary">Don't worry, logging in is easier than finding a needle in a haystack!</p>
+                            <button id="profile-open-overlay-btn" class="m-auto bg-secondary text-center border-0 font-tenor fs-4 text-uppercase text-white my-4 px-3">LOGIN</button>  
+                          
+                            <div class="profile-register-alert font-prata bg-secondary align-items-center border-tealgreen text-center w-100 p-3 mt-5" style="max-width: 600px;" role="alert">
+                                <p class="text-white">If you don't have an account, you can create one by clicking the link below:</p>
+                                <a href="/feed/profile/register/" class="m-auto text-center border-0 bg-white font-tenor fs-4 text-uppercase text-secondary my-3 px-3">REGISTER NOW</a>
+                            </div>
+                        </div>
+                    `;
             document.getElementById("profile-open-overlay-btn").addEventListener("click", () => {
                 openLoginOverlay();
             });
