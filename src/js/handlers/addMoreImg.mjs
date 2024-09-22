@@ -1,3 +1,14 @@
+/**
+ * Sets up an event listener on the "Add Media" button to dynamically 
+ * add a new media input field to the media container when clicked.
+ * 
+ * @function mediaAddBtn
+ * @returns {void} 
+ * 
+ * @example
+ * // Call this function to initialize the event listener
+ * mediaAddBtn();
+ */
 export function mediaAddBtn() {
     const addMediaBtn = document.getElementById("addMediaBtn");
     const mediaContainer = document.getElementById("media-container");

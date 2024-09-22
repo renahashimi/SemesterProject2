@@ -3,27 +3,43 @@ import getWins from '../api/profile/wins.mjs';
 import { load, save } from '../storage/index.mjs';
 import { profileTemplate } from '../templates/profileTemplate.mjs';
 import { simpleListingCard } from '../templates/simpleCardTemplate.mjs';
-
+/**
+ * Renders the user's profile, including their listings and wins.
+ * 
+ * This function first checks if the user is logged in by verifying the presence
+ * of a token. If the user is not logged in, an alert is displayed prompting
+ * them to log in. If the user is logged in, the function fetches the user's
+ * profile data, updates the profile container with the user's information,
+ * and displays their listings and wins.
+ * 
+ * @async
+ * @function renderProfiles
+ * @throws {Error} Will throw an error if the profile or listings fail to load.
+ * 
+ * @example
+ * // Call the function to render the user's profile
+ * renderProfiles();
+ */
 export async function renderProfiles() {
-    const token = load('token');
+    const token = load("token");
 
-    const winsContainer = document.getElementById('userWins');
+    const winsContainer = document.getElementById("userWins");
     const userContainer = document.getElementById("userProfileContainer");
-    const userTitleElement = document.getElementById('userTitle'); 
+    const userTitleElement = document.getElementById("userTitle"); 
    
-    if (window.location.pathname === '/feed/profile/profiles/' && !token) {
+    if (window.location.pathname === "/feed/profile/profiles/" && !token) {
         const userProfile = document.getElementById("userProfile");
         if (userProfile) userProfile.style.display = "none";
         if (userContainer) {
             userContainer.innerHTML = `
                 <div class="profile-alert fonyt-raleway align-items-center border-tealgreen text-center" style="max-width: 600px;" role="alert">
                     <h1 class="alert-heading font-raleway-900 fs-6 text-tealgreen text-uppercase">Whoa there, adventurer!</h1>
-                    <p class="text-secondary">It seems you're not logged in. To see your profile and the magical wonders within, please log in using the overlay.</p>
-                    <p class="text-secondary">Don't worry, logging in is easier than finding a needle in a haystack!</p>
+                    <p class="text-secondary">It seems you"re not logged in. To see your profile and the magical wonders within, please log in using the overlay.</p>
+                    <p class="text-secondary">Don"t worry, logging in is easier than finding a needle in a haystack!</p>
                     <button id="profile-open-overlay-btn" class="m-auto text-center pt-3 border-0 font-tenor fs-4 text-uppercase bg-white">LOGIN</button>  
                 </div>
             `;
-            document.getElementById('profile-open-overlay-btn').addEventListener('click', () => {
+            document.getElementById("profile-open-overlay-btn").addEventListener("click", () => {
                 openLoginOverlay();
             });
         }
@@ -34,12 +50,12 @@ export async function renderProfiles() {
         const name = url.searchParams.get("name");
 
         if (!name) {
-            console.error('No user name provided in the URL.');
+            console.error("No user name provided in the URL.");
             return; 
         }
 
         if (userTitleElement) {
-            userTitleElement.textContent = `${name.toUpperCase()}'S PROFILE - MIDAS TOUCH`;
+            userTitleElement.textContent = `${name.toUpperCase()}"S PROFILE - MIDAS TOUCH`;
         }
 
         const userProfileData = await getProfile(name);
@@ -49,7 +65,7 @@ export async function renderProfiles() {
             userContainer.innerHTML = "";
             userContainer.append(profileContainer);
         } else {
-            console.error('Profile container not found.');
+            console.error("Profile container not found.");
             return;
         }
         
@@ -65,12 +81,12 @@ export async function renderProfiles() {
                 });
             } else {
                 listContainer.innerHTML = `
-                <div class="noListingTxt d-block text-center font-raleway-900 text-uppercase mt-5">
+                <div class="noListingTxt d-block m-auto justify-content-center text-center font-raleway-900 text-uppercase mt-5">
                     <h2 class="text-tenor fs-4">No listings yet!</h2>
                 </div>`;
             }
         } else {
-            console.error('Listings container not found.');
+            console.error("Listings container not found.");
         }
 
         if (winsContainer) {
@@ -78,7 +94,7 @@ export async function renderProfiles() {
                 const wonListingsData = await getWins(name);
 
                 const wonListings = wonListingsData.data || [];
-                winsContainer.innerHTML = ''; 
+                winsContainer.innerHTML = ""; 
                 
                 if (Array.isArray(wonListings) && wonListings.length > 0) {
                     wonListings.forEach((listing) => {
@@ -87,22 +103,22 @@ export async function renderProfiles() {
                     });
                 } else {
                     winsContainer.innerHTML = `
-                    <div class="noListingTxt d-block text-center font-raleway-900 text-uppercase mt-5">
+                    <div class="noListingTxt d-block m-auto justify-content-center text-center font-raleway-900 text-uppercase mt-5">
                         <h2 class="text-tenor fs-4">No wins yet?</h2>
                     </div>`;
                 }
             } catch (error) {
-                console.error('Failed to load won listings:', error);
+                console.error("Failed to load won listings:", error);
                 winsContainer.innerHTML = `
-                <div class="noListingTxt d-block text-center font-raleway-900 text-uppercase mt-5">
+                <div class="noListingTxt d-block m-auto justify-content-center text-center font-raleway-900 text-uppercase mt-5">
                     <h3 class="text-tenor fs-4">Error loading wins!</h3>
                 </div>`;
             }
         }
     } catch (error) {
-        console.error('Failed to load profile or listings:', error);
+        console.error("Failed to load profile or listings:", error);
         if (userContainer) {
-            userContainer.innerHTML = '<p>Failed to load profile. Please try again later.</p>';
+            userContainer.innerHTML = "<p>Failed to load profile. Please try again later.</p>";
         }
     }
 }

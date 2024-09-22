@@ -1,9 +1,21 @@
-import { API_AUCTION_URL } from '../constants.mjs'
-import { authFetch } from '../authFetch.mjs'
+import { API_AUCTION_URL } from '../constants.mjs';
+import { authFetch } from '../authFetch.mjs';
 
-const method = 'put'
-const action = '/profiles'
+const method = 'PUT';
+const action = '/profiles';
 
+/**
+ * Updates the user's profile with the provided data.
+ *
+ * @param {Object} profileData - The data to update the profile with.
+ * @param {string} profileData.name - The name of the user (required).
+ * @param {string} [profileData.email] - The email of the user (optional).
+ * @param {string} [profileData.banner] - The URL of the banner image (optional).
+ * @param {string} [profileData.avatar] - The URL of the avatar image (optional).
+ * @param {string} [profileData.bio] - The bio of the user (optional).
+ * @returns {Promise<Object>} - A promise that resolves to the updated profile data.
+ * @throws {Error} - Throws an error if the name is not provided or if the update fails.
+ */
 export async function updateProfile(profileData) {
   if (!profileData.name) {
     throw new Error('Requires a name');

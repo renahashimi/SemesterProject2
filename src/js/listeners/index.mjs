@@ -1,1 +1,1 @@
-export * from './allPages.mjs';
+export * from "./allPages.mjs";

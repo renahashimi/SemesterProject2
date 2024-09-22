@@ -4,6 +4,13 @@ import { API_AUCTION_URL } from "../constants.mjs";
 
 const action = "/listings";
 
+/**
+ * Submits a bid for a specified listing.
+ *
+ * @param {string} listingId - The ID of the listing for which the bid is being placed.
+ * @param {number} bidSum - The amount of the bid.
+ * @returns {Promise<void>} - A promise that resolves when the bid is submitted.
+ */
 export async function submitBid(listingId, bidSum) {
   const bidUrl = `${API_AUCTION_URL}${action}/${listingId}/bids`;
 
@@ -33,6 +40,12 @@ export async function submitBid(listingId, bidSum) {
   }
 }
 
+/**
+ * Handles the bid submission process.
+ *
+ * @param {string} listingId - The ID of the listing for which the bid is being placed.
+ * @param {number} bidSum - The amount of the bid.
+ */
 export function handleBid(listingId, bidSum) {
   if (bidSum && !isNaN(bidSum) && bidSum > 0) {
     submitBid(listingId, bidSum);

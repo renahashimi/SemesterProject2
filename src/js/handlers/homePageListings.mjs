@@ -1,6 +1,10 @@
 import { getListings } from "../api/listings/get.mjs";
 import { simpleListingCard } from "../templates/simpleCardTemplate.mjs";
 
+/**
+ * Renders home listings based on the viewport size.
+ * Displays a single listing switch for mobile devices and a carousel for larger screens.
+ */
 export async function renderHomeListings() {
   const switchContainer = document.getElementById("switchContainer");
   const carouselContainer = document.getElementById("carouselContainer");
@@ -26,7 +30,10 @@ export async function renderHomeListings() {
   }
 }
 
-
+/**
+ * Displays a single listing that updates every 5 seconds for mobile devices.
+ * @param {Array} listings - An array of listings to display.
+ */
 function displaySingleListingSwitch(listings) {
   const switchContainer = document.getElementById("switchContainer");
   switchContainer.innerHTML = "";
@@ -51,6 +58,10 @@ function displaySingleListingSwitch(listings) {
   setInterval(updateListing, 5000); 
 }
 
+/**
+ * Displays listings in a carousel format for larger screens.
+ * @param {Array} listings - An array of listings to display.
+ */
 function displayCarouselListings(listings) {
   const carouselContainer = document.getElementById("carouselContainer");
   carouselContainer.innerHTML = "";
@@ -88,7 +99,6 @@ function displayCarouselListings(listings) {
   
     carouselItem.appendChild(rowContainer);
     carouselInner.appendChild(carouselItem);
-  
   }
 
   carousel.appendChild(carouselInner);
@@ -127,4 +137,5 @@ function displayCarouselListings(listings) {
   }
 }
 
+// Add event listener to render listings on window resize
 window.addEventListener("resize", renderHomeListings);

@@ -1,3 +1,25 @@
+/**
+ * Generates a profile template element based on the provided profile data.
+ *
+ * @async
+ * @param {Object} profileData - The profile data object.
+ * @param {Object} profileData.data - The main profile data.
+ * @param {Object} [profileData.data.banner] - The banner object.
+ * @param {string} [profileData.data.banner.url] - The URL of the banner image.
+ * @param {string} [profileData.data.banner.alt] - The alt text for the banner image.
+ * @param {Object} [profileData.data.avatar] - The avatar object.
+ * @param {string} [profileData.data.avatar.url] - The URL of the avatar image.
+ * @param {string} [profileData.data.avatar.alt] - The alt text for the avatar image.
+ * @param {string} [profileData.data.name] - The name of the user.
+ * @param {string} [profileData.data.email] - The email of the user.
+ * @param {number} [profileData.data.credits] - The credits available for the user.
+ * @param {Object} [profileData.data._count] - Counts of related data.
+ * @param {number} [profileData.data._count.wins] - The number of wins for the user.
+ * @param {number} [profileData.data._count.listings] - The number of listings for the user.
+ * @param {string} [profileData.data.bio] - The biography of the user.
+ * 
+ * @returns {Promise<HTMLElement>} A promise that resolves to a DOM element representing the profile.
+ */
 export async function profileTemplate(profileData) {
     if (!profileData || !profileData.data) {
         console.error("Invalid profile data");

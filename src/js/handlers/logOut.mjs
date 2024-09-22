@@ -7,7 +7,7 @@ import { updateBtnForLogIn, updateBtnForLogOut } from "./updateBtn.mjs";
  * and redirects to the homepage if confirmed.
  */
 export function handleLogOut() {
-    if (confirm('Are you sure you want to sign out?')) {
+    if (confirm("Are you sure you want to sign out?")) {
         localStorage.clear();
         sessionStorage.clear();
 
@@ -15,7 +15,7 @@ export function handleLogOut() {
         openLoginOverlay()
       
         setTimeout(() => {
-            window.location.href = '/index.html';
+            window.location.href = "/index.html";
         }, 1000);
     } else {
        closeLoginOverlay()

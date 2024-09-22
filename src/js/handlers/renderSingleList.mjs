@@ -6,30 +6,51 @@ import { simpleListingCard } from "../templates/simpleCardTemplate.mjs";
 import { formatDate } from "./date.mjs";
 import { openLoginOverlay } from "./overlayUtils.mjs";
 
+/**
+ * Renders a single listing item based on the listing ID from the URL.
+ * 
+ * This function checks if the user is logged in by verifying the token in local storage.
+ * If the user is not logged in, it displays a login prompt. If the user is logged in,
+ * it fetches the listing details and displays them along with the seller's other listings.
+ * 
+ * The function performs the following steps:
+ * - Fetches the listing based on the ID provided in the URL.
+ * - Displays listing details and seller information.
+ * - Displays other listings from the seller, excluding the current listing.
+ * - Handles errors in fetching data and updates the UI accordingly.
+ * 
+ * @returns {Promise<void>} - A promise that resolves when the rendering is complete.
+ * 
+ * @throws {Error} - Throws an error if there is a problem fetching the listing or user listings.
+ * 
+ * @example
+ * // Call this function to render a single item based on the URL parameter
+ * renderSingleItem();
+ */
 export async function renderSingleItem() {
   const urlParams = new URLSearchParams(window.location.search);
-  const listingId = urlParams.get('listing');
-  const singleListingContainer = document.getElementById('singleListings');
-  singleListingContainer.classList.add("border", "border-4", "border-primary", "pb-4")
-  const userSingleListingContainer = document.getElementById('userSingleListings');
-  userSingleListingContainer.classList.add("d-block")
+  const listingId = urlParams.get("listing");
+  const singleListingContainer = document.getElementById("singleListings");
+  singleListingContainer.classList.add("border", "border-4", "border-primary", "pb-4");
+  const userSingleListingContainer = document.getElementById("userSingleListings");
+  userSingleListingContainer.classList.add("d-block");
   const token = load("token");
   
   if (!token) {
     if (userSingleListingContainer) {
-      userSingleListingContainer.classList.add("d-none")
+      userSingleListingContainer.classList.add("d-none");
     }
   
     if (singleListingContainer) {
       singleListingContainer.innerHTML = `
         <div class="profile-alert font-raleway bg-white align-items-center border-tealgreen text-center" style="max-width: 600px;" role="alert">
           <h1 class="alert-heading font-raleway-900 fs-6 text-tealgreen text-uppercase">Whoa there, adventurer!</h1>
-          <p class="text-secondary">It seems you're not logged in. To see this listing and the magical wonders within, please log in using the overlay.</p>
-          <p class="text-secondary">Don't worry, logging in is easier than finding a needle in a haystack!</p>
+          <p class="text-secondary">It seems you"re not logged in. To see this listing and the magical wonders within, please log in using the overlay.</p>
+          <p class="text-secondary">Don"t worry, logging in is easier than finding a needle in a haystack!</p>
           <button id="profile-open-overlay-btn" class="m-auto text-center pt-3 border-0 font-tenor fs-4 text-uppercase bg-white">LOGIN</button>  
         </div>
       `;
-      document.getElementById('profile-open-overlay-btn').addEventListener('click', openLoginOverlay);
+      document.getElementById("profile-open-overlay-btn").addEventListener("click", openLoginOverlay);
     }
     return; 
   }
@@ -47,16 +68,16 @@ export async function renderSingleItem() {
     );
 
     const userName = document.createElement("h1");
-    userName.textContent = `${listing.seller.name || 'Unknown'}'s listing`;
+    userName.textContent = `${listing.seller.name || "Unknown"}"s listing`;
     userName.classList.add("font-tenor", "text-uppercase", "text-primary", "fs-4");
 
     const userCreated = document.createElement("p");
-    const formattedDate = listing.created ? formatDate(listing.created) : '';
+    const formattedDate = listing.created ? formatDate(listing.created) : "";
     userCreated.textContent = `Created: ${formattedDate}`;
     userCreated.classList.add("text-secondary");
 
     const userUpdated = document.createElement("p");
-    const formattedDateUp = listing.updated ? formatDate(listing.updated) : '';
+    const formattedDateUp = listing.updated ? formatDate(listing.updated) : "";
     userUpdated.textContent = `Updated: ${formattedDateUp}`;
     userUpdated.classList.add("mt-n3", "text-secondary");
 
@@ -70,17 +91,17 @@ export async function renderSingleItem() {
     userContainer.appendChild(userUpdated);
     userContainer.appendChild(goBackBtn);
 
-    singleListingContainer.innerHTML = '';
+    singleListingContainer.innerHTML = "";
     const listingCard = createListingCard(listing);
     singleListingContainer.appendChild(userContainer);
     singleListingContainer.appendChild(listingCard);
 
-    userSingleListingContainer.innerHTML = '';
+    userSingleListingContainer.innerHTML = "";
     const singleHeader = document.createElement("h2");
     singleHeader.textContent = `Other listings from ${listing.seller.name}`;
     singleHeader.classList.add("font-raleway", "fs-5", "ps-2", "text-white");
 
-    singleListingContainer.scrollIntoView({ behavior: 'smooth' });
+    singleListingContainer.scrollIntoView({ behavior: "smooth" });
 
     if (userSingleListingContainer) {
       const sellerName = listing.seller.name;
@@ -112,7 +133,7 @@ export async function renderSingleItem() {
           </div>`;
         singleHeader.style.display = "none";
         userSingleListingContainer.style.height = "200px";
-        listingContainer.classList.add('no-scroll');
+        listingContainer.classList.add("no-scroll");
       }
       
       userSingleListingContainer.appendChild(singleHeader);
@@ -120,7 +141,7 @@ export async function renderSingleItem() {
       
     }
   } catch (error) {
-    console.error('Error fetching and displaying listing:', error);
-    singleListingContainer.innerHTML = '<p>Unable to load listing details. Please try again later.</p>';
+    console.error("Error fetching and displaying listing:", error);
+    singleListingContainer.innerHTML = "<p>Unable to load listing details. Please try again later.</p>";
   }
 }

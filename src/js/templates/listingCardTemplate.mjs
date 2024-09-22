@@ -10,6 +10,32 @@ import { load } from "../storage/index.mjs";
 const token = load("token");
 const profile = load("profile");
 
+/**
+ * Creates a listing card element for displaying a listing.
+ *
+ * @param {Object} listing - The listing data.
+ * @param {string} buttonType - The type of button to display on the card (e.g., "my-listing" or "default").
+ * @returns {HTMLElement} The created listing card element.
+ *
+ * @property {HTMLElement} postContainer - The main container for the listing card.
+ * @property {HTMLElement} postContent - The content area of the listing card.
+ * @property {HTMLElement} postCardContent - The card content wrapper.
+ * @property {HTMLElement} postCard - The card itself.
+ * @property {HTMLElement} postAllContent - Container for all post content.
+ * @property {HTMLElement} headContent - Header area containing seller info and action buttons.
+ * @property {HTMLElement} sellerInfo - Container for seller avatar and name.
+ * @property {HTMLElement} buttonCnt - Container for action buttons.
+ * @property {HTMLElement} viewButton - The action button for viewing or managing the listing.
+ * @property {HTMLElement} imgContent - Container for images associated with the listing.
+ * @property {HTMLElement} title - Title element for the listing.
+ * @property {HTMLElement} descriptionContainer - Container for listing description.
+ * @property {HTMLElement} tagsContainer - Container for listing tags.
+ * @property {HTMLElement} createdDate - Date element indicating when the listing was created.
+ * @property {HTMLElement} detailsContainer - Container for listing details such as bid controls and remaining time.
+ * @property {HTMLElement} endTimeAndBidBtnContainer - Container for countdown and bid button.
+ * @property {HTMLElement} bidControls - Container for bid input and button.
+ * @property {HTMLElement} currentBidderContainer - Displays the current highest bidder's information.
+ */
 export function createListingCard(listing, buttonType) {
   const postContainer = document.createElement("div");
   postContainer.classList.add(
@@ -240,7 +266,7 @@ export function createListingCard(listing, buttonType) {
   // Image
   const imgContent = document.createElement("div");
   imgContent.style.objectFit = "cover";
-  imgContent.style.height = "320px";
+  imgContent.style.height = "300px";
   imgContent.classList.add("img-content");
   
   const imagesContainer = document.createElement("div");
@@ -254,9 +280,10 @@ export function createListingCard(listing, buttonType) {
   
           listing.media.forEach(image => {
               const imgElement = document.createElement("img");
-              imgElement.src = image.url; 
+              imgElement.src = image.url || "/src/images/noimage.jpg"; 
+              imgElement.alt = image.alt || "Default description for image";
               imgElement.style.width = "100%"; 
-              imgElement.style.height = "300px"; 
+              imgElement.style.height = "300px";
               imgElement.style.objectFit = "cover";
               imgElement.style.borderRadius = "5px";
               imgElement.classList.add(
@@ -277,7 +304,8 @@ export function createListingCard(listing, buttonType) {
           imagesContainer.appendChild(carousel);
       } else {
           const imgElement = document.createElement("img");
-          imgElement.src = listing.media[0].url; 
+          imgElement.src = listing.media[0].url || "/src/images/noimage.jpg"; 
+          imgElement.alt = listing.media[0].alt || "Default description for image"; // Use fallback alt text
           imgElement.style.width = "100%"; 
           imgElement.style.height = "300px"; 
           imgElement.style.objectFit = "cover";
@@ -295,11 +323,19 @@ export function createListingCard(listing, buttonType) {
   
           imagesContainer.appendChild(imgElement);
       }
-  } else {
-      const noImageMessage = document.createElement("p");
-      noImageMessage.textContent = "No images available.";
-      imagesContainer.appendChild(noImageMessage);
-  }
+  }  else {
+      // When there are no images, show a default image
+      const imgElement = document.createElement("img");
+      imgElement.src = "/src/images/noimage.jpg";
+      imgElement.alt = "No images available"; 
+      imgElement.style.width = "100%"; 
+      imgElement.style.height = "300px"; 
+      imgElement.style.objectFit = "cover";
+      imgElement.style.borderRadius = "5px";
+      imgElement.classList.add("border", "border-3", "border-secondary");
+
+      imagesContainer.appendChild(imgElement);
+    }
   
   imgContent.appendChild(imagesContainer);
   

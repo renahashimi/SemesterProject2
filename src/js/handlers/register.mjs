@@ -1,10 +1,10 @@
-import { registerUser } from '../api/auth/register.mjs';
-import { validateForm } from './validation.mjs';
+import { registerUser } from "../api/auth/register.mjs";
+import { validateForm } from "./validation.mjs";
 
 export function registerFormListener() {
-    const formElement = document.getElementById('registerForm');
+    const formElement = document.getElementById("registerForm");
     if (formElement) {
-        formElement.addEventListener('submit', async (event) => {
+        formElement.addEventListener("submit", async (event) => {
             event.preventDefault();
 
             clearErrors();
@@ -20,17 +20,17 @@ export function registerFormListener() {
             try {
                 const response = await registerUser(profile);
                 formElement.reset();
-                window.location.href = '/feed/profile/';
+                window.location.href = "/feed/profile/";
             } catch (error) {
-                console.error('Registration failed', error);
-                displayError('generalError', 'Registration failed. Please try again later.');
+                console.error("Registration failed", error);
+                displayError("generalError", "Registration failed. Please try again later.");
             }
         });
     }
 }
 
 function clearErrors() {
-    document.querySelectorAll('.error-message').forEach(error => {
+    document.querySelectorAll(".error-message").forEach(error => {
         error.textContent = "";
         error.classList.remove("d-block", "text-center", "text-danger", "border", "border-danger", "border-2", "font-raleway", "fs-7", "px-2");
     });

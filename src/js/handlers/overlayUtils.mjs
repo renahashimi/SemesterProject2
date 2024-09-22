@@ -1,3 +1,7 @@
+/**
+ * Opens the login overlay by setting its display style to "flex".
+ * @function openLoginOverlay
+ */
 export function openLoginOverlay() {
     const overlay = document.getElementById("login-overlay");
     if (overlay) {
@@ -5,6 +9,10 @@ export function openLoginOverlay() {
     } 
 }
 
+/**
+ * Closes the login overlay by setting its display style to "none".
+ * @function closeLoginOverlay
+ */
 export function closeLoginOverlay() {
     const overlay = document.getElementById("login-overlay");
     if (overlay) {
@@ -12,6 +20,11 @@ export function closeLoginOverlay() {
     } 
 }
 
+/**
+ * Sets up event listeners for opening and closing the login overlay.
+ * Listeners are added to various buttons to handle the overlay's visibility.
+ * @function setupOverlayListeners
+ */
 export function setupOverlayListeners() {
     const openDesktopButton = document.getElementById("desktop-open-overlay-btn");
     const openMobileButton = document.getElementById("mobile-open-overlay-btn");
@@ -51,4 +64,3 @@ export function setupOverlayListeners() {
         }
     });
 }
-

@@ -21,34 +21,40 @@
         <div id="header-placeholder"></div>
     </header>
     <main>
-        <!--FORM TO EDIT PROFILE-->
-        <h1 class="font-tenor fs-4 my-2 pt-3 text-uppercase text-light text-center">Update your profile</h1>
-        <div class="col-10 col-md-9 m-auto" style="max-width: 500px;">
-            <form id="editProfile" class="d-grid bg-light p-3" method="POST">
-                <div class="form-group my-2">
-                    <label class="text-uppercase text-primary font-raleway py-1" for="name">Name</label>
-                    <input class="form-control" id="name" type="text" name="name" disabled placeholder="Enter your name" title="You can use uppercase, lowercase, numbers, and underscores.">
-                </div>
-                <div class="form-group my-2">
-                    <label class="text-uppercase text-primary font-raleway py-1" for="email">Email</label>
-                    <input class="form-control" id="email" type="email" name="email" disabled placeholder="Enter a valid email" title="Please enter domains containing @(stud).noroff.no">
-                </div>
-                <div class="form-group my-2">
-                    <label class="text-uppercase text-primary font-raleway py-1" for="banner">Banner</label>
-                    <input class="form-control" id="banner" type="url" name="banner" placeholder="*Optional* - Choose your background image">
-                </div>
-                <div class="form-group my-2">
-                    <label class="text-uppercase text-primary font-raleway py-1" for="avatar">Avatar</label>
-                    <input class="form-control" id="avatar" type="url" name="avatar" placeholder="*Optional* - Choose your avatar / profile image">
-                </div>
-                <div class="form-group my-2">
-                    <label class="text-uppercase text-primary font-raleway py-1" for="bio">Bio</label>
-                    <textarea class="form-control" id="bio" name="bio" rows="4" placeholder="*Optional* - Tell us about yourself"></textarea>
-                </div>
-                <button class="text-secondary text-uppercase font-raleway-900 bg-white border-2 border-tealgreen my-3 px-5 rounded-4" type="submit">Update Profile</button>
-            </form>
-            <button class="btn btn-primary d-flex fs-3 text-uppercase m-auto my-3 text-center border-light" onclick="history.back()">Cancel</button>
-            
+        <div class="container-fluid d-flex m-0 p-0">
+            <!-- IMAGE AFTER "MD" SIZE-->
+            <div class="row d-none d-md-flex col-6">
+                <img class="formImg w-100" src="/src/images/gavel3.jpg" alt="Back img of gavel">
+            </div>
+            <!--FORM TO EDIT PROFILE-->
+            <div class="col-10 col-md-6 m-auto" style="max-width: 500px;">
+                <h1 class="my-4 text-center fs-5 mx-0 p-0 text-uppercase font-tenor">Update your profile</h1>
+                <form id="editProfile" class="d-grid bg-light p-3" method="POST">
+                    <div class="form-group my-2">
+                        <label class="text-uppercase text-primary font-raleway py-1" for="name">Name</label>
+                        <input class="form-control" id="name" type="text" name="name" disabled placeholder="Enter your name" title="You can use uppercase, lowercase, numbers, and underscores.">
+                    </div>
+                    <div class="form-group my-2">
+                        <label class="text-uppercase text-primary font-raleway py-1" for="email">Email</label>
+                        <input class="form-control" id="email" type="email" name="email" disabled placeholder="Enter a valid email" title="Please enter domains containing @(stud).noroff.no">
+                    </div>
+                    <div class="form-group my-2">
+                        <label class="text-uppercase text-primary font-raleway py-1" for="banner">Banner</label>
+                        <input class="form-control" id="banner" type="url" name="banner" placeholder="*Optional* - Choose your background image">
+                    </div>
+                    <div class="form-group my-2">
+                        <label class="text-uppercase text-primary font-raleway py-1" for="avatar">Avatar</label>
+                        <input class="form-control" id="avatar" type="url" name="avatar" placeholder="*Optional* - Choose your avatar / profile image">
+                    </div>
+                    <div class="form-group my-2">
+                        <label class="text-uppercase text-primary font-raleway py-1" for="bio">Bio</label>
+                        <textarea class="form-control" id="bio" name="bio" rows="4" placeholder="*Optional* - Tell us about yourself"></textarea>
+                    </div>
+                    <button class="btn text-secondary text-uppercase font-raleway-900 bg-white border-2 border-tealgreen my-3 px-5 rounded-4" type="submit">Update Profile</button>
+                </form>
+                <button id="cancelBtn" class="btn btn-white d-flex fs-6 text-uppercase m-auto mt-2 mb-5 px-3 text-center" onclick="history.back()">Cancel</button>
+            </div>
+        </div>     
         <!-- GO BACK UP - BUTTON -->
         <button id="goBackUpBtn" class="btn btn-white btn-lg bg-white m-auto justify-content-center text-center rounded-circle border border-5 border-primary">
             <i class="bi bi-arrow-up-circle-fill"></i>
