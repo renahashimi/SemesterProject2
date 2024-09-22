@@ -10,7 +10,6 @@ export default function router() {
     case "/":
     case "/index.html":
       handlers.renderHomeListings();
-      handlers.setupScrollPosition();
       break;
     case "/feed/profile/":
       handlers.renderMyProfile();
