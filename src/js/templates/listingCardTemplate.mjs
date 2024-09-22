@@ -716,9 +716,8 @@ export function createListingCard(listing, buttonType) {
 function initializeCarousel(carousel) {
   const images = carousel.querySelectorAll(".carousel-image");
   let currentIndex = 0;
-
   const prevButton = document.createElement("button");
-  prevButton.innerHTML = '<i class="bi bi-arrow-left-square text-white bg-teallight border border-secondary fs-3"></i>';
+  prevButton.innerHTML = '<i class="bi bi-arrow-left-square text-white bg-teallight fs-3"></i>';
   const nextButton = document.createElement("button");
   nextButton.innerHTML = '<i class="bi bi-arrow-right-square text-white bg-teallight fs-3"></i>';
   
@@ -752,24 +751,15 @@ function initializeCarousel(carousel) {
         images[currentIndex].style.opacity = "1";
       }, 10);
     }, 500);
-
-    // Disable or enable buttons based on the current index
-    prevButton.disabled = currentIndex === 0;
-    nextButton.disabled = currentIndex === images.length - 1;
   }
-
   prevButton.addEventListener("click", () => {
-    if (currentIndex > 0) {
-      const newIndex = currentIndex - 1;
+      const newIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
       showImage(newIndex);
-    }
   });
 
   nextButton.addEventListener("click", () => {
-    if (currentIndex < images.length - 1) {
-      const newIndex = currentIndex + 1;
+      const newIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
       showImage(newIndex);
-    }
   });
 
   prevButton.style.position = "absolute";
@@ -784,8 +774,4 @@ function initializeCarousel(carousel) {
 
   carousel.appendChild(prevButton);
   carousel.appendChild(nextButton);
-
-  // Initial button states
-  prevButton.disabled = currentIndex === 0;
-  nextButton.disabled = images.length === 1;
 }
