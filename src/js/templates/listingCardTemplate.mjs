@@ -266,7 +266,7 @@ export function createListingCard(listing, buttonType) {
   // Image
   const imgContent = document.createElement("div");
   imgContent.style.objectFit = "cover";
-  imgContent.style.height = "320px";
+  imgContent.style.height = "300px";
   imgContent.classList.add("img-content");
   
   const imagesContainer = document.createElement("div");
@@ -280,9 +280,10 @@ export function createListingCard(listing, buttonType) {
   
           listing.media.forEach(image => {
               const imgElement = document.createElement("img");
-              imgElement.src = image.url; 
+              imgElement.src = image.url || "/src/images/noimage.jpg"; 
+              imgElement.alt = image.alt || "Default description for image";
               imgElement.style.width = "100%"; 
-              imgElement.style.height = "300px"; 
+              imgElement.style.height = "300px";
               imgElement.style.objectFit = "cover";
               imgElement.style.borderRadius = "5px";
               imgElement.classList.add(
@@ -303,7 +304,8 @@ export function createListingCard(listing, buttonType) {
           imagesContainer.appendChild(carousel);
       } else {
           const imgElement = document.createElement("img");
-          imgElement.src = listing.media[0].url; 
+          imgElement.src = listing.media[0].url || "/src/images/noimage.jpg"; 
+          imgElement.alt = listing.media[0].alt || "Default description for image"; // Use fallback alt text
           imgElement.style.width = "100%"; 
           imgElement.style.height = "300px"; 
           imgElement.style.objectFit = "cover";
@@ -321,11 +323,19 @@ export function createListingCard(listing, buttonType) {
   
           imagesContainer.appendChild(imgElement);
       }
-  } else {
-      const noImageMessage = document.createElement("p");
-      noImageMessage.textContent = "No images available.";
-      imagesContainer.appendChild(noImageMessage);
-  }
+  }  else {
+      // When there are no images, show a default image
+      const imgElement = document.createElement("img");
+      imgElement.src = "/src/images/noimage.jpg"; // Default image when no media available
+      imgElement.alt = "No images available"; // Alt text for default image
+      imgElement.style.width = "100%"; 
+      imgElement.style.height = "300px"; 
+      imgElement.style.objectFit = "cover";
+      imgElement.style.borderRadius = "5px";
+      imgElement.classList.add("border", "border-3", "border-secondary");
+
+      imagesContainer.appendChild(imgElement);
+    }
   
   imgContent.appendChild(imagesContainer);
   
