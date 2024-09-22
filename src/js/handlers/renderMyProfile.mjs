@@ -103,8 +103,8 @@ export async function renderMyProfile() {
                     });
                 } else {
                     myListingsContainer.innerHTML = `
-                    <div class="noListingTxt d-block text-center font-raleway-900 text-uppercase mt-5">
-                        <h2 class="text-tenor fs-4">No listings yet?</h2>
+                    <div class="noListingTxt d-block m-auto justify-content-center text-center font-raleway-900 text-uppercase mt-5">
+                        <h2 class="font-tenor m-auto text-center fs-4">No listings yet?</h2>
                         <a class="text-tealgreen fs-6 mt-n5" href="/feed/listings/create/">Add your first listing here</a>
                     </div>`;
                 }
@@ -112,8 +112,8 @@ export async function renderMyProfile() {
                 console.error("Failed to load listings:", error);
                 if (myListingsContainer) {
                     myListingsContainer.innerHTML = `
-                    <div class="noListingTxt d-block text-center font-raleway-900 text-uppercase mt-5">
-                        <h2 class="text-tenor fs-4">Error loading listings!</h2>
+                    <div class="noListingTxt d-block m-auto justify-content-center text-center font-raleway-900 text-uppercase mt-5">
+                        <h2 class="font-tenor fs-4">Error loading listings!</h2>
                         <p class="text-secondary">There was an error loading your listings. Please try again later.</p>
                     </div>`;
                 }
@@ -136,17 +136,17 @@ export async function renderMyProfile() {
                     });
                 } else {
                     myWinsContainer.innerHTML = `
-                    <div class="noListingTxt d-block text-center font-raleway-900 text-uppercase mt-5">
-                        <h3 class="text-tenor fs-4">No wins yet?</h3>
-                        <a class="text-tealgreen fs-6 mt-n5" href="/feed/listings/">Browse listings to place a bid</a>
+                    <div class="noListingTxt d-block m-auto justify-content-center text-center font-raleway-900 text-uppercase my-2">
+                        <h3 class="font-tenor fs-4">No wins yet?</h3>
+                        <a class="text-white fs-6 mt-n5" href="/feed/listings/">Browse listings to place a bid</a>
                     </div>`;
                 }
             } catch (error) {
                 console.error("Failed to load won listings:", error);
                 myWinsContainer.innerHTML = `
-                <div class="noListingTxt d-block text-center font-raleway-900 text-uppercase mt-5">
-                    <h3 class="text-tenor fs-4">Error loading wins!</h3>
-                    <p class="text-secondary">There was an error loading your won listings. Please try again later.</p>
+                <div class="noListingTxt d-block m-auto justify-content-center text-center font-raleway-900 text-uppercase my-2">
+                    <h3 class="font-tenor fs-4">Error loading wins!</h3>
+                    <p class="text-white">There was an error loading your won listings. Please try again later.</p>
                 </div>`;
             }
         }
