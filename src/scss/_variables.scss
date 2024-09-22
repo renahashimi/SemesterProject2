@@ -571,8 +571,9 @@ justify-content: flex-start; /* Align items to the start of the container */
 // CAROUSEL
 
 .carousel {
-  max-height: 500px;
+  max-height: 500px !important;
 }
+
 .carousel-control-prev, 
 .carousel-control-next {
   width: 5%;
