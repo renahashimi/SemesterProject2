@@ -521,6 +521,7 @@ justify-content: flex-start; /* Align items to the start of the container */
 }
 
 
+
 /* CONTACT */
 #allContactContent {
   position: relative;
@@ -785,6 +786,10 @@ justify-content: flex-start; /* Align items to the start of the container */
     font-size: 2rem;
     padding-bottom: 20px;
   }
+
+  .dropdown {
+    margin-top: -20px;
+  }
   
 }
 
@@ -792,7 +797,7 @@ justify-content: flex-start; /* Align items to the start of the container */
   
   #allListingsContainer, #searchresult, #myListings, #userListings, #myWins, #userWins {
     display: grid !important;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 33%);
     gap: 1rem !important; 
   }
   .text-overlay2 {
